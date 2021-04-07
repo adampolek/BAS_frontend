@@ -4,6 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Home from './views/Home';
 import Account from './views/Account';
+import Login from './views/Login';
+import Register from './views/Register';
 
 const App = () => {
   return (
@@ -12,6 +14,8 @@ const App = () => {
         <Switch>
           <Route path="/" component={Home} exact />
           <Route path="/account" component={Account} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
           <Route component={Error} />
         </Switch>
       </div>
