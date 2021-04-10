@@ -1,7 +1,11 @@
 .panel {
     background-color: #C0C0C0;
     margin: 5px;
-    padding: 10px;
     border-bottom: 4px solid lighten(gray, 70%);
     box-shadow: 2px 2px 4px #00000079;
+}
+
+.center {
+    margin: auto;
+    justify-content: center;
 }

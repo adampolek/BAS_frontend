@@ -1,0 +1,37 @@
+.back {
+    width: 54px;
+    height: 27px;
+    background-color: #E0E0E0;
+    border-bottom: 4px solid lighten(gray, 70%);
+    box-shadow: 2px 2px 4px #00000079;
+    transition: 0.2s;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.front {
+    width: 25px;
+    height: 23px;
+    background-color: white;
+    border-bottom: 4px solid lighten(gray, 70%);
+    box-shadow: 2px 2px 4px #00000079;
+    position: relative;
+    top: 2px;
+    left: 2px;
+    transition: 0.2s;
+}
+
+.caption {
+    font-size: 20px;
+    font-weight: bold
+}
+
+.back_active {
+    background-color: purple;
+    transition: 0.2s;
+}
+
+.front_active {
+    left: 27px;
+    transition: 0.2s;
+}

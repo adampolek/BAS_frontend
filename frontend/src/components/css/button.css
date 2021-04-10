@@ -9,9 +9,9 @@ button {
     font-size: 20px;
 }
 
-.normla {
-    background-color: white;
-    color: #000;
+.normal {
+    background-color: purple;
+    color: white;
 }
 
 .success {
