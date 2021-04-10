@@ -8,7 +8,7 @@ import logo from '../resources/login_background.png'
 import Checkbox from '../components/Checkbox'
 
 const Login = (props) => {
-    const [check, setCheck] = useState(true);
+    const [check, setCheck] = useState(false);
     return (
         <div style={{ height: "100%", width: "100%", position: "absolute", backgroundColor: "purple" }}>
             <Panel width={"100%"} height={"100%"} backgroundColor={"purple"}>
@@ -29,7 +29,7 @@ const Login = (props) => {
                         <Input caption='Login or Email' width="300px" />
                         <Input caption='Password' width="300px" type='password' />
                         <Row float='left' width='100%'>
-                        <Checkbox caption="Keep me logged in" width='100%' checked={check} onClick={() => setCheck(!check)} />
+                            <Checkbox caption="Keep me logged in" width='100%' checked={check} onClick={() => setCheck(!check)} />
                         </Row>
                         <Row style={{ width: "100%", paddingTop: "20px" }}>
                             <Button value='Log in' width={"100%"} />
