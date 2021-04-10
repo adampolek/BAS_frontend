@@ -15,7 +15,6 @@
     outline: none;
     border: none;
     background-color: white;
-    border-radius: 5px;
     border-bottom: 2px solid black;
     box-shadow: 2px 2px 4px #00000079;
     font-size: var(--size_text);
@@ -59,7 +58,6 @@
 .input_error {
     outline: none;
     border-bottom: 5px solid red;
-    border-radius: 5px;
 }
 
 .label_error {

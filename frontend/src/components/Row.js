@@ -1,9 +1,9 @@
 import React from 'react';
 import './css/layout.css';
 
-const Row = (props) => {
+const Row = ({float='center', ...props}) => {
     return (
-        <div className='row' style={props.style}>
+        <div className={'row ' + float} style={props.style}>
             {props.children}
         </div>
     );

@@ -1,15 +1,30 @@
 .col {
     flex-direction: column;
-    display: flex;
-    align-items: flex-start;
-    flex-wrap: wrap;
 }
 
 @media only screen {
     .row {
         flex-direction: row;
-        display: flex;
-        align-items: flex-start;
-        flex-wrap: wrap;
     }
+}
+
+.center {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.left {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: flex-start;
+}
+
+.right {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: right;
+    align-items: flex-end;
 }

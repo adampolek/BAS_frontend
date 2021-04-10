@@ -1,7 +1,7 @@
 import React from 'react';
 import './css/panel.css';
 
-const Panel = ({type='column', ...props}) => {
+const Panel = (props) => {
     return (
         <div className='panel'>
             {props.children}

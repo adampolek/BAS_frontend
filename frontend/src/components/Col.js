@@ -1,9 +1,9 @@
 import React from 'react';
 import './css/layout.css';
 
-const Col = (props) => {
+const Col = ({float='center', ...props}) => {
     return (
-        <div className='col' style={props.style}>
+        <div className={ 'col ' + float} style={props.style}>
             {props.children}
         </div>
     );

@@ -2,7 +2,6 @@ button {
     border: none;
     outline: none;
     margin: 5px;
-    border-radius: 10px;
     border-bottom: 4px solid lighten(gray, 70%);
     box-shadow: 2px 2px 4px #00000079;
     transition: all .3s;

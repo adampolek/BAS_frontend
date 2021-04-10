@@ -13,7 +13,7 @@ const Login = (props) => {
                     <Input label='Login' />
                     <Input label='Password' />
                     <Row>
-                        <Button value='Register' />
+                        <Button value='Register'/>
                         <Button value='Log in' theme='success'/>
                     </Row>
                 </Col>
