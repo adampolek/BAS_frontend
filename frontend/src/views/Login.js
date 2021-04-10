@@ -28,7 +28,7 @@ const Login = (props) => {
                         </Row>
                         <Input caption='Login or Email' width="300px" />
                         <Input caption='Password' width="300px" type='password' />
-                        <Row float='left' width='100%'>
+                        <Row float='left' style={{width: '100%'}}>
                             <Checkbox caption="Keep me logged in" width='100%' checked={check} onClick={() => setCheck(!check)} />
                         </Row>
                         <Row style={{ width: "100%", paddingTop: "20px" }}>
