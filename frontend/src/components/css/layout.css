@@ -1,0 +1,15 @@
+.col {
+    flex-direction: column;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+@media only screen {
+    .row {
+        flex-direction: row;
+        display: flex;
+        align-items: flex-start;
+        flex-wrap: wrap;
+    }
+}

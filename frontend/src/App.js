@@ -1,7 +1,4 @@
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-
 import Home from './views/Home';
 import Account from './views/Account';
 import Login from './views/Login';
@@ -23,4 +20,4 @@ const App = () => {
   );
 };
 
-export default App; 
+export default App;

@@ -1,0 +1,41 @@
+button {
+    border: none;
+    outline: none;
+    margin: 5px;
+    border-radius: 10px;
+    border-bottom: 4px solid lighten(gray, 70%);
+    box-shadow: 2px 2px 4px #00000079;
+    transition: all .3s;
+    padding: 10px 30px;
+    font-size: 20px;
+}
+
+.normla {
+    background-color: white;
+    color: #000;
+}
+
+.success {
+    background-color: green;
+    color: white;
+}
+
+.danger {
+    background-color: red;
+    color: white;
+}
+
+.normal:hover, .danger:hover, .success:hover {
+    box-shadow: 2px 2px 4px #00000079;
+    background-color: silver;
+    color: black;
+    transform: scale(1.03);
+    cursor: pointer;
+}
+
+.normal:active, .danger:active, .success:active {
+    box-shadow: 2px 2px 4px #00000079;
+    transform: scale(.98);
+    background-color: slategray;
+    cursor: pointer;
+}
