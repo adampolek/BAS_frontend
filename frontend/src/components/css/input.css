@@ -40,6 +40,10 @@
     margin-left: 10px;
 }
 
+.label:hover {
+    cursor: text;
+}
+
 .input:focus~.label, .label {
     position: absolute;
     top: 0px;

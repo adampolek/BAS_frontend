@@ -55,7 +55,7 @@ const Login = (props) => {
                                onChange={(e) => setUsername(e.target.value)}/>
                         <Input caption='Password' width="300px" type='password' value={password}
                                onChange={(e) => setPassword(e.target.value)}/>
-                        <Row float='left' width='100%'>
+                        <Row float='left' style={{width: '100%'}}>
                             <Checkbox caption="Keep me logged in" width='100%' checked={check}
                                       onClick={() => setCheck(!check)}/>
                         </Row>
