@@ -28,11 +28,11 @@ const Login = (props) => {
             API.get('bas/user/role', {headers: {Authorization: JSON.parse(localStorage.getItem('token'))}})
                 .then(res => {
                     localStorage.setItem('role', JSON.stringify((res.data)));
+                    document.location.href = "/";
+                    setIsLoading(false);
                 });
         })
 
-        // document.location.href = "/";
-        setIsLoading(false);
     };
     return (
         <div style={{height: "100%", width: "100%", position: "absolute", backgroundColor: "purple"}}>

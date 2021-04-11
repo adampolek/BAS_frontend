@@ -19,7 +19,7 @@ const Register = (props) => {
     const [showErrorPassword, setShowErrorPassword] = useState(false);
     const [showErrorConfirmPassword, setShowErrorConfirmPassword] = useState(false);
 
-    const register = () => {
+    const register = async () => {
         let register = true;
         setShowErrorConfirmPassword(false);
         setShowErrorPassword(false);
