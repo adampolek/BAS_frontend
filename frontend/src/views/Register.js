@@ -46,6 +46,18 @@ const Register = (props) => {
                 });
         }
     }
+    //todo: change validation
+    const validate = () => {
+       var reg = /^[A-Z]*$/;
+       var test = reg.test(password);
+       if (test) {
+          alert('pass');
+          this.setState({value: password});
+       }else{
+         alert('fail');
+       } 
+    }
+
     return (
         <div style={{height: "100%", width: "100%", position: "absolute", backgroundColor: "purple"}}>
             <Panel width={"100%"} height={"100%"} backgroundColor={"purple"}>
@@ -83,6 +95,7 @@ const Register = (props) => {
                         <Row style={{width: "100%", paddingTop: "40px"}}>
                             <Button value='Register' width={"100%"} onClick={() => {
                                 console.log("Halko");
+                                {validate()}
                                 register();
                             }}/>
                         </Row>

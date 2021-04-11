@@ -78,6 +78,7 @@ const Account = (props) => {
                                onChange={(e) => setHeight(e.target.value)}/>
                     </Row>
                     <Row>
+                        <label>Gender: </label>
                         <div className="radio">
                             <label>
                                 <input type="radio" value="male" checked={gender === 'male'}
@@ -93,16 +94,24 @@ const Account = (props) => {
                             </label>
                         </div>
                     </Row>
+<<<<<<< Updated upstream
                     <DatePicker
                         value={birthDate}
                         onChange={setBirthDate}
                     />
+=======
+                    <Row>
+                        <label>Birth date: </label>
+                        <DatePicker
+                            onChange={onChange}
+                            value={value}
+                        />
+                    </Row>
+>>>>>>> Stashed changes
 
                     <Row>
                         <Button value="Save" onClick={() => updateAccountInfo()}/>
                     </Row>
-
-
                     <h3 style={{fontWeight: "bold"}}>E-mail address</h3>
                     <div style={{backgroundColor: "#E0E0E0", height: '2px', width: '100%'}}></div>
                     <Row>
@@ -114,8 +123,6 @@ const Account = (props) => {
                     <Row>
                         <Button value="Save" onClick={() => changeEmail()}/>
                     </Row>
-
-
                     <h3 style={{fontWeight: "bold"}}>Password</h3>
                     <div style={{backgroundColor: "#E0E0E0", height: '2px', width: '100%'}}></div>
                     <Row>
@@ -129,6 +136,10 @@ const Account = (props) => {
                     <Row>
                         <Button value="Save" onClick={() => updatePassword()}/>
                     </Row>
+                    <h3 style={{fontWeight: "bold"}}>Delete your account</h3>
+                    <div style={{backgroundColor: "#E0E0E0", height: '2px', width: '100%'}}></div>
+                    <Input caption='Confirm password' width="300px" type="password"/>
+                    <Button value="Delete account" />
                 </Col>
             </Panel>
         </div>

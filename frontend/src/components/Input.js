@@ -5,7 +5,7 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 const eye = <FontAwesomeIcon icon={faEye} />;
 
-const Input = ({ caption = 'Holder', error='Error', showError=false, value, type='text', width="250px", onChange, ...props }) => {
+const Input = ({ caption = 'Holder', error='Error', showError=false, value, type='text', width="250px", onChange, onInput, ...props }) => {
     const [passwordShown, setPasswordShown] = useState(type =="password" ? false : true);
     const togglePasswordVisiblity = () => {
         setPasswordShown(passwordShown ? false : true);
@@ -22,7 +22,7 @@ const Input = ({ caption = 'Holder', error='Error', showError=false, value, type
         <div style={{margin:'5px'}}>
         <div className='group'>
             <input style={{width: width}} id='value' type={passwordShown ? "text" : "password"} className={(showError ? 'input_error' : '') + ' input'} 
-                placeholder='text' value={value} onChange={onChange} {...props} ref={inputRef}/>
+                placeholder='text' value={value} onChange={onChange} onInput={onInput} {...props} ref={inputRef}/>
             <label className={(showError ? 'label_error' : '') + ' label'} onClick={setInputFocus} >{caption}</label>
             <i onClick={togglePasswordVisiblity} style={type != "password" ? {visibility: "hidden"} : {visibility: "visible"}}>{eye}</i>
         </div>
