@@ -27,6 +27,8 @@ const Account = (props) => {
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
+    const [removeAccountPassword, setRemoveAccountPassword] = useState('');
+
     const updateAccountInfo = async () => {
         API.put("bas/user/account", Object.assign({},
             user, {firstName: firstName}, {lastName: lastName},
@@ -94,21 +96,13 @@ const Account = (props) => {
                             </label>
                         </div>
                     </Row>
-<<<<<<< Updated upstream
-                    <DatePicker
-                        value={birthDate}
-                        onChange={setBirthDate}
-                    />
-=======
                     <Row>
                         <label>Birth date: </label>
                         <DatePicker
-                            onChange={onChange}
-                            value={value}
+                            onChange={setBirthDate}
+                            value={birthDate}
                         />
                     </Row>
->>>>>>> Stashed changes
-
                     <Row>
                         <Button value="Save" onClick={() => updateAccountInfo()}/>
                     </Row>
@@ -138,7 +132,8 @@ const Account = (props) => {
                     </Row>
                     <h3 style={{fontWeight: "bold"}}>Delete your account</h3>
                     <div style={{backgroundColor: "#E0E0E0", height: '2px', width: '100%'}}></div>
-                    <Input caption='Confirm password' width="300px" type="password"/>
+                    <Input caption='Confirm password' width="300px" type="password" value={removeAccountPassword}
+                    onChange={(e) => setRemoveAccountPassword(e.target.value)}/>
                     <Button value="Delete account" />
                 </Col>
             </Panel>
