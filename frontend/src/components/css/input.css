@@ -9,6 +9,16 @@
     padding-top: 12px;
 }
 
+i {
+    position: absolute;
+    top: 38%;
+    right: 4%;
+  }
+  i:hover {
+    color: purple;
+    cursor: pointer;
+  }
+
 .input {
     background: transparent;
     padding: 5px 10px;
