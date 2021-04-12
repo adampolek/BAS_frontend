@@ -9,15 +9,16 @@
     padding-top: 12px;
 }
 
-i {
+.eye {
     position: absolute;
     top: 38%;
     right: 4%;
-  }
-  i:hover {
+}
+
+.eye:hover {
     color: purple;
     cursor: pointer;
-  }
+}
 
 .input {
     background: transparent;

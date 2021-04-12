@@ -77,7 +77,7 @@ const Account = (props) => {
                                onChange={(e) => setFirstName(e.target.value)}/>
                         <JAMInput caption='Last Name' width="300px" value={lastName}
                                onChange={(e) => setLastName(e.target.value)}/>
-                        <JAMInput caption='Height' width="300px" value={height}
+                        <JAMInput type='number' caption='Height' width="300px" value={height}
                                onChange={(e) => setHeight(e.target.value)}/>
                     </JAMRow>
                     <JAMRow>

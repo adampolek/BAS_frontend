@@ -1,9 +1,8 @@
 import React from 'react';
-import './css/image.css';
 
-const JAMImage = ({ icon, note = 'Note icon', scale = true, width = '100%', height = '100%', ...props }) => {
+const JAMImage = ({ onClick, icon, note = 'Note icon', scale = true, width = '100%', height = '100%', className, ...props }) => {
     return (
-        <img className='img' src={icon} alt={note} scale={true} style={{width: width, height: height}} />
+        <img onClick={onClick} className={'img ' + className} src={icon} alt={note} scale={true} width={width} height={height} style={props.style} />
     );
 };
 

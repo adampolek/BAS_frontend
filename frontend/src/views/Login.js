@@ -9,6 +9,7 @@ import JAMCheckbox from '../components/JAMCheckbox'
 import API from "../api/API";
 import JAMImage from '../components/JAMImage';
 import JAMLine from '../components/JAMLine';
+import JAMLabel from '../components/JAMLabel';
 
 const Login = (props) => {
     const [check, setCheck] = useState(true);
@@ -42,15 +43,11 @@ const Login = (props) => {
                 <JAMPanel width={"90%"} height={"90%"} maxWidth={"1300px"} backgroundColor={"white"} minWidth='400px'>
                     <JAMCol>
                         <JAMRow>
-                            <h1 style={{fontFamily: "Trebuchet MS", padding: "10px"}}>
-                                Welcome Back
-                            </h1>
+                            <JAMLabel style={{padding: "10px"}} caption='Welcome Back' header />
                         </JAMRow>
                         <JAMRow>
                             <JAMLine />
-                            <label style={{padding: "20px", color: "#E0E0E0"}}>
-                                LOGIN WITH USERNAME
-                            </label>
+                            <JAMLabel style={{padding: "20px"}} caption='LOGIN WITH USERNAME' color='#E0E0E0' />
                             <JAMLine />
                         </JAMRow>
                         <JAMInput caption='Login or Email' width="300px" value={username}
