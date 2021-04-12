@@ -7,6 +7,7 @@ import JAMLine from '../components/JAMLine';
 import JAMRow from '../components/JAMRow';
 import JAMLabel from '../components/JAMLabel';
 import API from "../api/API";
+import JAMRadioButton from '../components/JAMRadioButton';
 
 let initialRead = true;
 
@@ -18,9 +19,9 @@ const Account = (props) => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [height, setHeight] = useState('');
-    const [gender, setGender] = useState('');
+    const [gender, setGender] = useState('none');
     const [birthDate, setBirthDate] = useState(new Date().toISOString().slice(0, 10));
-    console.log(birthDate)
+
     const [email, setEmail] = useState('');
     const [emailPassword, setEmailPassword] = useState('');
 
@@ -31,6 +32,7 @@ const Account = (props) => {
     // const [removeAccountPassword, setRemoveAccountPassword] = useState('');
 
     const updateAccountInfo = async () => {
+        console.log(gender);
         API.put("bas/user/account", Object.assign({},
             user, {firstName: firstName}, {lastName: lastName},
             {height: height}, {gender: gender}, {birthDate: birthDate}),
@@ -82,6 +84,7 @@ const Account = (props) => {
                     </JAMRow>
                     <JAMRow>
                         <label>Gender: </label>
+                        <JAMRadioButton options={['none', 'male', 'female']} selected={gender} onChange={(e) => setGender(e)} />
                         <div className="radio">
                             <label>
                                 <input type="radio" value="male" checked={gender === 'male'}
