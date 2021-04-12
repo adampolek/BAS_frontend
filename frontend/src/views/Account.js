@@ -5,6 +5,7 @@ import JAMInput from '../components/JAMInput';
 import JAMPanel from '../components/JAMPanel';
 import JAMLine from '../components/JAMLine';
 import JAMRow from '../components/JAMRow';
+import JAMLabel from '../components/JAMLabel';
 import JAMDatePicker from 'react-date-picker';
 import API from "../api/API";
 
@@ -70,7 +71,7 @@ const Account = (props) => {
         <div style={{height: "100%", width: "100%", position: "absolute", backgroundColor: "purple"}}>
             <JAMPanel width={"100%"} height={"100%"}>
                 <JAMCol>
-                    <h3 style={{fontWeight: "bold"}}>Personal information</h3>
+                    <JAMLabel style={{padding: "10px"}} caption='Personal information' big bold/>
                     <JAMLine />
                     <JAMRow>
                         <JAMInput caption='First Name' width="300px" value={firstName}
@@ -107,7 +108,7 @@ const Account = (props) => {
                     <JAMRow>
                         <JAMButton value="Save" onClick={() => updateAccountInfo()}/>
                     </JAMRow>
-                    <h3 style={{fontWeight: "bold"}}>E-mail address</h3>
+                        <JAMLabel style={{padding: "10px"}} caption='E-mail address' big bold/>
                     <JAMLine />
                     <JAMRow>
                         <JAMInput caption='E-mail address' width="300px" value={email}
@@ -118,7 +119,7 @@ const Account = (props) => {
                     <JAMRow>
                         <JAMButton value="Save" onClick={() => changeEmail()}/>
                     </JAMRow>
-                    <h3 style={{fontWeight: "bold"}}>Password</h3>
+                        <JAMLabel style={{padding: "10px"}} caption='Password' big bold/>
                     <JAMLine />
                     <JAMRow>
                         <JAMInput caption='Current password' width="300px" type="password" value={currentPassword}
@@ -131,7 +132,7 @@ const Account = (props) => {
                     <JAMRow>
                         <JAMButton value="Save" onClick={() => updatePassword()}/>
                     </JAMRow>
-                    <h3 style={{fontWeight: "bold"}}>Delete your account</h3>
+                        <JAMLabel style={{padding: "10px"}} caption='Delete your account' big bold/>
                     <JAMLine />
                     <JAMInput caption='Confirm password' width="300px" type="password" />
                     <JAMButton value="Delete account" />

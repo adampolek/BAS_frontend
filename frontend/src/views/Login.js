@@ -67,9 +67,7 @@ const Login = (props) => {
                             </a>
                         </JAMRow>
                         <JAMRow style={{paddingTop: "40px"}}>
-                            <label style={{marginRight: "10px"}}>
-                                Don't have an account yet?
-                            </label>
+                            <JAMLabel style={{padding: "10px"}} caption="Don't have an account yet?" />
                             <a href="/register">
                                 Sign in!
                             </a>

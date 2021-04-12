@@ -5,6 +5,7 @@ import JAMPanel from '../components/JAMPanel';
 import JAMRow from '../components/JAMRow';
 import JAMImage from '../components/JAMImage';
 import JAMLine from '../components/JAMLine';
+import JAMLabel from '../components/JAMLabel';
 import logo from '../resources/login_background.png'
 import React, {useState} from 'react';
 import API from "../api/API";
@@ -69,15 +70,11 @@ const Register = (props) => {
                     </JAMCol>
                     <JAMCol>
                         <JAMRow>
-                            <h1 style={{fontFamily: "Trebuchet MS", padding: "10px"}}>
-                                Welcome to NaszaApka
-                            </h1>
+                            <JAMLabel style={{padding: "10px"}} caption='Welcome to NaszaApka' header />
                         </JAMRow>
                         <JAMRow style={{paddingBottom: "20px"}}>
                             <JAMLine />
-                            <label style={{padding: "20px", color: "#E0E0E0"}}>
-                                REGISTER YOUR ACCOUNT
-                            </label>
+                                <JAMLabel style={{padding: "20px"}} caption='REGISTER YOUR ACCOUNT' color='#E0E0E0' />
                             <JAMLine />
                         </JAMRow>
                         <JAMInput caption='Login' width="300px" value={username} onChange={(e) => {
@@ -101,9 +98,7 @@ const Register = (props) => {
                             }}/>
                         </JAMRow>
                         <JAMRow style={{paddingTop: "30px"}}>
-                            <label style={{marginRight: "10px"}}>
-                                Already have an account?
-                            </label>
+                            <JAMLabel style={{padding: "10px"}} caption='Already have an account?' />
                             <a href="/login">
                                 Sign in!
                             </a>
