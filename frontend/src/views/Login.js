@@ -8,6 +8,7 @@ import logo from '../resources/login_background.png'
 import JAMCheckbox from '../components/JAMCheckbox'
 import API from "../api/API";
 import JAMImage from '../components/JAMImage';
+import JAMLine from '../components/JAMLine';
 
 const Login = (props) => {
     const [check, setCheck] = useState(true);
@@ -46,11 +47,11 @@ const Login = (props) => {
                             </h1>
                         </JAMRow>
                         <JAMRow>
-                            <div style={{backgroundColor: "#E0E0E0", height: '2px', width: '100%'}}></div>
+                            <JAMLine />
                             <label style={{padding: "20px", color: "#E0E0E0"}}>
                                 LOGIN WITH USERNAME
                             </label>
-                            <div style={{backgroundColor: "#E0E0E0", height: '2px', width: '100%'}}></div>
+                            <JAMLine />
                         </JAMRow>
                         <JAMInput caption='Login or Email' width="300px" value={username}
                                onChange={(e) => setUsername(e.target.value)}/>
@@ -78,7 +79,7 @@ const Login = (props) => {
                         </JAMRow>
                     </JAMCol>
                     <JAMCol>
-                        <JAMImage icon={logo} note='Login icon' />
+                        <JAMImage icon={logo} note='Login icon'/>
                     </JAMCol>
                 </JAMPanel>
             </JAMPanel>

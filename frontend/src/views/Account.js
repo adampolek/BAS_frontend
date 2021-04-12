@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
-import Button from '../components/JAMButton';
-import Col from '../components/JAMCol';
-import Input from '../components/JAMInput';
-import Panel from '../components/JAMPanel';
-import Row from '../components/JAMRow';
-import DatePicker from 'react-date-picker';
+import JAMButton from '../components/JAMButton';
+import JAMCol from '../components/JAMCol';
+import JAMInput from '../components/JAMInput';
+import JAMPanel from '../components/JAMPanel';
+import JAMLine from '../components/JAMLine';
+import JAMRow from '../components/JAMRow';
+import JAMDatePicker from 'react-date-picker';
 import API from "../api/API";
 
 let initialRead = true;
@@ -27,7 +28,7 @@ const Account = (props) => {
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    const [removeAccountPassword, setRemoveAccountPassword] = useState('');
+    // const [removeAccountPassword, setRemoveAccountPassword] = useState('');
 
     const updateAccountInfo = async () => {
         API.put("bas/user/account", Object.assign({},
@@ -67,19 +68,19 @@ const Account = (props) => {
 
     return (
         <div style={{height: "100%", width: "100%", position: "absolute", backgroundColor: "purple"}}>
-            <Panel width={"100%"} height={"100%"}>
-                <Col>
+            <JAMPanel width={"100%"} height={"100%"}>
+                <JAMCol>
                     <h3 style={{fontWeight: "bold"}}>Personal information</h3>
-                    <div style={{backgroundColor: "#E0E0E0", height: '2px', width: '100%'}}></div>
-                    <Row>
-                        <Input caption='First Name' width="300px" value={firstName}
+                    <JAMLine />
+                    <JAMRow>
+                        <JAMInput caption='First Name' width="300px" value={firstName}
                                onChange={(e) => setFirstName(e.target.value)}/>
-                        <Input caption='Last Name' width="300px" value={lastName}
+                        <JAMInput caption='Last Name' width="300px" value={lastName}
                                onChange={(e) => setLastName(e.target.value)}/>
-                        <Input caption='Height' width="300px" value={height}
+                        <JAMInput caption='Height' width="300px" value={height}
                                onChange={(e) => setHeight(e.target.value)}/>
-                    </Row>
-                    <Row>
+                    </JAMRow>
+                    <JAMRow>
                         <label>Gender: </label>
                         <div className="radio">
                             <label>
@@ -95,48 +96,47 @@ const Account = (props) => {
                                 Female
                             </label>
                         </div>
-                    </Row>
-                    <Row>
+                    </JAMRow>
+                    <JAMRow>
                         <label>Birth date: </label>
-                        <DatePicker
+                        <JAMDatePicker
                             onChange={setBirthDate}
                             value={birthDate}
                         />
-                    </Row>
-                    <Row>
-                        <Button value="Save" onClick={() => updateAccountInfo()}/>
-                    </Row>
+                    </JAMRow>
+                    <JAMRow>
+                        <JAMButton value="Save" onClick={() => updateAccountInfo()}/>
+                    </JAMRow>
                     <h3 style={{fontWeight: "bold"}}>E-mail address</h3>
-                    <div style={{backgroundColor: "#E0E0E0", height: '2px', width: '100%'}}></div>
-                    <Row>
-                        <Input caption='E-mail address' width="300px" value={email}
+                    <JAMLine />
+                    <JAMRow>
+                        <JAMInput caption='E-mail address' width="300px" value={email}
                                onChange={(e) => setEmail(e.target.value)}/>
-                        <Input caption='Password' width="300px" type="password" value={emailPassword}
+                        <JAMInput caption='Password' width="300px" type="password" value={emailPassword}
                                onChange={(e) => setEmailPassword(e.target.value)}/>
-                    </Row>
-                    <Row>
-                        <Button value="Save" onClick={() => changeEmail()}/>
-                    </Row>
+                    </JAMRow>
+                    <JAMRow>
+                        <JAMButton value="Save" onClick={() => changeEmail()}/>
+                    </JAMRow>
                     <h3 style={{fontWeight: "bold"}}>Password</h3>
-                    <div style={{backgroundColor: "#E0E0E0", height: '2px', width: '100%'}}></div>
-                    <Row>
-                        <Input caption='Current password' width="300px" type="password" value={currentPassword}
+                    <JAMLine />
+                    <JAMRow>
+                        <JAMInput caption='Current password' width="300px" type="password" value={currentPassword}
                                onChange={(e) => setCurrentPassword(e.target.value)}/>
-                        <Input caption='New password' width="300px" type="password" value={newPassword}
+                        <JAMInput caption='New password' width="300px" type="password" value={newPassword}
                                onChange={(e) => setNewPassword(e.target.value)}/>
-                        <Input caption='Confirm password' width="300px" type="password" value={confirmPassword}
+                        <JAMInput caption='Confirm password' width="300px" type="password" value={confirmPassword}
                                onChange={(e) => setConfirmPassword(e.target.value)}/>
-                    </Row>
-                    <Row>
-                        <Button value="Save" onClick={() => updatePassword()}/>
-                    </Row>
+                    </JAMRow>
+                    <JAMRow>
+                        <JAMButton value="Save" onClick={() => updatePassword()}/>
+                    </JAMRow>
                     <h3 style={{fontWeight: "bold"}}>Delete your account</h3>
-                    <div style={{backgroundColor: "#E0E0E0", height: '2px', width: '100%'}}></div>
-                    <Input caption='Confirm password' width="300px" type="password" value={removeAccountPassword}
-                    onChange={(e) => setRemoveAccountPassword(e.target.value)}/>
-                    <Button value="Delete account" />
-                </Col>
-            </Panel>
+                    <JAMLine />
+                    <JAMInput caption='Confirm password' width="300px" type="password" />
+                    <JAMButton value="Delete account" />
+                </JAMCol>
+            </JAMPanel>
         </div>
     )
 }

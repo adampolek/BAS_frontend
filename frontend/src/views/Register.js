@@ -3,6 +3,8 @@ import JAMCol from '../components/JAMCol';
 import JAMInput from '../components/JAMInput';
 import JAMPanel from '../components/JAMPanel';
 import JAMRow from '../components/JAMRow';
+import JAMImage from '../components/JAMImage';
+import JAMLine from '../components/JAMLine';
 import logo from '../resources/login_background.png'
 import React, {useState} from 'react';
 import API from "../api/API";
@@ -61,9 +63,9 @@ const Register = (props) => {
     return (
         <div style={{height: "100%", width: "100%", position: "absolute", backgroundColor: "purple"}}>
             <JAMPanel width={"100%"} height={"100%"} backgroundColor={"purple"}>
-                <JAMPanel width={"90%"} height={"90%"} maxWidth={"1300px"} backgroundColor={"white"}>
+                <JAMPanel width={"90%"} height={"90%"} maxWidth={"1300px"} backgroundColor={"white"} minWidth="400px">
                     <JAMCol>
-                        <img src={logo} alt="House image"></img>
+                    <JAMImage icon={logo} note='House image' />
                     </JAMCol>
                     <JAMCol>
                         <JAMRow>
@@ -72,11 +74,11 @@ const Register = (props) => {
                             </h1>
                         </JAMRow>
                         <JAMRow style={{paddingBottom: "20px"}}>
-                            <div style={{backgroundColor: "#E0E0E0", height: '2px', width: '100%'}}></div>
+                            <JAMLine />
                             <label style={{padding: "20px", color: "#E0E0E0"}}>
                                 REGISTER YOUR ACCOUNT
                             </label>
-                            <div style={{backgroundColor: "#E0E0E0", height: '2px', width: '100%'}}></div>
+                            <JAMLine />
                         </JAMRow>
                         <JAMInput caption='Login' width="300px" value={username} onChange={(e) => {
                             setUsername(e.target.value)
