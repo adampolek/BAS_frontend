@@ -83,22 +83,7 @@ const Account = (props) => {
                                onChange={(e) => setHeight(e.target.value)}/>
                     </JAMRow>
                     <JAMRow>
-                        <label>Gender: </label>
                         <JAMRadioButton options={['none', 'male', 'female']} selected={gender} onChange={(e) => setGender(e)} />
-                        <div className="radio">
-                            <label>
-                                <input type="radio" value="male" checked={gender === 'male'}
-                                       onClick={(e) => setGender(e.target.value)}/>
-                                Male
-                            </label>
-                        </div>
-                        <div className="radio">
-                            <label>
-                                <input type="radio" value="female" checked={gender === 'female'}
-                                       onClick={(e) => setGender(e.target.value)}/>
-                                Female
-                            </label>
-                        </div>
                     </JAMRow>
                     <JAMRow>
                         <label>Birth date: </label>

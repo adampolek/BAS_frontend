@@ -1,0 +1,51 @@
+.radiolabel{
+    margin-left: 10px;
+    position: absolute;
+    top: -13px;
+    display: block;
+    transition: 0.2s;
+    color: var(--color_holder);
+    font-size: var(--size_holder);
+    font-weight: bold;
+}
+
+.radio{
+    position: relative;
+    margin: 10px;
+    padding-top: 12px;
+    box-shadow: 2px 2px 2px #00000079;
+}
+
+.back {
+    width: 29px;
+    height: 27px;
+    background-color: #E0E0E0;
+    border-bottom: 4px solid lighten(gray, 70%);
+    box-shadow: 2px 2px 4px #00000079;
+    transition: 0.2s;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+.front {
+    width: 21px;
+    height: 19px;
+    background-color: white;
+    border-bottom: 4px solid lighten(gray, 70%);
+    box-shadow: 2px 2px 4px #00000079;
+    position: relative;
+    top: 4px;
+    left: 4px;
+    transition: 0.2s;
+}
+
+.caption {
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.front_active {
+    background-color: purple;
+    transition: 0.2s;
+}

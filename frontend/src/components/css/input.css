@@ -13,12 +13,11 @@
     position: absolute;
     top: 38%;
     right: 4%;
-}
-
+  }
 .eye:hover {
     color: purple;
     cursor: pointer;
-}
+  }
 
 .input {
     background: transparent;
@@ -68,6 +67,7 @@
 .input:focus {
     transition: 0.2s;
     padding: 10px 10px;
+    border-bottom: 2px solid purple;
 }
 
 .input_error {
