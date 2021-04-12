@@ -5,7 +5,7 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 const eye = <FontAwesomeIcon icon={faEye} />;
 
-const Input = ({ caption = 'Holder', error='Error', showError=false, value, type='text', width="250px", onChange, onInput, ...props }) => {
+const JAMInput = ({ caption = 'Holder', error='Error', showError=false, value, type='text', width="250px", onChange, onInput, ...props }) => {
     const [passwordShown, setPasswordShown] = useState(type =="password" ? false : true);
     const togglePasswordVisiblity = () => {
         setPasswordShown(passwordShown ? false : true);
@@ -31,4 +31,4 @@ const Input = ({ caption = 'Holder', error='Error', showError=false, value, type
     );
 };
 
-export default Input;
+export default JAMInput;

@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import './css/checkbox.css';
-import Row from './Row';
+import JAMRow from './JAMRow';
 
-const Checkbox = ({caption='Checkbox', checked=false, width='auto', onClick, ...props}) => {
+const JAMCheckbox = ({caption='Checkbox', checked=false, width='auto', onClick, ...props}) => {
 
     return (
-        <Row onClick={onClick} width={width} float='left' style={{margin: "10px"}}>
+        <JAMRow onClick={onClick} width={width} float='left' style={{margin: "10px"}}>
             <div className={'back' + (checked ? ' back_active' : '')}>
                 <div className={'front' + (checked ? ' front_active' : '')}></div>
             </div>
             <label className='caption'>
                 {caption}
             </label>
-        </Row>
+        </JAMRow>
     );
 }
 
-export default Checkbox;
+export default JAMCheckbox;

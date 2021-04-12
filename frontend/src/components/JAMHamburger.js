@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Hamburger = (props) => {
+const JAMHamburger = (props) => {
     const container = {
         cursor: 'pointer'
     };
@@ -34,4 +34,4 @@ const Hamburger = (props) => {
 
 
 
-export default Hamburger;
+export default JAMHamburger;

@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
-import Button from '../components/Button';
-import Col from '../components/Col';
-import Input from '../components/Input';
-import Panel from '../components/Panel';
-import Row from '../components/Row';
+import Button from '../components/JAMButton';
+import Col from '../components/JAMCol';
+import Input from '../components/JAMInput';
+import Panel from '../components/JAMPanel';
+import Row from '../components/JAMRow';
 import DatePicker from 'react-date-picker';
 import API from "../api/API";
 

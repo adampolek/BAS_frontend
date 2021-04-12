@@ -1,7 +1,7 @@
 import React from 'react';
 import './css/layout.css';
 
-const Row = ({float='center', width="auto", onClick, ...props}) => {
+const JAMRow = ({float='center', width="auto", onClick, ...props}) => {
     return (
         <div className={'row ' + float} style={props.style} onClick={onClick}>
             {props.children}
@@ -9,4 +9,4 @@ const Row = ({float='center', width="auto", onClick, ...props}) => {
     );
 };
 
-export default Row;
+export default JAMRow;

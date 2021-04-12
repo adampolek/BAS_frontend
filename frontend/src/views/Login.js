@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
-import Button from '../components/Button';
-import Col from '../components/Col';
-import Input from '../components/Input';
-import Panel from '../components/Panel';
-import Row from '../components/Row';
+import JAMButton from '../components/JAMButton';
+import JAMCol from '../components/JAMCol';
+import JAMInput from '../components/JAMInput';
+import JAMPanel from '../components/JAMPanel';
+import JAMRow from '../components/JAMRow';
 import logo from '../resources/login_background.png'
-import Checkbox from '../components/Checkbox'
+import JAMCheckbox from '../components/JAMCheckbox'
 import API from "../api/API";
+import JAMImage from '../components/JAMImage';
 
 const Login = (props) => {
     const [check, setCheck] = useState(true);
@@ -36,51 +37,51 @@ const Login = (props) => {
     };
     return (
         <div style={{height: "100%", width: "100%", position: "absolute", backgroundColor: "purple"}}>
-            <Panel width={"100%"} height={"100%"} backgroundColor={"purple"}>
-                <Panel width={"90%"} height={"90%"} backgroundColor={"white"}>
-                    <Col>
-                        <Row>
+            <JAMPanel width={"100%"} height={"100%"} backgroundColor={"purple"}>
+                <JAMPanel width={"90%"} height={"90%"} maxWidth={"1300px"} backgroundColor={"white"} minWidth='400px'>
+                    <JAMCol>
+                        <JAMRow>
                             <h1 style={{fontFamily: "Trebuchet MS", padding: "10px"}}>
                                 Welcome Back
                             </h1>
-                        </Row>
-                        <Row>
+                        </JAMRow>
+                        <JAMRow>
                             <div style={{backgroundColor: "#E0E0E0", height: '2px', width: '100%'}}></div>
                             <label style={{padding: "20px", color: "#E0E0E0"}}>
                                 LOGIN WITH USERNAME
                             </label>
                             <div style={{backgroundColor: "#E0E0E0", height: '2px', width: '100%'}}></div>
-                        </Row>
-                        <Input caption='Login or Email' width="300px" value={username}
+                        </JAMRow>
+                        <JAMInput caption='Login or Email' width="300px" value={username}
                                onChange={(e) => setUsername(e.target.value)}/>
-                        <Input caption='Password' width="300px" type='password' value={password}
+                        <JAMInput caption='Password' width="300px" type='password' value={password}
                                onChange={(e) => setPassword(e.target.value)}/>
-                        <Row float='left' style={{width: '100%'}}>
-                            <Checkbox caption="Keep me logged in" width='100%' checked={check}
+                        <JAMRow float='left' style={{width: '100%'}}>
+                            <JAMCheckbox caption="Keep me logged in" width='100%' checked={check}
                                       onClick={() => setCheck(!check)}/>
-                        </Row>
-                        <Row style={{width: "100%", paddingTop: "20px"}}>
-                            <Button value='Log in' width={"100%"} onClick={() => login()}/>
-                        </Row>
-                        <Row>
+                        </JAMRow>
+                        <JAMRow style={{width: "100%", paddingTop: "20px"}}>
+                            <JAMButton value='Log in' width={"100%"} onClick={() => login()}/>
+                        </JAMRow>
+                        <JAMRow>
                             <a href="#">
                                 Forgot password?
                             </a>
-                        </Row>
-                        <Row style={{paddingTop: "40px"}}>
+                        </JAMRow>
+                        <JAMRow style={{paddingTop: "40px"}}>
                             <label style={{marginRight: "10px"}}>
                                 Don't have an account yet?
                             </label>
                             <a href="/register">
                                 Sign in!
                             </a>
-                        </Row>
-                    </Col>
-                    <Col>
-                        <img src={logo} alt="House image"></img>
-                    </Col>
-                </Panel>
-            </Panel>
+                        </JAMRow>
+                    </JAMCol>
+                    <JAMCol>
+                        <JAMImage icon={logo} note='Login icon' />
+                    </JAMCol>
+                </JAMPanel>
+            </JAMPanel>
         </div>
     )
 }

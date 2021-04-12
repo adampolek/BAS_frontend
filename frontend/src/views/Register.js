@@ -1,8 +1,8 @@
-import Button from '../components/Button';
-import Col from '../components/Col';
-import Input from '../components/Input';
-import Panel from '../components/Panel';
-import Row from '../components/Row';
+import JAMButton from '../components/JAMButton';
+import JAMCol from '../components/JAMCol';
+import JAMInput from '../components/JAMInput';
+import JAMPanel from '../components/JAMPanel';
+import JAMRow from '../components/JAMRow';
 import logo from '../resources/login_background.png'
 import React, {useState} from 'react';
 import API from "../api/API";
@@ -47,69 +47,68 @@ const Register = (props) => {
         }
     }
     //todo: change validation
-    const validate = () => {
-       var reg = /^[A-Z]*$/;
-       var test = reg.test(password);
-       if (test) {
-          alert('pass');
-          this.setState({value: password});
-       }else{
-         alert('fail');
-       } 
-    }
+    // const validate = () => {
+    //    var reg = /^[A-Z]*$/;
+    //    var test = reg.test(password);
+    //    if (test) {
+    //       alert('pass');
+    //       this.setState({value: password});
+    //    }else{
+    //      alert('fail');
+    //    } 
+    // }
 
     return (
         <div style={{height: "100%", width: "100%", position: "absolute", backgroundColor: "purple"}}>
-            <Panel width={"100%"} height={"100%"} backgroundColor={"purple"}>
-                <Panel width={"90%"} height={"90%"} backgroundColor={"white"}>
-                    <Col>
+            <JAMPanel width={"100%"} height={"100%"} backgroundColor={"purple"}>
+                <JAMPanel width={"90%"} height={"90%"} maxWidth={"1300px"} backgroundColor={"white"}>
+                    <JAMCol>
                         <img src={logo} alt="House image"></img>
-                    </Col>
-                    <Col>
-                        <Row>
+                    </JAMCol>
+                    <JAMCol>
+                        <JAMRow>
                             <h1 style={{fontFamily: "Trebuchet MS", padding: "10px"}}>
                                 Welcome to NaszaApka
                             </h1>
-                        </Row>
-                        <Row style={{paddingBottom: "20px"}}>
+                        </JAMRow>
+                        <JAMRow style={{paddingBottom: "20px"}}>
                             <div style={{backgroundColor: "#E0E0E0", height: '2px', width: '100%'}}></div>
                             <label style={{padding: "20px", color: "#E0E0E0"}}>
                                 REGISTER YOUR ACCOUNT
                             </label>
                             <div style={{backgroundColor: "#E0E0E0", height: '2px', width: '100%'}}></div>
-                        </Row>
-                        <Input caption='Login' width="300px" value={username} onChange={(e) => {
+                        </JAMRow>
+                        <JAMInput caption='Login' width="300px" value={username} onChange={(e) => {
                             setUsername(e.target.value)
                         }}/>
-                        <Input caption='Email' width="300px" type='email' value={email} onChange={(e) => {
+                        <JAMInput caption='Email' width="300px" type='email' value={email} onChange={(e) => {
                             setEmail(e.target.value)
                         }}/>
-                        <Input caption='Password' width="300px" value={password} onChange={(e) => {
+                        <JAMInput caption='Password' width="300px" value={password} onChange={(e) => {
                             setPassword(e.target.value)
                         }} type='password'/>
-                        <Input caption='Confirm Password' width="300px" value={confirmPassword} onChange={(e) => {
+                        <JAMInput caption='Confirm Password' width="300px" value={confirmPassword} onChange={(e) => {
                             setConfirmPassword(e.target.value)
                         }} type='password'/>
-                        <Row float='left' width='100%'>
-                        </Row>
-                        <Row style={{width: "100%", paddingTop: "40px"}}>
-                            <Button value='Register' width={"100%"} onClick={() => {
+                        <JAMRow float='left' width='100%'>
+                        </JAMRow>
+                        <JAMRow style={{width: "100%", paddingTop: "40px"}}>
+                            <JAMButton value='Register' width={"100%"} onClick={() => {
                                 console.log("Halko");
-                                {validate()}
                                 register();
                             }}/>
-                        </Row>
-                        <Row style={{paddingTop: "30px"}}>
+                        </JAMRow>
+                        <JAMRow style={{paddingTop: "30px"}}>
                             <label style={{marginRight: "10px"}}>
                                 Already have an account?
                             </label>
                             <a href="/login">
                                 Sign in!
                             </a>
-                        </Row>
-                    </Col>
-                </Panel>
-            </Panel>
+                        </JAMRow>
+                    </JAMCol>
+                </JAMPanel>
+            </JAMPanel>
         </div>
     )
 }
