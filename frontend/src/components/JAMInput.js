@@ -6,17 +6,14 @@ import JAMImage from './JAMImage';
 
 const JAMInput = ({ caption = 'Holder', error = 'Error', showError = false, value, type = 'text', width = "250px", onChange, onInput, ...props }) => {
     const [passwordShown, setPasswordShown] = useState(type == "password" ? false : true);
-    const togglePasswordVisiblity = () => {
-        setPasswordShown(passwordShown ? false : true);
-    };
-    // focus input element on label click
+
     const useFocus = () => {
         const htmlElRef = useRef(null)
         const setFocus = () => { htmlElRef.current && htmlElRef.current.focus() }
 
         return [htmlElRef, setFocus]
     }
-    const [inputRef, setInputFocus] = useFocus()
+    const [inputRef, setInputFocus] = useFocus();
     return (
         <div style={{ margin: '5px' }}>
             <div className='group'>

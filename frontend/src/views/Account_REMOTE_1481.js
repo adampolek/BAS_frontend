@@ -5,11 +5,8 @@ import JAMInput from '../components/JAMInput';
 import JAMPanel from '../components/JAMPanel';
 import JAMLine from '../components/JAMLine';
 import JAMRow from '../components/JAMRow';
-<<<<<<< Updated upstream
 import JAMLabel from '../components/JAMLabel';
 import JAMDatePicker from 'react-date-picker';
-=======
->>>>>>> Stashed changes
 import API from "../api/API";
 
 let initialRead = true;
@@ -23,8 +20,8 @@ const Account = (props) => {
     const [lastName, setLastName] = useState('');
     const [height, setHeight] = useState('');
     const [gender, setGender] = useState('');
-    const [birthDate, setBirthDate] = useState(new Date().toISOString().slice(0, 10));
-    console.log(birthDate)
+    const [birthDate, setBirthDate] = useState(new Date());
+
     const [email, setEmail] = useState('');
     const [emailPassword, setEmailPassword] = useState('');
 
@@ -65,7 +62,7 @@ const Account = (props) => {
                 setLastName(res.data.lastName);
                 setHeight(res.data.height);
                 setGender(res.data.gender === null ? 'male' : res.data.gender);
-                setBirthDate(res.data.birthDate === null ? new Date().toISOString().slice(0, 10) : res.data.birthDate);
+                setBirthDate(res.data.birthDate === null ? new Date() : res.data.birthDate);
                 setUser(res.data);
             });
     }
@@ -103,10 +100,8 @@ const Account = (props) => {
                     </JAMRow>
                     <JAMRow>
                         <label>Birth date: </label>
-                        <JAMInput
-                        caption='Birth day'
-                        type='date'
-                        onChange={(e) => setBirthDate(e.target.value)}
+                        <JAMDatePicker
+                            onChange={setBirthDate}
                             value={birthDate}
                         />
                     </JAMRow>

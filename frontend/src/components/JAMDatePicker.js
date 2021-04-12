@@ -1,9 +1,9 @@
 import React from 'react';
+import JAMInput from './JAMInput';
 
-const JAMDatePicker = ({...props}) => {
+const JAMDatePicker = ({onChange, value= new Date(),...props}) => {
     return (
-        <div >
-        </div>
+        <JAMInput value={value} onChange={onChange} type='date' />
     );
 };
 

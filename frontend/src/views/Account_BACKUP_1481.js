@@ -5,11 +5,11 @@ import JAMInput from '../components/JAMInput';
 import JAMPanel from '../components/JAMPanel';
 import JAMLine from '../components/JAMLine';
 import JAMRow from '../components/JAMRow';
-<<<<<<< Updated upstream
+<<<<<<< HEAD
+=======
 import JAMLabel from '../components/JAMLabel';
 import JAMDatePicker from 'react-date-picker';
-=======
->>>>>>> Stashed changes
+>>>>>>> 89756dd5b84fed329019dc1a5f9cd09f94c9a68a
 import API from "../api/API";
 
 let initialRead = true;
