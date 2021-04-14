@@ -1,8 +1,8 @@
 import React from 'react';
 
-const JAMLine = ({backgroundColor= "#E0E0E0", height='2px', width='100%', ...props}) => {
+const JAMLine = ({className, color = "#E0E0E0", height = '2px', width = '100%', ...props }) => {
     return (
-        <div style={{backgroundColor: backgroundColor, height: height, width: width}} />
+        <div className={className} style={{ backgroundColor: color, height: height, width: width, ...props.style }} />
     );
 };
 

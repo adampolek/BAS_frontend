@@ -1,12 +1,11 @@
 import React from 'react';
-import JAMRow from './JAMRow';
 
-const JAMLink = ({caption, href, ...props}) => {
+const JAMLink = ({caption, href, onClick, ...props}) => {
 return (
-    <a href={href} style={props.style}>
+    <a href={href} style={props.style} onClick={onClick}>
         {caption}
     </a>
 );
 };
 
-export default JAMRow;
+export default JAMLink;

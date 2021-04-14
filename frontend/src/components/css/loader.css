@@ -1,0 +1,34 @@
+
+.spinner1, .spinner2, .spinner3, .spinner4, .spinner5 {
+    display: inline-block;
+    box-shadow: 2px 2px 4px #00000079;
+    -webkit-animation: line_anim 2s infinite ease-in-out;
+    animation: line_anim 2s infinite ease-in-out;
+}
+
+.spinner2 {
+    animation-delay: 0.2s;
+}
+
+.spinner3 {
+    animation-delay: 0.4s;
+}
+
+.spinner4 {
+    animation-delay: 0.6s;
+}
+
+.spinner5 {
+    animation-delay: 0.8s;
+}
+
+@keyframes line_anim {
+    20% {
+        transform: scaleY(0.2);
+        -webkit-transform: scaleY(0.2);
+    }
+    0%, 40% {
+        transform: scaleY(1.0);
+        -webkit-transform: scaleY(1.0);
+    }
+  }

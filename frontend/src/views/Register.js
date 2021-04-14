@@ -49,20 +49,9 @@ const Register = (props) => {
                 });
         }
     }
-    //todo: change validation
-    // const validate = () => {
-    //    var reg = /^[A-Z]*$/;
-    //    var test = reg.test(password);
-    //    if (test) {
-    //       alert('pass');
-    //       this.setState({value: password});
-    //    }else{
-    //      alert('fail');
-    //    } 
-    // }
 
     return (
-        <div style={{height: "100%", width: "100%", position: "absolute", backgroundColor: "purple"}}>
+        <JAMRow style={{height: "100%", width: "100%", position: "absolute", backgroundColor: "purple"}}>
             <JAMPanel width={"100%"} height={"100%"} backgroundColor={"purple"}>
                 <JAMPanel width={"90%"} height={"90%"} maxWidth={"1300px"} backgroundColor={"white"} minWidth="400px">
                     <JAMCol>
@@ -106,7 +95,7 @@ const Register = (props) => {
                     </JAMCol>
                 </JAMPanel>
             </JAMPanel>
-        </div>
+        </JAMRow>
     )
 }
 

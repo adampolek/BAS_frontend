@@ -13,10 +13,10 @@ const JAMRadioButton = ({ caption = 'Caption', options, selected, onChange = (e)
                     {options.map(option => {
                         return (
                             <JAMRow onClick={() => onChange(option)} float='left' style={{ margin: "10px" }}>
-                                <div className='back' >
-                                    <div className={'front' + (selected == option ? ' front_active' : '')}></div>
+                                <div className='back_radio' >
+                                    <div className={'front_radio' + (selected == option ? ' front_radio_active' : '')}></div>
                                 </div>
-                                <label className='caption'>
+                                <label className='caption_radio'>
                                     {option.charAt(0).toUpperCase() + option.slice(1)}
                                 </label>
                             </JAMRow>
@@ -28,10 +28,10 @@ const JAMRadioButton = ({ caption = 'Caption', options, selected, onChange = (e)
                     {options.map(option => {
                         return (
                             <JAMRow onClick={() => onChange(option)} float='left' style={{ margin: "10px" }}>
-                                <div className='back' >
-                                    <div className={'front' + (selected == option ? ' front_active' : '')}></div>
+                                <div className='back_radio' >
+                                    <div className={'front_radio' + (selected == option ? ' front_radio_active' : '')}></div>
                                 </div>
-                                <label className='caption'>
+                                <label className='caption_radio'>
                                     {option.charAt(0).toUpperCase() + option.slice(1)}
                                 </label>
                             </JAMRow>
