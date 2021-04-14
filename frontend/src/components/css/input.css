@@ -7,12 +7,13 @@
 .group {
     position: relative;
     padding-top: 12px;
+    margin-right: 10px;
 }
 
 .eye {
     position: absolute;
     top: 38%;
-    right: 4%;
+    right: -10px;
   }
 .eye:hover {
     color: purple;

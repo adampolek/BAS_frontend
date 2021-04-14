@@ -15,7 +15,7 @@ const JAMInput = ({ caption = 'Holder', error = 'Error', showError = false, valu
     }
     const [inputRef, setInputFocus] = useFocus();
     return (
-        <div style={{ margin: '5px', maxWidth: width }}>
+        <div style={{ margin: '5px', maxWidth: width, marginRight: '25px' }}>
             <div className='group'>
                 <input style={{ width: width }} id='value' type={type == 'password' ? passwordShown ? "text" : "password" : type} className={(showError ? 'input_error' : '') + ' input'}
                     placeholder='text' value={value} onChange={onChange} onInput={onInput} {...props} ref={inputRef} />
