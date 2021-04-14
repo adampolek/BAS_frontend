@@ -17,28 +17,36 @@ const Register = (props) => {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+
     const [showErrorUsername, setShowErrorUsername] = useState(false);
+    const [showErrorUsernameString, setShowErrorUsernameString] = useState('');
+
     const [showErrorEmail, setShowErrorEmail] = useState(false);
+    const [showErrorEmailString, setShowErrorEmailString] = useState('');
+
     const [showErrorPassword, setShowErrorPassword] = useState(false);
+    const [showErrorPasswordString, setShowErrorPasswordString] = useState('');
+
     const [showErrorConfirmPassword, setShowErrorConfirmPassword] = useState(false);
+    const [showErrorConfirmPasswordString, setShowErrorConfirmPasswordString] = useState('');
 
     const register = async () => {
         let register = true;
         setShowErrorConfirmPassword(false);
         setShowErrorPassword(false);
         setShowErrorUsername(false);
-        // if (password.trim() !== confirmPassword.trim()) {
-        //     register = false;
-        //     setShowErrorConfirmPassword(true);
-        // }
-        // if (password.length < 8) {
-        //     register = false;
-        //     setShowErrorPassword(true);
-        // }
-        // if (username.length < 4) {
-        //     register = false;
-        //     setShowErrorUsername(true);
-        // }
+        if (password.trim() !== confirmPassword.trim()) {
+            register = false;
+            setShowErrorConfirmPassword(true);
+        }
+        if (password.length < 8) {
+            register = false;
+            setShowErrorPassword(true);
+        }
+        if (username.length < 4) {
+            register = false;
+            setShowErrorUsername(true);
+        }
         if (register) {
             setIsLoading(true);
             API.post('bas/user/register', {username: username, password: password, email: email})
@@ -55,28 +63,66 @@ const Register = (props) => {
             <JAMPanel width={"100%"} height={"100%"} backgroundColor={"purple"}>
                 <JAMPanel width={"90%"} height={"90%"} maxWidth={"1300px"} backgroundColor={"white"} minWidth="400px">
                     <JAMCol>
-                    <JAMImage icon={logo} note='House image' />
+                        <JAMImage icon={logo} note='House image'/>
                     </JAMCol>
                     <JAMCol>
                         <JAMRow>
-                            <JAMLabel style={{padding: "10px"}} caption='Welcome to NaszaApka' header />
+                            <JAMLabel style={{padding: "10px"}} caption='Welcome to NaszaApka' header/>
                         </JAMRow>
                         <JAMRow style={{paddingBottom: "20px"}}>
-                            <JAMLine />
-                                <JAMLabel style={{padding: "20px"}} caption='REGISTER YOUR ACCOUNT' color='#E0E0E0' />
-                            <JAMLine />
+                            <JAMLine/>
+                            <JAMLabel style={{padding: "20px"}} caption='REGISTER YOUR ACCOUNT' color='#E0E0E0'/>
+                            <JAMLine/>
                         </JAMRow>
-                        <JAMInput caption='Login' width="300px" value={username} onChange={(e) => {
+                        <JAMInput error={showErrorUsernameString} showError={showErrorUsername} caption='Login'
+                                  width="300px" value={username} onChange={(e) => {
                             setUsername(e.target.value)
+                        }} onInput={(e) => {
+                            if (e.target.value.length < 4) {
+                                setShowErrorUsername(true);
+                                setShowErrorUsernameString("Username must be at least 4 characters long");
+                            } else {
+                                setShowErrorUsername(false);
+                            }
                         }}/>
-                        <JAMInput caption='Email' width="300px" type='email' value={email} onChange={(e) => {
+                        <JAMInput caption='Email' width="300px" type='email' showError={showErrorEmail}
+                                  error={showErrorEmailString} value={email} onChange={(e) => {
                             setEmail(e.target.value)
+                        }} onInput={(e) => {
+                            const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                            if (!re.test(e.target.value)) {
+                                setShowErrorEmail(true);
+                                setShowErrorEmailString("Entered string is not a valid email");
+                            } else {
+                                setShowErrorEmail(false);
+                            }
                         }}/>
-                        <JAMInput caption='Password' width="300px" value={password} onChange={(e) => {
+                        <JAMInput caption='Password' width="300px" onInput={(e) => {
+                            const re = /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).*$/;
+                            if (e.target.value.length < 8) {
+                                setShowErrorPassword(true);
+                                setShowErrorPasswordString("Password must be at least 8 characters long");
+                            } else if (!re.test(e.target.value)) {
+                                setShowErrorPassword(true);
+                                setShowErrorPasswordString("Password must have: 1 uppercase letter, 1 special symbol, 1 digit")
+                            } else {
+                                setShowErrorPassword(false);
+                            }
+                        }} value={password} showError={showErrorPassword}
+                                  error={showErrorPasswordString} onChange={(e) => {
                             setPassword(e.target.value)
                         }} type='password'/>
-                        <JAMInput caption='Confirm Password' width="300px" value={confirmPassword} onChange={(e) => {
+                        <JAMInput caption='Confirm Password' width="300px" value={confirmPassword}
+                                  showError={showErrorConfirmPassword}
+                                  error={showErrorConfirmPasswordString} onChange={(e) => {
                             setConfirmPassword(e.target.value)
+                        }} onInput={(e) => {
+                            if (e.target.value !== password) {
+                                setShowErrorConfirmPassword(true);
+                                setShowErrorConfirmPasswordString("Passwords are not identical");
+                            } else {
+                                setShowErrorConfirmPassword(false);
+                            }
                         }} type='password'/>
                         <JAMRow float='left' width='100%'>
                         </JAMRow>
@@ -87,7 +133,7 @@ const Register = (props) => {
                             }}/>
                         </JAMRow>
                         <JAMRow style={{paddingTop: "30px"}}>
-                            <JAMLabel style={{padding: "10px"}} caption='Already have an account?' />
+                            <JAMLabel style={{padding: "10px"}} caption='Already have an account?'/>
                             <a href="/login">
                                 Sign in!
                             </a>
