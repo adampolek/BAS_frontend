@@ -3,10 +3,10 @@ import JAMLine from './JAMLine';
 import './css/loader.css';
 import JAMRow from './JAMRow';
 
-const JAMLoader = ({ color = 'purple', width = '20px', height = '60px', show = true, ...props }) => {
+const JAMLoader = ({ color = 'purple', width = '10px', height = '40px', show = true, ...props }) => {
     if (show) {
         return (
-            <JAMRow style={{ margin: '10px' }}>
+            <JAMRow>
                 <JAMLine style={{ marginRight: '10px' }} className='spinner1' height={height} width={width} color={color} />
                 <JAMLine style={{ marginRight: '10px' }} className='spinner2' height={height} width={width} color={color} />
                 <JAMLine style={{ marginRight: '10px' }} className='spinner3' height={height} width={width} color={color} />
@@ -15,7 +15,7 @@ const JAMLoader = ({ color = 'purple', width = '20px', height = '60px', show = t
             </JAMRow>
         );
     }
-    return (<div />);
+    return (<div style={{height: height, width:width}} />);
 };
 
 export default JAMLoader;
