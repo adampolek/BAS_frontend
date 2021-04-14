@@ -1,0 +1,32 @@
+.top_line{
+    transform: rotate(0) translate(0, 0);
+    transition: 0.5s;
+}
+
+.center_line {
+    transform: scaleY(1) translate(0, 0);
+    transition-delay: 0.2s;
+    transform: 1s;
+}
+
+.bottom_line {
+    transform: rotate(0) translate(0, 0);
+    transition: 0.5s;
+}
+
+.top_line_active {
+    transform: rotate(-45deg) translate(-12px, 10px);
+    transition-delay: 0.2s;
+    transition: 0.5s;
+}
+
+.center_line_active {
+    transform: scaleY(0) translate(0, -10px);
+    transform: 1s;
+}
+
+.bottom_line_active {
+    transform: rotate(45deg) translate(-9px, -9px);
+    transition-delay: 0.2s;
+    transition: 0.5s;
+}

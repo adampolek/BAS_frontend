@@ -9,7 +9,7 @@ const JAMDialog = ({ block = false, backgroundColor = 'white', fontColor = 'blac
     if (show) {
         if (block){
         return (
-            <div style={{ width: '100%', height: '100%', backgroundColor: '#000000AA', position: 'absolute', zIndex:'1'}}>
+            <div style={{ width: '100%', height: '100%', backgroundColor: '#000000AA', position: 'absolute', zIndex:'2'}}>
                 <JAMPanel width={width} height={height} backgroundColor={backgroundColor} style={{margin: 'auto' }}>
                     <JAMCol float='left' style={{ margin: '10px' }} width={'100%'}>
                         <JAMRow float='left' width={'100%'}>
@@ -26,7 +26,7 @@ const JAMDialog = ({ block = false, backgroundColor = 'white', fontColor = 'blac
         );
         }
         return(
-            <JAMPanel width={width} height={height} backgroundColor={backgroundColor} style={{position:'absolute', top:'0', margin: 'auto', zIndex:'1' }}>
+            <JAMPanel width={width} height={height} backgroundColor={backgroundColor} style={{position:'absolute', top:'0', margin: 'auto', zIndex:'2' }}>
                     <JAMCol float='left' style={{ margin: '10px' }} width={'100%'}>
                         <JAMRow float='left' width={'100%'}>
                             <JAMLabel big caption={message} right color={fontColor} style={{ width: '100%' }} />
