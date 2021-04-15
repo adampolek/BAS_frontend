@@ -20,7 +20,7 @@ const JAMHamburger = ({ TL = true, TR = false, BR = false, BL = false, ...props 
             </JAMCol>
             {show ? (
                 <JAMCol style={{ position: 'relative' }}>
-                    {/* {props.children} */}
+                    {props.children}
                 </JAMCol>
             ) : (
                 <div />

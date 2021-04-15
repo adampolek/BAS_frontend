@@ -12,7 +12,6 @@ import JAMLine from '../components/JAMLine';
 import JAMLabel from '../components/JAMLabel';
 import JAMLink from '../components/JAMLink';
 import JAMLoader from '../components/JAMLoader';
-import JAMDialog from '../components/JAMDialog';
 
 const Login = (props) => {
     const [check, setCheck] = useState(true);
