@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import JAMCol from './JAMCol';
 import JAMLine from './JAMLine';
 import './css/hamburger.css';
+import JAMButton from './JAMButton';
 
 const JAMHamburger = ({ TL = true, TR = false, BR = false, BL = false, color = 'purple', ...props }) => {
     const [show, setShow] = useState(false);
