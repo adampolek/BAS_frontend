@@ -4,9 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-if ( localStorage.getItem('products') === null ) {
-  localStorage.setItem('products', JSON.stringify([]));
-}
 if ( localStorage.getItem('token') === null ) {
   localStorage.setItem('token', JSON.stringify(''));
 }

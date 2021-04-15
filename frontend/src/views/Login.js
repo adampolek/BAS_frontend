@@ -37,7 +37,6 @@ const Login = (props) => {
                     setIsLoading(false);
                 });
         })
-
     };
     return (
         <JAMRow style={{ height: "100%", width: "100%", position: "absolute", backgroundColor: "purple" }}>
