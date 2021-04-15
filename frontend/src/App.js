@@ -4,6 +4,7 @@ import Account from './views/Account';
 import Login from './views/Login';
 import Register from './views/Register';
 import Error from './views/Error'
+import DailyDiagnosis from './views/DailyDiagnosis';
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
           <Route path="/account" component={Account} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route path="/diagnosis" component={DailyDiagnosis} />
           <Route path="/error" component={Error} />
           <Route component={Error} />
         </Switch>
