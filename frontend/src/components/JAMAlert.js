@@ -5,7 +5,7 @@ import JAMLabel from './JAMLabel';
 import JAMPanel from './JAMPanel';
 import JAMRow from './JAMRow';
 
-const JAMDialog = ({ block = false, backgroundColor = 'white', fontColor = 'black', show = true, onClick = () => console.log("onClick"), message = 'Message', width = '70%', height = 'auto', ...props }) => {
+const JAMAlert = ({ block = false, backgroundColor = 'white', fontColor = 'black', show = true, onClick = () => console.log("onClick"), message = 'Message', width = '70%', height = 'auto', ...props }) => {
     if (show) {
         if (block){
         return (
@@ -43,4 +43,4 @@ const JAMDialog = ({ block = false, backgroundColor = 'white', fontColor = 'blac
     return (<div />);
 };
 
-export default JAMDialog;
+export default JAMAlert;

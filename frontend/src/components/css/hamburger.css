@@ -4,9 +4,8 @@
 }
 
 .center_line {
-    transform: scaleY(1) translate(0, 0);
-    transition-delay: 0.2s;
-    transform: 1s;
+    transform: scaleX(1);
+    transition: 0.5s;
 }
 
 .bottom_line {
@@ -21,8 +20,8 @@
 }
 
 .center_line_active {
-    transform: scaleY(0) translate(0, -10px);
-    transform: 1s;
+    transform: scaleX(0);
+    transition: 0.5s;
 }
 
 .bottom_line_active {

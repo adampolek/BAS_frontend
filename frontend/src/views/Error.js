@@ -5,10 +5,12 @@ import JAMLabel from '../components/JAMLabel';
 import JAMPanel from '../components/JAMPanel';
 import JAMRow from '../components/JAMRow';
 import logo from '../resources/error.png'
+import Menubar from './Menubar';
 
 const Error = (props) => {
     return (
         <JAMCol style={{ height: "100%", width: "100%", position: "absolute", backgroundColor: "purple" }}>
+            <Menubar color='white'/>
             <JAMPanel width={"100%"} height={"100%"} backgroundColor={"purple"}>
                 <JAMPanel width={"90%"} height={"90%"} maxWidth={"1300px"} backgroundColor={"white"} minWidth='400px'>
                     <JAMCol >

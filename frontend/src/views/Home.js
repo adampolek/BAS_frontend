@@ -1,10 +1,12 @@
 import React from 'react';
+import JAMCol from '../components/JAMCol';
+import Menubar from './Menubar';
 
 const Home = (props) => {
     return (
-        <div>
-            <h1 onClick={()=>document.location.href = "/account"}>HOME</h1>
-        </div>
+        <JAMCol>
+            <Menubar />
+        </JAMCol>
     )
 }
 

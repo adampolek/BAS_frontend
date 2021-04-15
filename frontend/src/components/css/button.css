@@ -14,6 +14,11 @@ button {
     color: white;
 }
 
+.white {
+    background-color: white;
+    color: purple;
+}
+
 .success {
     background-color: green;
     color: white;
@@ -24,7 +29,7 @@ button {
     color: white;
 }
 
-.normal:hover, .danger:hover, .success:hover {
+.normal:hover, .danger:hover, .success:hover, .white:hover {
     box-shadow: 2px 2px 4px #00000079;
     background-color: silver;
     color: black;
@@ -32,7 +37,7 @@ button {
     cursor: pointer;
 }
 
-.normal:active, .danger:active, .success:active {
+.normal:active, .danger:active, .success:active .white:active {
     box-shadow: 2px 2px 4px #00000079;
     transform: scale(.98);
     background-color: slategray;

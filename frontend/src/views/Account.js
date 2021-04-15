@@ -8,7 +8,7 @@ import JAMRow from '../components/JAMRow';
 import JAMLabel from '../components/JAMLabel';
 import API from "../api/API";
 import JAMRadioButton from '../components/JAMRadioButton';
-import JAMHamburger from '../components/JAMHamburger';
+import Menubar from './Menubar';
 
 let initialRead = true;
 
@@ -72,11 +72,7 @@ const Account = (props) => {
     return (
         <div style={{ height: "100%", width: "100%", position: "absolute", backgroundColor: "purple" }}>
             <JAMPanel width={"100%"} height={"100%"}>
-                <JAMHamburger>
-                    <JAMButton />
-                    <JAMButton />
-                    <JAMButton />
-                </JAMHamburger>
+                <Menubar />
                 <JAMCol>
                     <JAMLabel style={{ padding: "10px" }} caption='Personal information' big bold />
                     <JAMLine />
