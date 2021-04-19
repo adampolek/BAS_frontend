@@ -3,7 +3,6 @@ import JAMCol from '../components/JAMCol';
 import JAMImage from '../components/JAMImage';
 import JAMLabel from '../components/JAMLabel';
 import JAMPanel from '../components/JAMPanel';
-import JAMRow from '../components/JAMRow';
 import logo from '../resources/error.png'
 import Menubar from './Menubar';
 

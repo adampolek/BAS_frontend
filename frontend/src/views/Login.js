@@ -64,7 +64,7 @@ const Login = (props) => {
                             <JAMButton value='Log in' width={"100%"} onClick={() => login()} />
                         </JAMRow>
                         <JAMRow>
-                            <JAMLink href='#' caption='Forgot password?' />
+                            <JAMLink href='/login/forgot' caption='Forgot password?' />
                         </JAMRow>
                         <JAMRow>
                             <JAMLoader show={isLoading} />
