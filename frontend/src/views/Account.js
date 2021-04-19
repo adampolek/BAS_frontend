@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import JAMButton from '../components/JAMButton';
 import JAMCol from '../components/JAMCol';
 import JAMInput from '../components/JAMInput';
@@ -35,16 +35,16 @@ const Account = (props) => {
     const updateAccountInfo = async () => {
         console.log(gender);
         API.put("bas/user/account", Object.assign({},
-            user, { firstName: firstName }, { lastName: lastName },
-            { height: height }, { gender: gender }, { birthDate: birthDate }),
-            { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } }).then(res => {
-                console.log(res);
-            })
+            user, {firstName: firstName}, {lastName: lastName},
+            {height: height}, {gender: gender}, {birthDate: birthDate}),
+            {headers: {Authorization: JSON.parse(localStorage.getItem('token'))}}).then(res => {
+            console.log(res);
+        })
     };
     const changeEmail = async () => {
         API.put("bas/user/account", Object.assign({}, user, {
             email: email
-        }), { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } }).then(res => {
+        }), {headers: {Authorization: JSON.parse(localStorage.getItem('token'))}}).then(res => {
             console.log(res);
         })
     }
@@ -52,40 +52,42 @@ const Account = (props) => {
     const updatePassword = async () => {
         API.put("bas/user/account", Object.assign({}, user, {
             password: newPassword
-        }), { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } }).then(res => {
+        }), {headers: {Authorization: JSON.parse(localStorage.getItem('token'))}}).then(res => {
             console.log(res);
         })
     }
     if (initialRead) {
-        API.get("bas/user/account", { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } })
+        API.get("bas/user/account", {headers: {Authorization: JSON.parse(localStorage.getItem('token'))}})
             .then(res => {
+                console.log(res);
                 initialRead = false;
                 setFirstName(res.data.firstName);
                 setLastName(res.data.lastName);
                 setHeight(res.data.height);
                 setGender(res.data.gender === null ? 'male' : res.data.gender);
-                setBirthDate(res.data.birthDate === null ? new Date().toISOString().slice(0, 10) : res.data.birthDate);
+                setBirthDate(res.data.birthDate === null ? new Date().toISOString().slice(0, 10) : new Date(res.data.birthDate).toISOString().slice(0, 10));
                 setUser(res.data);
             });
     }
 
     return (
-        <div style={{ height: "100%", width: "100%", position: "absolute", backgroundColor: "purple" }}>
+        <div style={{height: "100%", width: "100%", position: "absolute", backgroundColor: "purple"}}>
             <JAMPanel width={"100%"} height={"100%"}>
-                <Menubar />
+                <Menubar/>
                 <JAMCol>
-                    <JAMLabel style={{ padding: "10px" }} caption='Personal information' big bold />
-                    <JAMLine />
+                    <JAMLabel style={{padding: "10px"}} caption='Personal information' big bold/>
+                    <JAMLine/>
                     <JAMRow>
                         <JAMInput caption='First Name' width="300px" value={firstName}
-                            onChange={(e) => setFirstName(e.target.value)} />
+                                  onChange={(e) => setFirstName(e.target.value)}/>
                         <JAMInput caption='Last Name' width="300px" value={lastName}
-                            onChange={(e) => setLastName(e.target.value)} />
+                                  onChange={(e) => setLastName(e.target.value)}/>
                         <JAMInput type='number' caption='Height' width="300px" value={height}
-                            onChange={(e) => setHeight(e.target.value)} />
+                                  onChange={(e) => setHeight(e.target.value)}/>
                     </JAMRow>
                     <JAMRow>
-                        <JAMRadioButton options={['none', 'male', 'female']} selected={gender} onChange={(e) => setGender(e)} />
+                        <JAMRadioButton caption={"Gender"} options={['none', 'male', 'female']} selected={gender}
+                                        onChange={(e) => setGender(e)}/>
                     </JAMRow>
                     <JAMRow>
                         <label>Birth date: </label>
@@ -97,36 +99,36 @@ const Account = (props) => {
                         />
                     </JAMRow>
                     <JAMRow>
-                        <JAMButton value="Save" onClick={() => updateAccountInfo()} />
+                        <JAMButton value="Save" onClick={() => updateAccountInfo()}/>
                     </JAMRow>
-                    <JAMLabel style={{ padding: "10px" }} caption='E-mail address' big bold />
-                    <JAMLine />
+                    <JAMLabel style={{padding: "10px"}} caption='E-mail address' big bold/>
+                    <JAMLine/>
                     <JAMRow>
                         <JAMInput caption='E-mail address' width="300px" value={email}
-                            onChange={(e) => setEmail(e.target.value)} />
+                                  onChange={(e) => setEmail(e.target.value)}/>
                         <JAMInput caption='Password' width="300px" type="password" value={emailPassword}
-                            onChange={(e) => setEmailPassword(e.target.value)} />
+                                  onChange={(e) => setEmailPassword(e.target.value)}/>
                     </JAMRow>
                     <JAMRow>
-                        <JAMButton value="Save" onClick={() => changeEmail()} />
+                        <JAMButton value="Save" onClick={() => changeEmail()}/>
                     </JAMRow>
-                    <JAMLabel style={{ padding: "10px" }} caption='Password' big bold />
-                    <JAMLine />
+                    <JAMLabel style={{padding: "10px"}} caption='Password' big bold/>
+                    <JAMLine/>
                     <JAMRow>
                         <JAMInput caption='Current password' width="300px" type="password" value={currentPassword}
-                            onChange={(e) => setCurrentPassword(e.target.value)} />
+                                  onChange={(e) => setCurrentPassword(e.target.value)}/>
                         <JAMInput caption='New password' width="300px" type="password" value={newPassword}
-                            onChange={(e) => setNewPassword(e.target.value)} />
+                                  onChange={(e) => setNewPassword(e.target.value)}/>
                         <JAMInput caption='Confirm password' width="300px" type="password" value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)} />
+                                  onChange={(e) => setConfirmPassword(e.target.value)}/>
                     </JAMRow>
                     <JAMRow>
-                        <JAMButton value="Save" onClick={() => updatePassword()} />
+                        <JAMButton value="Save" onClick={() => updatePassword()}/>
                     </JAMRow>
-                    <JAMLabel style={{ padding: "10px" }} caption='Delete your account' big bold />
-                    <JAMLine />
-                    <JAMInput caption='Confirm password' width="300px" type="password" />
-                    <JAMButton value="Delete account" />
+                    <JAMLabel style={{padding: "10px"}} caption='Delete your account' big bold/>
+                    <JAMLine/>
+                    <JAMInput caption='Confirm password' width="300px" type="password"/>
+                    <JAMButton value="Delete account"/>
                 </JAMCol>
             </JAMPanel>
         </div>

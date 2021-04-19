@@ -14,7 +14,7 @@ import JAMLink from '../components/JAMLink';
 import JAMLoader from '../components/JAMLoader';
 
 const Login = (props) => {
-    const [check, setCheck] = useState(true);
+    const [rememberMe, setRememberMe] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -27,6 +27,7 @@ const Login = (props) => {
         API.post('bas/user/login', {
             username: username,
             password: password,
+            rememberMe: rememberMe
         }).then(res => {
             const token = res.data;
             localStorage.setItem('token', JSON.stringify('Bearer ' + token.jwttoken));
@@ -56,8 +57,8 @@ const Login = (props) => {
                         <JAMInput caption='Password' width="300px" type='password' value={password}
                             onChange={(e) => setPassword(e.target.value)} />
                         <JAMRow float='left' style={{ width: '100%' }}>
-                            <JAMCheckbox caption="Keep me logged in" width='100%' checked={check}
-                                onClick={() => setCheck(!check)} />
+                            <JAMCheckbox caption="Keep me logged in" width='100%' checked={rememberMe}
+                                onClick={() => setRememberMe(!rememberMe)} />
                         </JAMRow>
                         <JAMRow style={{ width: "100%", paddingTop: "20px" }}>
                             <JAMButton value='Log in' width={"100%"} onClick={() => login()} />
