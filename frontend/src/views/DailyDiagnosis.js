@@ -8,6 +8,16 @@ import Menubar from './Menubar';
 import API from "../api/API";
 import JAMButton from "../components/JAMButton";
 import JAMCounter from '../components/JAMCounter';
+import JAMImage from '../components/JAMImage';
+import JAMRow from '../components/JAMRow';
+import cigarette from '../resources/cigarette.svg'
+import bed from '../resources/sleep.svg'
+import dumbbells from '../resources/dumbbells.svg'
+import beer from '../resources/beer.svg'
+import water from '../resources/water.svg'
+import bloodPressureImage from '../resources/blood-pressure.svg'
+import glucoseMeter from '../resources/glucose-meter.svg'
+import weightScale from '../resources/weight-scale.svg'
 
 const DailyDiagnosis = (props) => {
 
@@ -15,7 +25,11 @@ const DailyDiagnosis = (props) => {
     const [glucose, setGlucose] = useState("0");
     const [insulin, setInsulin] = useState("0");
     const [bloodPressure, setBloodPressure] = useState("0");
-    const [nowaZmienna, setNowaZmienna] = useState(0);
+    const [amountOfCigarettes, setAmountOfCigarettes] = useState(0);
+    const [hoursOfSleep, setHoursOfSleep] = useState(0);
+    const [glassesOfWater, setGlassesOfWater] = useState(0);
+    const [trainingHours, setTrainingHours] = useState(0);
+    const [amountOfAlcohol, setAmountOfAlcohol] = useState(0);
 
     const addEntry = async () => {
         API.post('bas/entry/save', {
@@ -34,25 +48,51 @@ const DailyDiagnosis = (props) => {
             <JAMPanel width={"100%"} height={"100%"}>
                 <Menubar />
                 <JAMCol>
-                    <JAMCounter value={nowaZmienna} onClick={(e) => setNowaZmienna(e)}/>
                     <JAMLabel caption='Fill up your daily diagnosis' header />
                     <JAMLine style={{ marginTop: '20px', marginBottom: '20px' }} />
-                    <JAMInput type='number' caption='Weight' value={weight}
-                        onChange={(e) => setWeight(e.target.value)} />
-                    <JAMInput type='number' caption='Glucose' value={glucose}
-                        onChange={(e) => setGlucose(e.target.value)} />
-                    <JAMInput type='number' caption='Insulin' value={insulin}
-                        onChange={(e) => setInsulin(e.target.value)} />
-                    <JAMInput type='number' caption='Blood Pressure' value={bloodPressure}
-                        onChange={(e) => setBloodPressure(e.target.value)} />
+                    <JAMRow>
+                        <JAMImage icon={weightScale} width='50px' />
+                        <JAMInput type='number' caption='Weight' value={weight}
+                            onChange={(e) => setWeight(e.target.value)} />
+                    </JAMRow>
+                    <JAMRow>
+                        <JAMImage icon={glucoseMeter} width='50px' />
+                        <JAMInput type='number' caption='Glucose' value={glucose}
+                            onChange={(e) => setGlucose(e.target.value)} />
+                    </JAMRow>
+                    <JAMRow>
+                        <JAMImage icon={bed} width='50px' />
+                        <JAMInput type='number' caption='Insulin' value={insulin}
+                            onChange={(e) => setInsulin(e.target.value)} />
+                    </JAMRow>
+                    <JAMRow>
+                        <JAMImage icon={bloodPressureImage} width='50px' />
+                        <JAMInput type='number' caption='Blood Pressure' value={bloodPressure}
+                            onChange={(e) => setBloodPressure(e.target.value)} />
+                    </JAMRow>
+                    <JAMButton value='Add entry' style={{ marginTop: '40px' }} width={"100%"} onClick={() => addEntry()} />
                     <JAMLabel caption='Additional information' big style={{ marginTop: '20px' }} />
                     <JAMLine style={{ marginTop: '20px', marginBottom: '20px' }} />
-                    <JAMInput type='number' caption='Amount of cigarettes' />
-                    <JAMInput type='number' caption='Hours of sleep' />
-                    <JAMInput type='number' caption='Glasses of water' />
-                    <JAMInput type='number' caption='Training hours' />
-                    <JAMInput type='number' caption='Amount of alcohol' />
-                    <JAMButton value='Add entry' width={"100%"} onClick={() => addEntry()} />
+                    <JAMRow>
+                        <JAMImage icon={cigarette} width='50px' />
+                        <JAMCounter value={amountOfCigarettes} caption='Amount of cigarettes' onClick={(e) => setAmountOfCigarettes(e)} />
+                    </JAMRow>
+                    <JAMRow>
+                        <JAMImage icon={bed} width='50px' />
+                        <JAMCounter value={hoursOfSleep} caption='Hours of sleep' onClick={(e) => setHoursOfSleep(e)} />
+                    </JAMRow>
+                    <JAMRow>
+                        <JAMImage icon={water} width='50px' />
+                        <JAMCounter value={glassesOfWater} caption='Glasses of water' onClick={(e) => setGlassesOfWater(e)} />
+                    </JAMRow>
+                    <JAMRow>
+                        <JAMImage icon={dumbbells} width='50px' />
+                        <JAMCounter value={trainingHours} caption='Training hours' onClick={(e) => setTrainingHours(e)} />
+                    </JAMRow>
+                    <JAMRow>
+                        <JAMImage icon={beer} width='50px' />
+                        <JAMCounter value={amountOfAlcohol} caption='Amount of alcohol' onClick={(e) => setAmountOfAlcohol(e)} />
+                    </JAMRow>
                 </JAMCol>
             </JAMPanel>
         </div>
