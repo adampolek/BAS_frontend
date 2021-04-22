@@ -36,8 +36,15 @@ const Login = (props) => {
                     localStorage.setItem('role', JSON.stringify((res.data)));
                     document.location.href = "/";
                     setIsLoading(false);
-                });
-        })
+                }).catch(error => {
+                setIsLoading(false);
+                console.log(error);
+            });
+        }).catch(error => {
+            setIsLoading(false);
+            //TODO I jeszcze tutaj dialoga do console loga
+            console.log("Incorrect login and password");
+        });
     };
     let disabled = username.length === 0 || password.length === 0;
     return (

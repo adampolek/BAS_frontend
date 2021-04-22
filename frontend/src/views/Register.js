@@ -55,7 +55,12 @@ const Register = (props) => {
                     console.log(res)
                     setIsLoading(false);
                     document.location.href = '/login';
-                });
+                }).catch(error => {
+                setIsLoading(false);
+                //TODO Dialoga mi tu proszę dać do console.loga
+                console.log(error.response.data)
+
+            });
         }
     }
 
