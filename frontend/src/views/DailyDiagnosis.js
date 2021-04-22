@@ -7,6 +7,7 @@ import JAMPanel from '../components/JAMPanel';
 import Menubar from './Menubar';
 import API from "../api/API";
 import JAMButton from "../components/JAMButton";
+import JAMCounter from '../components/JAMCounter';
 
 const DailyDiagnosis = (props) => {
 
@@ -14,6 +15,7 @@ const DailyDiagnosis = (props) => {
     const [glucose, setGlucose] = useState("0");
     const [insulin, setInsulin] = useState("0");
     const [bloodPressure, setBloodPressure] = useState("0");
+    const [nowaZmienna, setNowaZmienna] = useState(0);
 
     const addEntry = async () => {
         API.post('bas/entry/save', {
@@ -32,6 +34,7 @@ const DailyDiagnosis = (props) => {
             <JAMPanel width={"100%"} height={"100%"}>
                 <Menubar />
                 <JAMCol>
+                    <JAMCounter value={nowaZmienna} onClick={(e) => setNowaZmienna(e)}/>
                     <JAMLabel caption='Fill up your daily diagnosis' header />
                     <JAMLine style={{ marginTop: '20px', marginBottom: '20px' }} />
                     <JAMInput type='number' caption='Weight' value={weight}
