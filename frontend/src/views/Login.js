@@ -4,7 +4,7 @@ import JAMCol from '../components/JAMCol';
 import JAMInput from '../components/JAMInput';
 import JAMPanel from '../components/JAMPanel';
 import JAMRow from '../components/JAMRow';
-import logo from '../resources/login_background.png'
+import logo from '../resources/login.svg'
 import JAMCheckbox from '../components/JAMCheckbox'
 import API from "../api/API";
 import JAMImage from '../components/JAMImage';
@@ -40,7 +40,6 @@ const Login = (props) => {
                     setIsLoading(false);
                 }).catch(error => {
                     setIsLoading(false);
-                    console.log(error);
                 });
         }).catch(error => {
             setIsLoading(false);
@@ -99,7 +98,9 @@ const Login = (props) => {
                         </JAMRow>
                     </JAMCol>
                     <JAMCol>
-                        <JAMImage icon={logo} note='Login icon' />
+                        <JAMRow width='250px' style={{ borderRadius: '50%', backgroundColor: 'purple', padding: '50px' }}>
+                            <JAMImage icon={logo} note='Login icon' />
+                        </JAMRow>
                     </JAMCol>
                 </JAMPanel>
             </JAMPanel>
