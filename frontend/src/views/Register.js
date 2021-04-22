@@ -10,6 +10,7 @@ import logo from '../resources/login_background.png'
 import React, {useState} from 'react';
 import API from "../api/API";
 import JAMLoader from "../components/JAMLoader";
+import JAMAlert from '../components/JAMAlert';
 
 const Register = (props) => {
 
@@ -30,6 +31,8 @@ const Register = (props) => {
 
     const [showErrorConfirmPassword, setShowErrorConfirmPassword] = useState(false);
     const [showErrorConfirmPasswordString, setShowErrorConfirmPasswordString] = useState('');
+
+    const [showRegistrationAlert, setShowRegistrationAlert] = useState(false);
 
     const register = async () => {
         let register = true;
@@ -52,14 +55,11 @@ const Register = (props) => {
             setIsLoading(true);
             API.post('bas/user/register', {username: username, password: password, email: email})
                 .then(res => {
-                    console.log(res)
                     setIsLoading(false);
                     document.location.href = '/login';
                 }).catch(error => {
                 setIsLoading(false);
-                //TODO Dialoga mi tu proszę dać do console.loga
-                console.log(error.response.data)
-
+                setShowRegistrationAlert(true);
             });
         }
     }
@@ -70,6 +70,7 @@ const Register = (props) => {
     return (
         <JAMRow style={{height: "100%", width: "100%", position: "absolute", backgroundColor: "purple"}}>
             <JAMPanel width={"100%"} height={"100%"} backgroundColor={"purple"}>
+                <JAMAlert block message="We are sorry. Your login or email was already used." onClick={()=>setShowRegistrationAlert(false)} show={showRegistrationAlert} />
                 <JAMPanel width={"90%"} height={"90%"} maxWidth={"1300px"} backgroundColor={"white"} minWidth="400px">
                     <JAMCol>
                         <JAMImage icon={logo} note='House image'/>

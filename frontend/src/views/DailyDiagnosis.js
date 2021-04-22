@@ -53,22 +53,22 @@ const DailyDiagnosis = (props) => {
                     <JAMLine style={{ marginTop: '20px', marginBottom: '20px' }} />
                     <JAMRow>
                         <JAMImage icon={weightScale} width='50px' />
-                        <JAMInput type='number' caption='Weight' value={weight}
+                        <JAMInput width='200px' type='number' caption='Weight' value={weight}
                             onChange={(e) => setWeight(e.target.value)} />
                     </JAMRow>
                     <JAMRow>
                         <JAMImage icon={glucoseMeter} width='50px' />
-                        <JAMInput type='number' caption='Glucose' value={glucose}
+                        <JAMInput width='200px'  type='number' caption='Glucose' value={glucose}
                             onChange={(e) => setGlucose(e.target.value)} />
                     </JAMRow>
                     <JAMRow>
                         <JAMImage icon={injection} width='50px' />
-                        <JAMInput type='number' caption='Insulin' value={insulin}
+                        <JAMInput width='200px'  type='number' caption='Insulin' value={insulin}
                             onChange={(e) => setInsulin(e.target.value)} />
                     </JAMRow>
                     <JAMRow>
                         <JAMImage icon={bloodPressureImage} width='50px' />
-                        <JAMInput type='number' caption='Blood Pressure' value={bloodPressure}
+                        <JAMInput width='200px'  type='number' caption='Blood Pressure' value={bloodPressure}
                             onChange={(e) => setBloodPressure(e.target.value)} />
                     </JAMRow>
                     <JAMButton value='Add entry' style={{ marginTop: '40px' }} width={"100%"} onClick={() => addEntry()} />
