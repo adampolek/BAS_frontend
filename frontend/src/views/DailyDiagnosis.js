@@ -29,7 +29,7 @@ const DailyDiagnosis = (props) => {
     const [amountOfCigarettes, setAmountOfCigarettes] = useState(0);
     const [hoursOfSleep, setHoursOfSleep] = useState(0);
     const [glassesOfWater, setGlassesOfWater] = useState(0);
-    const [trainingHours, setTrainingHours] = useState(0);
+    const [trainingHours, setTrainingHours] = useState(0.0);
     const [amountOfAlcohol, setAmountOfAlcohol] = useState(0);
 
     const addEntry = async () => {
@@ -76,11 +76,11 @@ const DailyDiagnosis = (props) => {
                     {/* ŻY ŻY Update this data below on every click :) TODO*/}
                     <JAMRow>
                         <JAMImage icon={cigarette} width='50px' />
-                        <JAMCounter value={amountOfCigarettes} caption='Amount of cigarettes' onClick={(e) => setAmountOfCigarettes(e)} />
+                        <JAMCounter unit=' szt.' value={amountOfCigarettes} caption='Amount of cigarettes' onClick={(e) => setAmountOfCigarettes(e)} />
                     </JAMRow>
                     <JAMRow>
                         <JAMImage icon={bed} width='50px' />
-                        <JAMCounter value={hoursOfSleep} caption='Hours of sleep' onClick={(e) => setHoursOfSleep(e)} />
+                        <JAMCounter unit=' h' value={hoursOfSleep} caption='Hours of sleep' onClick={(e) => setHoursOfSleep(e)} />
                     </JAMRow>
                     <JAMRow>
                         <JAMImage icon={water} width='50px' />
@@ -88,7 +88,7 @@ const DailyDiagnosis = (props) => {
                     </JAMRow>
                     <JAMRow>
                         <JAMImage icon={dumbbells} width='50px' />
-                        <JAMCounter value={trainingHours} caption='Training hours' onClick={(e) => setTrainingHours(e)} />
+                        <JAMCounter unit=' h' steps={0.25} value={trainingHours} caption='Training hours' onClick={(e) => setTrainingHours(e)} />
                     </JAMRow>
                     <JAMRow>
                         <JAMImage icon={beer} width='50px' />
