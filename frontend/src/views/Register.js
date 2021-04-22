@@ -84,7 +84,12 @@ const Register = (props) => {
                             } else {
                                 setShowErrorUsername(false);
                             }
-                        }}/>
+                        }} onKeyPress={e => {
+                            if (e.key === 'Enter') {
+                                setUsername(e.target.value)
+                                register()
+                            }
+                          }} />
                         <JAMInput caption='Email' width="300px" type='email' showError={showErrorEmail}
                                   error={showErrorEmailString} value={email} onChange={(e) => {
                             setEmail(e.target.value)
@@ -96,7 +101,12 @@ const Register = (props) => {
                             } else {
                                 setShowErrorEmail(false);
                             }
-                        }}/>
+                        }} onKeyPress={e => {
+                            if (e.key === 'Enter') {
+                                setEmail(e.target.value)
+                                register()
+                            }
+                          }} />
                         <JAMInput caption='Password' width="300px" onInput={(e) => {
                             const re = /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).*$/;
                             if (e.target.value.length < 8) {
@@ -111,7 +121,12 @@ const Register = (props) => {
                         }} value={password} showError={showErrorPassword}
                                   error={showErrorPasswordString} onChange={(e) => {
                             setPassword(e.target.value)
-                        }} type='password'/>
+                        }} onKeyPress={e => {
+                            if (e.key === 'Enter') {
+                                setPassword(e.target.value)
+                                register()
+                            }
+                          }} type='password'/>
                         <JAMInput caption='Confirm Password' width="300px" value={confirmPassword}
                                   showError={showErrorConfirmPassword}
                                   error={showErrorConfirmPasswordString} onChange={(e) => {
@@ -123,7 +138,12 @@ const Register = (props) => {
                             } else {
                                 setShowErrorConfirmPassword(false);
                             }
-                        }} type='password'/>
+                        }} onKeyPress={e => {
+                            if (e.key === 'Enter') {
+                                setConfirmPassword(e.target.value)
+                                register()
+                            }
+                          }} type='password'/>
                         <JAMRow float='left' width='100%'>
                         </JAMRow>
                         <JAMRow style={{width: "100%", paddingTop: "40px"}}>

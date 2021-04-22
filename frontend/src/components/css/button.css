@@ -37,6 +37,14 @@ button {
     cursor: pointer;
 }
 
+.normal:disabled, .danger:disabled, .success:disabled, .white:disabled {
+    box-shadow: 2px 2px 4px #00000079;
+    background-color: whitesmoke;
+    color: silver;
+    transform: scale(1.03);
+    cursor: pointer;
+}
+
 .normal:active, .danger:active, .success:active .white:active {
     box-shadow: 2px 2px 4px #00000079;
     transform: scale(.98);
