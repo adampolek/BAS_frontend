@@ -4,15 +4,15 @@ import JAMCol from './JAMCol';
 import JAMRow from './JAMRow';
 import './css/radiobutton.css'
 
-const JAMRadioButton = ({ caption = 'Caption', options, selected, onChange = (e) => console.log(e), orientation = 'row', ...props }) => {
+const JAMRadioButton = ({ caption = 'Caption', options, selected, onChange = (e) => console.log(e), orientation = 'row', width = '300px', ...props }) => {
     return (
-        <div className='radio'>
+        <div className='radio' style={{ width: width }}>
             <label className='radiolabel'>{caption}</label>
             { orientation == 'col' ? (
                 <JAMCol float='left'>
                     {options.map(option => {
                         return (
-                            <JAMRow onClick={() => onChange(option)} float='left' style={{ margin: "10px" }}>
+                            <JAMRow onClick={() => onChange(option)} float='left' style={{ margin: "10px" }} >
                                 <div className='back_radio' >
                                     <div className={'front_radio' + (selected == option ? ' front_radio_active' : '')}></div>
                                 </div>
@@ -27,7 +27,7 @@ const JAMRadioButton = ({ caption = 'Caption', options, selected, onChange = (e)
                 <JAMRow>
                     {options.map(option => {
                         return (
-                            <JAMRow onClick={() => onChange(option)} float='left' style={{ margin: "10px" }}>
+                            <JAMRow onClick={() => onChange(option)} float='left' style={{ margin: "10px" }} >
                                 <div className='back_radio' >
                                     <div className={'front_radio' + (selected == option ? ' front_radio_active' : '')}></div>
                                 </div>

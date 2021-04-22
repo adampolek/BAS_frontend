@@ -54,9 +54,7 @@ const ChangePassword = () => {
 
     let disabled = showErrorPassword || showErrorConfirmPassword || password.length === 0 || confirmPassword.length === 0;
     return (
-        <JAMRow style={{ height: "100%", width: "100%", position: "absolute", backgroundColor: "purple" }}>
-            <JAMPanel width={"100%"} height={"100%"} backgroundColor={"purple"}>
-                <JAMPanel width={"90%"} height={"90%"} maxWidth={"1300px"} backgroundColor={"white"} minWidth='400px'>
+        <JAMPanel minHeight='700px' width={"90%"} maxWidth={"1300px"}  backgroundColor={"white"} minWidth='400px' style={{marginTop: '70px', marginBottom: '50px', paddingBottom: '50px', paddingTop: '50px'}}>
                     <JAMCol>
                         <JAMRow width='250px' style={{ borderRadius: '50%', backgroundColor: 'purple', padding: '50px' }}>
                             <JAMImage icon={lock} scale width='100%' />
@@ -71,7 +69,7 @@ const ChangePassword = () => {
                             <JAMLabel style={{ padding: "20px" }} caption='CHANGE YOUR PASSWORD' color='#E0E0E0' />
                             <JAMLine />
                         </JAMRow>
-                        <JAMInput caption='Password' width="300px" type='password' onInput={(e) => {
+                        <JAMInput caption='Password' width="350px" type='password' onInput={(e) => {
                             const re = /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).*$/;
                             if (e.target.value.length < 8) {
                                 setShowErrorPassword(true);
@@ -85,7 +83,7 @@ const ChangePassword = () => {
                         }} value={password} showError={showErrorPassword}
                             error={showErrorPasswordString}
                             onChange={(e) => setPassword(e.target.value)} />
-                        <JAMInput caption='Confirm password' width="300px" type='password'
+                        <JAMInput caption='Confirm password' width="350px" type='password'
                             showError={showErrorConfirmPassword}
                             error={showErrorConfirmPasswordString} onInput={(e) => {
                                 if (e.target.value !== password) {
@@ -107,7 +105,7 @@ const ChangePassword = () => {
                                 }
                             }} />
                         <JAMRow style={{ width: "100%", paddingTop: "20px" }}>
-                            <JAMButton width='100%' value='Save' onClick={() => resetPassword()} disabled={disabled} />
+                            <JAMButton width='360px' value='Save' onClick={() => resetPassword()} disabled={disabled} />
                         </JAMRow>
                         <JAMRow>
                             <JAMLoader show={isLoading} />
@@ -118,8 +116,6 @@ const ChangePassword = () => {
                         </JAMRow>
                     </JAMCol>
                 </JAMPanel>
-            </JAMPanel>
-        </JAMRow>
     );
 }
 

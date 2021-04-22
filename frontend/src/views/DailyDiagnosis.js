@@ -45,9 +45,8 @@ const DailyDiagnosis = (props) => {
     };
 
     return (
-        <div style={{ height: "100%", width: "100%", position: "absolute", backgroundColor: "purple" }}>
-            <JAMPanel width={"100%"} height={"100%"}>
-                <Menubar />
+        <JAMPanel width={"90%"} maxWidth={"1300px"}  backgroundColor={"white"} minWidth='400px' style={{marginTop: '70px', marginBottom: '50px', paddingBottom: '50px', paddingTop: '50px'}}>
+        <Menubar color='white' />
                 <JAMCol>
                     <JAMLabel caption='Fill up your daily diagnosis' header />
                     <JAMLine style={{ marginTop: '20px', marginBottom: '20px' }} />
@@ -71,7 +70,7 @@ const DailyDiagnosis = (props) => {
                         <JAMInput width='200px'  type='number' caption='Blood Pressure' value={bloodPressure}
                             onChange={(e) => setBloodPressure(e.target.value)} />
                     </JAMRow>
-                    <JAMButton value='Add entry' style={{ marginTop: '40px' }} width={"100%"} onClick={() => addEntry()} />
+                    <JAMButton value='Save entry' style={{ marginTop: '40px' }} width={"350px"} onClick={() => addEntry()} />
                     <JAMLabel caption='Additional information' big style={{ marginTop: '20px' }} />
                     <JAMLine style={{ marginTop: '20px', marginBottom: '20px' }} />
                     {/* ŻY ŻY Update this data below on every click :) TODO*/}
@@ -97,7 +96,6 @@ const DailyDiagnosis = (props) => {
                     </JAMRow>
                 </JAMCol>
             </JAMPanel>
-        </div>
     )
 }
 

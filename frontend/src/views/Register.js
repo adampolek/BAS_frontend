@@ -68,10 +68,8 @@ const Register = (props) => {
         || username.length === 0 || email.length === 0
         || password.length === 0 || confirmPassword.length === 0;
     return (
-        <JAMRow style={{ height: "100%", width: "100%", position: "absolute", backgroundColor: "purple" }}>
-            <JAMPanel width={"100%"} height={"100%"} backgroundColor={"purple"}>
+        <JAMPanel minHeight='700px' width={"90%"} maxWidth={"1300px"}  backgroundColor={"white"} minWidth='400px' style={{marginTop: '70px', marginBottom: '50px', paddingBottom: '50px', paddingTop: '50px'}}>
                 <JAMAlert block message="We are sorry. Your login or email was already used." onClick={() => setShowRegistrationAlert(false)} show={showRegistrationAlert} />
-                <JAMPanel width={"90%"} height={"90%"} maxWidth={"1300px"} backgroundColor={"white"} minWidth="400px">
                     <JAMCol>
                         <JAMRow width='250px' style={{ borderRadius: '50%', backgroundColor: 'purple', padding: '50px' }}>
                             <JAMImage icon={logo} note='House image' scale />
@@ -87,7 +85,7 @@ const Register = (props) => {
                             <JAMLine />
                         </JAMRow>
                         <JAMInput error={showErrorUsernameString} showError={showErrorUsername} caption='Login'
-                            width="300px" value={username} onChange={(e) => {
+                            width="350px" value={username} onChange={(e) => {
                                 setUsername(e.target.value)
                             }} onInput={(e) => {
                                 if (e.target.value.length < 4) {
@@ -102,7 +100,7 @@ const Register = (props) => {
                                     register()
                                 }
                             }} />
-                        <JAMInput caption='Email' width="300px" type='email' showError={showErrorEmail}
+                        <JAMInput caption='Email' width="350px" type='email' showError={showErrorEmail}
                             error={showErrorEmailString} value={email} onChange={(e) => {
                                 setEmail(e.target.value)
                             }} onInput={(e) => {
@@ -119,7 +117,7 @@ const Register = (props) => {
                                     register()
                                 }
                             }} />
-                        <JAMInput caption='Password' width="300px" onInput={(e) => {
+                        <JAMInput caption='Password' width="350px" onInput={(e) => {
                             const re = /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).*$/;
                             if (e.target.value.length < 8) {
                                 setShowErrorPassword(true);
@@ -139,7 +137,7 @@ const Register = (props) => {
                                     register()
                                 }
                             }} type='password' />
-                        <JAMInput caption='Confirm Password' width="300px" value={confirmPassword}
+                        <JAMInput caption='Confirm Password' width="350px" value={confirmPassword}
                             showError={showErrorConfirmPassword}
                             error={showErrorConfirmPasswordString} onChange={(e) => {
                                 setConfirmPassword(e.target.value)
@@ -159,7 +157,7 @@ const Register = (props) => {
                         <JAMRow float='left' width='100%'>
                         </JAMRow>
                         <JAMRow style={{ width: "100%", paddingTop: "40px" }}>
-                            <JAMButton value='Register' width={"100%"}
+                            <JAMButton value='Register' width='370px'
                                 disabled={disabled}
                                 onClick={() => {
                                     console.log("Halko");
@@ -177,8 +175,6 @@ const Register = (props) => {
                         </JAMRow>
                     </JAMCol>
                 </JAMPanel>
-            </JAMPanel>
-        </JAMRow>
     )
 }
 

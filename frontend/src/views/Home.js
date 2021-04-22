@@ -8,7 +8,7 @@ const Home = (props) => {
 
     return (
         <JAMCol>
-            <Menubar />
+            <Menubar color='white' />
         </JAMCol>
     )
 }

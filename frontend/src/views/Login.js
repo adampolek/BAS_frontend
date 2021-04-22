@@ -48,10 +48,8 @@ const Login = (props) => {
     };
     let disabled = username.length === 0 || password.length === 0;
     return (
-        <JAMRow style={{ height: "100%", width: "100%", position: "absolute", backgroundColor: "purple" }}>
-            <JAMPanel width={"100%"} height={"100%"} backgroundColor={"purple"}>
+            <JAMPanel minHeight='700px' width={"90%"} maxWidth={"1300px"}  backgroundColor={"white"} minWidth='400px' style={{marginTop: '70px', marginBottom: '50px', paddingBottom: '50px', paddingTop: '50px'}}>
                 <JAMAlert block message="We are sorry. Your login password is incorrect." onClick={() => setShowRegistrationAlert(false)} show={showRegistrationAlert} />
-                <JAMPanel width={"90%"} height={"90%"} maxWidth={"1300px"} backgroundColor={"white"} minWidth='400px'>
                     <JAMCol>
                         <JAMRow>
                             <JAMLabel style={{ padding: "10px" }} caption='Welcome Back' header />
@@ -61,7 +59,7 @@ const Login = (props) => {
                             <JAMLabel style={{ padding: "20px" }} caption='LOGIN WITH USERNAME' color='#E0E0E0' />
                             <JAMLine />
                         </JAMRow>
-                        <JAMInput caption='Login' width="300px" value={username}
+                        <JAMInput caption='Login' width="350px" value={username}
                             onChange={(e) => setUsername(e.target.value)}
                             onKeyPress={e => {
                                 if (e.key === 'Enter' && !disabled) {
@@ -69,7 +67,7 @@ const Login = (props) => {
                                     login()
                                 }
                             }} />
-                        <JAMInput caption='Password' width="300px" type='password' value={password}
+                        <JAMInput caption='Password' width="350px" type='password' value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             onKeyPress={e => {
                                 if (e.key === 'Enter' && !disabled) {
@@ -103,8 +101,6 @@ const Login = (props) => {
                         </JAMRow>
                     </JAMCol>
                 </JAMPanel>
-            </JAMPanel>
-        </JAMRow>
     )
 }
 
