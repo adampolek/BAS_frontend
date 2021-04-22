@@ -18,6 +18,7 @@ import water from '../resources/water.svg'
 import bloodPressureImage from '../resources/blood-pressure.svg'
 import glucoseMeter from '../resources/glucose-meter.svg'
 import weightScale from '../resources/weight-scale.svg'
+import injection from '../resources/injection.svg'
 
 const DailyDiagnosis = (props) => {
 
@@ -61,7 +62,7 @@ const DailyDiagnosis = (props) => {
                             onChange={(e) => setGlucose(e.target.value)} />
                     </JAMRow>
                     <JAMRow>
-                        <JAMImage icon={bed} width='50px' />
+                        <JAMImage icon={injection} width='50px' />
                         <JAMInput type='number' caption='Insulin' value={insulin}
                             onChange={(e) => setInsulin(e.target.value)} />
                     </JAMRow>
@@ -73,6 +74,7 @@ const DailyDiagnosis = (props) => {
                     <JAMButton value='Add entry' style={{ marginTop: '40px' }} width={"100%"} onClick={() => addEntry()} />
                     <JAMLabel caption='Additional information' big style={{ marginTop: '20px' }} />
                     <JAMLine style={{ marginTop: '20px', marginBottom: '20px' }} />
+                    {/* ŻY ŻY Update this data below on every click :) TODO*/}
                     <JAMRow>
                         <JAMImage icon={cigarette} width='50px' />
                         <JAMCounter value={amountOfCigarettes} caption='Amount of cigarettes' onClick={(e) => setAmountOfCigarettes(e)} />
