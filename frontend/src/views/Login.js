@@ -53,9 +53,21 @@ const Login = (props) => {
                             <JAMLine />
                         </JAMRow>
                         <JAMInput caption='Login or Email' width="300px" value={username}
-                            onChange={(e) => setUsername(e.target.value)} />
+                            onChange={(e) => setUsername(e.target.value)}
+                            onKeyPress={e => {
+                                if (e.key === 'Enter') {
+                                    setUsername(e.target.value)
+                                    login()
+                                }
+                              }} />
                         <JAMInput caption='Password' width="300px" type='password' value={password}
-                            onChange={(e) => setPassword(e.target.value)} />
+                            onChange={(e) => setPassword(e.target.value)} 
+                            onKeyPress={e => {
+                                if (e.key === 'Enter') {
+                                    setPassword(e.target.value)
+                                    login()
+                                }
+                              }} />
                         <JAMRow float='left' style={{ width: '100%' }}>
                             <JAMCheckbox caption="Keep me logged in" width='100%' checked={rememberMe}
                                 onClick={() => setRememberMe(!rememberMe)} />

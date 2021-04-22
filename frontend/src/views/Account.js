@@ -71,7 +71,7 @@ const Account = (props) => {
     return (
         <JAMPanel width={"100%"} height={"100%"} backgroundColor={"purple"} style={{ position: "absolute" }}>
             <JAMPanel width={"90%"} maxWidth={"1300px"} backgroundColor={"white"} minWidth='400px'>
-                <Menubar />
+                <Menubar color='white'/>
 
                 <JAMRow width='100%'>
                     <JAMLabel center style={{ padding: "10px", width: '100%' }} caption='Personal information' big bold />
