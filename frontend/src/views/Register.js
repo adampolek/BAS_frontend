@@ -9,6 +9,7 @@ import JAMLabel from '../components/JAMLabel';
 import logo from '../resources/login_background.png'
 import React, {useState} from 'react';
 import API from "../api/API";
+import JAMLoader from "../components/JAMLoader";
 
 const Register = (props) => {
 
@@ -58,6 +59,9 @@ const Register = (props) => {
         }
     }
 
+    let disabled = showErrorUsername || showErrorEmail || showErrorPassword || showErrorConfirmPassword
+        || username.length === 0 || email.length === 0
+        || password.length === 0 || confirmPassword.length === 0;
     return (
         <JAMRow style={{height: "100%", width: "100%", position: "absolute", backgroundColor: "purple"}}>
             <JAMPanel width={"100%"} height={"100%"} backgroundColor={"purple"}>
@@ -85,11 +89,11 @@ const Register = (props) => {
                                 setShowErrorUsername(false);
                             }
                         }} onKeyPress={e => {
-                            if (e.key === 'Enter') {
+                            if (e.key === 'Enter' && !disabled) {
                                 setUsername(e.target.value)
                                 register()
                             }
-                          }} />
+                        }}/>
                         <JAMInput caption='Email' width="300px" type='email' showError={showErrorEmail}
                                   error={showErrorEmailString} value={email} onChange={(e) => {
                             setEmail(e.target.value)
@@ -102,11 +106,11 @@ const Register = (props) => {
                                 setShowErrorEmail(false);
                             }
                         }} onKeyPress={e => {
-                            if (e.key === 'Enter') {
+                            if (e.key === 'Enter' && !disabled) {
                                 setEmail(e.target.value)
                                 register()
                             }
-                          }} />
+                        }}/>
                         <JAMInput caption='Password' width="300px" onInput={(e) => {
                             const re = /^.*(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*\W).*$/;
                             if (e.target.value.length < 8) {
@@ -122,11 +126,11 @@ const Register = (props) => {
                                   error={showErrorPasswordString} onChange={(e) => {
                             setPassword(e.target.value)
                         }} onKeyPress={e => {
-                            if (e.key === 'Enter') {
+                            if (e.key === 'Enter' && !disabled) {
                                 setPassword(e.target.value)
                                 register()
                             }
-                          }} type='password'/>
+                        }} type='password'/>
                         <JAMInput caption='Confirm Password' width="300px" value={confirmPassword}
                                   showError={showErrorConfirmPassword}
                                   error={showErrorConfirmPasswordString} onChange={(e) => {
@@ -139,18 +143,23 @@ const Register = (props) => {
                                 setShowErrorConfirmPassword(false);
                             }
                         }} onKeyPress={e => {
-                            if (e.key === 'Enter') {
+                            if (e.key === 'Enter' && !disabled) {
                                 setConfirmPassword(e.target.value)
                                 register()
                             }
-                          }} type='password'/>
+                        }} type='password'/>
                         <JAMRow float='left' width='100%'>
                         </JAMRow>
                         <JAMRow style={{width: "100%", paddingTop: "40px"}}>
-                            <JAMButton value='Register' width={"100%"} onClick={() => {
-                                console.log("Halko");
-                                register();
-                            }}/>
+                            <JAMButton value='Register' width={"100%"}
+                                       disabled={disabled}
+                                       onClick={() => {
+                                           console.log("Halko");
+                                           register();
+                                       }}/>
+                        </JAMRow>
+                        <JAMRow>
+                            <JAMLoader show={isLoading} />
                         </JAMRow>
                         <JAMRow style={{paddingTop: "30px"}}>
                             <JAMLabel style={{padding: "10px"}} caption='Already have an account?'/>
