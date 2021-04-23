@@ -26,11 +26,6 @@ const DailyDiagnosis = (props) => {
     const [glucose, setGlucose] = useState("0");
     const [insulin, setInsulin] = useState("0");
     const [bloodPressure, setBloodPressure] = useState("0");
-    const [amountOfCigarettes, setAmountOfCigarettes] = useState(0);
-    const [hoursOfSleep, setHoursOfSleep] = useState(0);
-    const [glassesOfWater, setGlassesOfWater] = useState(0);
-    const [trainingHours, setTrainingHours] = useState(0.0);
-    const [amountOfAlcohol, setAmountOfAlcohol] = useState(0);
 
     const addEntry = async () => {
         API.post('bas/entry/save', {
@@ -41,6 +36,7 @@ const DailyDiagnosis = (props) => {
             entryDate: new Date()
         }, { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } }).then(res => {
             console.log(res);
+            document.location.href = '/'
         })
     };
 
