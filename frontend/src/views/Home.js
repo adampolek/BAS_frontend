@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import JAMCol from '../components/JAMCol';
 import JAMPanel from '../components/JAMPanel';
 import JAMRow from '../components/JAMRow';
@@ -16,6 +16,8 @@ import injection from '../resources/injection.svg'
 import JAMImage from '../components/JAMImage';
 import JAMLabel from '../components/JAMLabel';
 import JAMButton from '../components/JAMButton';
+import JAMLine from '../components/JAMLine';
+import JAMCounter from '../components/JAMCounter';
 
 const data = {
     labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
@@ -44,25 +46,43 @@ const data = {
 
 const Home = (props) => {
 
+    const [amountOfCigarettes, setAmountOfCigarettes] = useState(0);
+    const [hoursOfSleep, setHoursOfSleep] = useState(0);
+    const [glassesOfWater, setGlassesOfWater] = useState(0);
+    const [trainingHours, setTrainingHours] = useState(0.0);
+    const [amountOfAlcohol, setAmountOfAlcohol] = useState(0);
+
     return (
-        <JAMRow>
+        <JAMRow style={{ marginTop: '70px' }}>
             <Menubar color='white' />
-            <JAMRow float='left' width='100%' style={{ marginTop: '70px' }}>
+            <JAMRow float='left' width='100%'>
                 <JAMPanel width='90%' maxWidth='1300px' minWidth='300px'>
-                    <JAMCol float='left' width='100%' style={{margin: '10px'}}>
+                    <JAMCol float='left' width='100%' style={{ margin: '10px' }}>
                         <JAMRow>
-                    <JAMLabel center caption='Title zeby uzupelnil dane' header />
+                            <JAMLabel center caption='Title zeby uzupelnil dane' header />
                         </JAMRow>
                         <JAMRow>
-                    <JAMLabel center caption='Message zeby uzupelnil dane' big />
+                            <JAMLabel center caption='Message zeby uzupelnil dane' big />
                         </JAMRow>
-                        <JAMRow width='100%' style={{margin: '10px'}}>
+                        <JAMRow width='100%' style={{ margin: '10px 0px' }}>
                             <JAMButton caption='Add entry' width='350px' />
                         </JAMRow>
                     </JAMCol>
                 </JAMPanel>
             </JAMRow>
-            <JAMRow style={{ marginTop: '70px' }}>
+            <JAMRow width='100%'>
+                <JAMPanel width='90%' maxWidth='1300px' minWidth='300px' style={{ margin: '10px' }}>
+                    <JAMCol float='left' width='100%' style={{ margin: '10px' }}>
+                        <JAMRow>
+                            <JAMLabel center caption='Daily Diagnosis' big bold />
+                        </JAMRow>
+                        <JAMRow width='100%'>
+                            <JAMLine width='100%' style={{margin: '10px'}} />
+                        </JAMRow>
+                    </JAMCol>
+                </JAMPanel>
+            </JAMRow>
+            <JAMRow>
                 <JAMCol style={{ margin: '20px' }}>
                     <JAMPanel height="200px" maxWidth={"1300px"} minWidth='300px'>
                         <JAMCol>
@@ -106,7 +126,7 @@ const Home = (props) => {
                         <JAMCol>
                             <JAMLabel caption='Amount of cigarettes' big bold style={{ marginBottom: '20px' }} />
                             <JAMImage icon={cigarette} width='50px' style={{ marginBottom: '20px' }} />
-                            <JAMLabel caption='dfg' />
+                            <JAMCounter unit=' szt.' value={amountOfCigarettes} caption='' onClick={(e) => setAmountOfCigarettes(e)} />
                         </JAMCol>
                     </JAMPanel>
                 </JAMCol>
@@ -115,7 +135,7 @@ const Home = (props) => {
                         <JAMCol>
                             <JAMLabel caption='Hours of sleep' big bold style={{ marginBottom: '20px' }} />
                             <JAMImage icon={bed} width='50px' style={{ marginBottom: '20px' }} />
-                            <JAMLabel caption='dfg' />
+                            <JAMCounter unit=' h' steps={0.5} value={hoursOfSleep} caption='' onClick={(e) => setHoursOfSleep(e)} />
                         </JAMCol>
                     </JAMPanel>
                 </JAMCol>
@@ -124,7 +144,7 @@ const Home = (props) => {
                         <JAMCol>
                             <JAMLabel caption='Glasses of water' big bold style={{ marginBottom: '20px' }} />
                             <JAMImage icon={water} width='50px' style={{ marginBottom: '20px' }} />
-                            <JAMLabel caption='dfg' />
+                            <JAMCounter value={glassesOfWater} caption='' onClick={(e) => setGlassesOfWater(e)} />
                         </JAMCol>
                     </JAMPanel>
                 </JAMCol>
@@ -133,7 +153,7 @@ const Home = (props) => {
                         <JAMCol>
                             <JAMLabel caption='Training hours' big bold style={{ marginBottom: '20px' }} />
                             <JAMImage icon={dumbbells} width='50px' style={{ marginBottom: '20px' }} />
-                            <JAMLabel caption='dfg' />
+                            <JAMCounter unit=' h' steps={0.25} value={trainingHours} caption='' onClick={(e) => setTrainingHours(e)} />
                         </JAMCol>
                     </JAMPanel>
                 </JAMCol>
@@ -142,7 +162,7 @@ const Home = (props) => {
                         <JAMCol>
                             <JAMLabel caption='Amount of alcohol' big bold style={{ marginBottom: '20px' }} />
                             <JAMImage icon={beer} width='50px' style={{ marginBottom: '20px' }} />
-                            <JAMLabel caption='dfg' />
+                            <JAMCounter value={amountOfAlcohol} caption='' onClick={(e) => setAmountOfAlcohol(e)} />
                         </JAMCol>
                     </JAMPanel>
                 </JAMCol>

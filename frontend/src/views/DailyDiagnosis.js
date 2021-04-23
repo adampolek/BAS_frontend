@@ -71,29 +71,6 @@ const DailyDiagnosis = (props) => {
                             onChange={(e) => setBloodPressure(e.target.value)} />
                     </JAMRow>
                     <JAMButton value='Save entry' style={{ marginTop: '40px' }} width={"350px"} onClick={() => addEntry()} />
-                    <JAMLabel caption='Additional information' big style={{ marginTop: '20px' }} />
-                    <JAMLine style={{ marginTop: '20px', marginBottom: '20px' }} />
-                    {/* ŻY ŻY Update this data below on every click :) TODO*/}
-                    <JAMRow>
-                        <JAMImage icon={cigarette} width='50px' />
-                        <JAMCounter unit=' szt.' value={amountOfCigarettes} caption='Amount of cigarettes' onClick={(e) => setAmountOfCigarettes(e)} />
-                    </JAMRow>
-                    <JAMRow>
-                        <JAMImage icon={bed} width='50px' />
-                        <JAMCounter unit=' h' value={hoursOfSleep} caption='Hours of sleep' onClick={(e) => setHoursOfSleep(e)} />
-                    </JAMRow>
-                    <JAMRow>
-                        <JAMImage icon={water} width='50px' />
-                        <JAMCounter value={glassesOfWater} caption='Glasses of water' onClick={(e) => setGlassesOfWater(e)} />
-                    </JAMRow>
-                    <JAMRow>
-                        <JAMImage icon={dumbbells} width='50px' />
-                        <JAMCounter unit=' h' steps={0.25} value={trainingHours} caption='Training hours' onClick={(e) => setTrainingHours(e)} />
-                    </JAMRow>
-                    <JAMRow>
-                        <JAMImage icon={beer} width='50px' />
-                        <JAMCounter value={amountOfAlcohol} caption='Amount of alcohol' onClick={(e) => setAmountOfAlcohol(e)} />
-                    </JAMRow>
                 </JAMCol>
             </JAMPanel>
     )

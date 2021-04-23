@@ -4,7 +4,7 @@ import JAMCol from './JAMCol';
 import JAMLabel from './JAMLabel';
 import JAMPanel from './JAMPanel';
 
-const JAMCounter = ({ width='250px', caption='Caption', value = 0.0, steps = 1.0, unit='', min = 0, max = 1000, onClick = (e) => { console.log("Default get Value") }, ...props }) => {
+const JAMCounter = ({ width='300px', caption='Caption', value = 0.0, steps = 1.0, unit='', min = 0, max = 1000, onClick = (e) => { console.log("Default get Value") }, ...props }) => {
 
     console.log(steps)
     return (
@@ -17,7 +17,7 @@ const JAMCounter = ({ width='250px', caption='Caption', value = 0.0, steps = 1.0
                 }} />
             </JAMCol>
             <JAMCol>
-                <JAMLabel caption={value + unit} style={{ width: '50px' }} />
+                <JAMLabel caption={value + unit} />
             </JAMCol>
             <JAMCol>
                 <JAMButton value='+' width='70px'  onClick={() => {
