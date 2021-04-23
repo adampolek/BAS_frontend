@@ -18,6 +18,7 @@ import JAMButton from '../components/JAMButton';
 import JAMLine from '../components/JAMLine';
 import JAMCounter from "../components/JAMCounter";
 import API from "../api/API";
+import JAMChart from '../components/JAMChart';
 
 let initialData = true;
 
@@ -221,6 +222,8 @@ const Home = (props) => {
                     </JAMRow>
                 </div>)
             }
+
+            <JAMChart labels={labels} data={data} />
 
 
             {/*<JAMRow width='100%'>*/}

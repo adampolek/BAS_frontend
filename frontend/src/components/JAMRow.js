@@ -1,9 +1,9 @@
 import React from 'react';
 import './css/layout.css';
 
-const JAMRow = ({float='center', width="auto", onClick, ...props}) => {
+const JAMRow = ({float='center', width="auto", height='auto', onClick, ...props}) => {
     return (
-        <div className={'row ' + float} style={{width: width, ...props.style}} onClick={onClick}>
+        <div className={'row ' + float} style={{width: width, height: height, ...props.style}} onClick={onClick}>
             {props.children}
         </div>
     );
