@@ -1,9 +1,8 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import JAMCol from '../components/JAMCol';
 import JAMPanel from '../components/JAMPanel';
 import JAMRow from '../components/JAMRow';
 import Menubar from './Menubar';
-import { Line } from 'react-chartjs-2';
 import cigarette from '../resources/cigarette.svg'
 import bed from '../resources/sleep.svg'
 import dumbbells from '../resources/dumbbells.svg'
@@ -18,31 +17,7 @@ import JAMLabel from '../components/JAMLabel';
 import JAMButton from '../components/JAMButton';
 import JAMLine from '../components/JAMLine';
 import JAMCounter from '../components/JAMCounter';
-
-const data = {
-    labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-    datasets: [
-        {
-            label: 'Weight',
-            backgroundColor: 'purple',
-            borderColor: 'pink',
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: 'blue',
-            pointBackgroundColor: 'blue',
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            // pointHoverBackgroundColor: '',
-            // pointHoverBorderColor: '',
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: [65, 67, 68, 67, 69, 70, 74]
-        }
-    ]
-};
+import JAMChart from '../components/JAMChart';
 
 const Home = (props) => {
 
@@ -52,8 +27,10 @@ const Home = (props) => {
     const [trainingHours, setTrainingHours] = useState(0.0);
     const [amountOfAlcohol, setAmountOfAlcohol] = useState(0);
 
+    var labels = ["January", "February", "March", "April", "May", "June", "July"];
+    var data = [0, 10, 5, 2, 20, 30, 45];
     return (
-        <JAMRow style={{ marginTop: '70px' }}>
+        <JAMRow style={{ marginTop: '70px', marginBottom: '50px' }}>
             <Menubar color='white' />
             <JAMRow float='left' width='100%'>
                 <JAMPanel width='90%' maxWidth='1300px' minWidth='300px'>
@@ -71,13 +48,13 @@ const Home = (props) => {
                 </JAMPanel>
             </JAMRow>
             <JAMRow width='100%'>
-                <JAMPanel width='90%' maxWidth='1300px' minWidth='300px' style={{ margin: '10px' }}>
+                <JAMPanel width='90%' maxWidth='1300px' minWidth='300px' style={{ margin: '20px' }}>
                     <JAMCol float='left' width='100%' style={{ margin: '10px' }}>
                         <JAMRow>
                             <JAMLabel center caption='Daily Diagnosis' big bold />
                         </JAMRow>
                         <JAMRow width='100%'>
-                            <JAMLine width='100%' style={{margin: '10px'}} />
+                            <JAMLine width='100%' style={{ margin: '10px' }} />
                         </JAMRow>
                     </JAMCol>
                 </JAMPanel>
@@ -164,6 +141,28 @@ const Home = (props) => {
                             <JAMImage icon={beer} width='50px' style={{ marginBottom: '20px' }} />
                             <JAMCounter value={amountOfAlcohol} caption='' onClick={(e) => setAmountOfAlcohol(e)} />
                         </JAMCol>
+                    </JAMPanel>
+                </JAMCol>
+            </JAMRow>
+            <JAMRow width='100%'>
+                <JAMPanel width='90%' maxWidth='1300px' minWidth='300px' style={{ margin: '20px' }}>
+                    <JAMChart labels={labels} data={data} />
+                </JAMPanel>
+            </JAMRow>
+            <JAMRow width='90%' style={{maxWidth: '1300px', minWidth: '300px'}}>
+                <JAMCol width='30%' style={{maxWidth: '1300px', minWidth: '300px', margin: '10px'}}>
+                    <JAMPanel width='100%' maxWidth={"1300px"} >
+                        <JAMChart labels={labels} data={data} />
+                    </JAMPanel>
+                </JAMCol>
+                <JAMCol width='30%' style={{maxWidth: '1300px', minWidth: '300px', margin: '10px'}}>
+                    <JAMPanel width='100%' maxWidth={"1300px"} >
+                        <JAMChart type='bar' backgroundColor='purple' labels={labels} data={data} />
+                    </JAMPanel>
+                </JAMCol>
+                <JAMCol width='30%' style={{maxWidth: '1300px', minWidth: '300px', margin: '10px'}}>
+                    <JAMPanel width='100%' maxWidth={"1300px"} >
+                        <JAMChart labels={labels} data={data} />
                     </JAMPanel>
                 </JAMCol>
             </JAMRow>
