@@ -17,6 +17,7 @@ import JAMLabel from '../components/JAMLabel';
 import JAMButton from '../components/JAMButton';
 import JAMLine from '../components/JAMLine';
 import JAMCounter from "../components/JAMCounter";
+import JAMChart from "../components/JAMChart";
 import API from "../api/API";
 import JAMChart from '../components/JAMChart';
 
@@ -90,13 +91,13 @@ const Home = (props) => {
                     <JAMPanel width='90%' maxWidth='1300px' minWidth='300px'>
                         <JAMCol float='left' width='100%' style={{margin: '10px'}}>
                             <JAMRow>
-                                <JAMLabel center caption='Title zeby uzupelnil dane' header/>
+                                <JAMLabel center caption='Missing data' header/>
                             </JAMRow>
                             <JAMRow>
-                                <JAMLabel center caption='Message zeby uzupelnil dane' big/>
+                                <JAMLabel center caption='Fill up your daily diagnosis :)' big/>
                             </JAMRow>
                             <JAMRow width='100%' style={{margin: '10px 0px'}}>
-                                <JAMButton caption='Add entry' width='350px'/>
+                                <JAMButton value='Fill up' width='350px' onClick={() => {document.location.href='/diagnosis'}}/>
                             </JAMRow>
                         </JAMCol>
                     </JAMPanel>
@@ -226,28 +227,28 @@ const Home = (props) => {
             <JAMChart labels={labels} data={data} />
 
 
-            {/*<JAMRow width='100%'>*/}
-            {/*    <JAMPanel width='90%' maxWidth='1300px' minWidth='300px' style={{margin: '20px'}}>*/}
-            {/*        <JAMChart labels={labels} data={data}/>*/}
-            {/*    </JAMPanel>*/}
-            {/*</JAMRow>*/}
-            {/*<JAMRow width='90%' style={{maxWidth: '1300px', minWidth: '300px'}}>*/}
-            {/*    <JAMCol width='30%' style={{maxWidth: '1300px', minWidth: '300px', margin: '10px'}}>*/}
-            {/*        <JAMPanel width='100%' maxWidth={"1300px"}>*/}
-            {/*            <JAMChart labels={labels} data={data}/>*/}
-            {/*        </JAMPanel>*/}
-            {/*    </JAMCol>*/}
-            {/*    <JAMCol width='30%' style={{maxWidth: '1300px', minWidth: '300px', margin: '10px'}}>*/}
-            {/*        <JAMPanel width='100%' maxWidth={"1300px"}>*/}
-            {/*            <JAMChart type='bar' backgroundColor='purple' labels={labels} data={data}/>*/}
-            {/*        </JAMPanel>*/}
-            {/*    </JAMCol>*/}
-            {/*    <JAMCol width='30%' style={{maxWidth: '1300px', minWidth: '300px', margin: '10px'}}>*/}
-            {/*        <JAMPanel width='100%' maxWidth={"1300px"}>*/}
-            {/*            <JAMChart labels={labels} data={data}/>*/}
-            {/*        </JAMPanel>*/}
-            {/*    </JAMCol>*/}
-            {/*</JAMRow>*/}
+            {/* <JAMRow width='100%'>
+               <JAMPanel width='90%' maxWidth='1300px' minWidth='300px' style={{margin: '20px'}}>
+                   <JAMChart labels={labels} data={data}/>
+               </JAMPanel>
+            </JAMRow>
+            <JAMRow width='90%' style={{maxWidth: '1300px', minWidth: '300px'}}>
+               <JAMCol width='30%' style={{maxWidth: '1300px', minWidth: '300px', margin: '10px'}}>
+                   <JAMPanel width='100%' maxWidth={"1300px"}>
+                       <JAMChart labels={labels} data={data}/>
+                   </JAMPanel>
+               </JAMCol>
+               <JAMCol width='30%' style={{maxWidth: '1300px', minWidth: '300px', margin: '10px'}}>
+                   <JAMPanel width='100%' maxWidth={"1300px"}>
+                       <JAMChart type='bar' backgroundColor='purple' labels={labels} data={data}/>
+                   </JAMPanel>
+               </JAMCol>
+               <JAMCol width='30%' style={{maxWidth: '1300px', minWidth: '300px', margin: '10px'}}>
+                   <JAMPanel width='100%' maxWidth={"1300px"}>
+                       <JAMChart labels={labels} data={data}/>
+                   </JAMPanel>
+               </JAMCol>
+            </JAMRow> */}
         </JAMRow>
     )
 }
