@@ -19,7 +19,6 @@ import JAMLine from '../components/JAMLine';
 import JAMCounter from "../components/JAMCounter";
 import JAMChart from "../components/JAMChart";
 import API from "../api/API";
-import JAMChart from '../components/JAMChart';
 
 let initialData = true;
 
