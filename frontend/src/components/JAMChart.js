@@ -27,35 +27,40 @@ const JAMChart = ({ title = 'Title', caption = 'Name data', type = 'line', label
 
     // tu podpisy do osi y
     for (var i = 0; i < labels.length; i++) {
-        labelsText.push(<tspan y='87%' dx='9%' dy='0' x={(70 / (labels.length - 1) * i) + '%'} style={{ fontSize: fontSize }}>{labels[i]}</tspan>);
+        if (type === 'line') {
+            labelsText.push(<text y='85%' dx='10%' dy='0' x={(80 / (labels.length - 1) * i) + '%'} style={{ fontSize: fontSize, writingMode: 'tb' }}>{labels[i]}</text>);
+        } else{
+            labelsText.push(<text y='85%' dx='12%' dy='0' x={(76 / (labels.length - 1) * i) + '%'} style={{ fontSize: fontSize, writingMode: 'tb' }}>{labels[i]}</text>);
+        }
     }
-    
     
     if (type === 'line') {
         var previous = { x: '10%', y: (80 - (yPadding * data[0])) + '%' };
-        points.push(<circle cx={previous.x} cy={previous.y} r="0.5%" stroke="black" stroke-width="0.5" fill="white" />);
+        points.push(<circle cx={previous.x} cy={previous.y} r="0.5%" stroke="black" stroke-width="0.5" fill="white"><title>{caption + ": " + data[0]}</title></circle>);
         grid.push(<line x1='10%' y1='0%' x2='10%' y2='80%' stroke={hintColor} />);
     }else{
-        var previous = { x: '15%', y: (80 - (yPadding * data[0])) + '%' };
+        var previous = { x: xPadding + '%', y: (80 - (yPadding * data[0])) + '%' };
+        bars.push(<line x1={previous.x} y1={previous.y} x2={previous.x} y2='80%'  stroke={color} stroke-width={xPadding - 7 + '%'}><title>{caption + ": " + data[0]}</title></line>);
+
     }
     for (var i = 1; i < data.length; i++) {
         if (type === 'line') {
             var current = { x: 10 + (xPadding * i) + '%', y: (80 - (yPadding * data[i])) + '%' };
-            points.push(<circle cx={current.x} cy={current.y} r="0.5%" stroke="black" stroke-width="0.5" fill="white" />);
+            points.push(<circle cx={current.x} cy={current.y} r="0.5%" stroke="black" stroke-width="0.5" fill="white"><title>{caption + ": " + data[i]}</title></circle>);
             line.push(<line x1={previous.x} y1={previous.y} x2={current.x} y2={current.y} stroke={color} />);
             grid.push(<line x1={10 + (xPadding * i) + '%'} y1='0%' x2={10 + (xPadding * i) + '%'} y2='80%' stroke={hintColor} />);
         } else {
-            var current = { x: 15 + (xPadding * i) + '%', y: (80 - (yPadding * data[i])) + '%' };
-            bars.push(<line x1={previous.x} y1={previous.y} x2={previous.x} y2='80%'  stroke={color} stroke-width={xPadding - 5 + '%'} />);
+            var current = { x: xPadding + ((xPadding-1) * i) + '%', y: (80 - (yPadding * data[i])) + '%' };
+            bars.push(<line x1={current.x} y1={current.y} x2={current.x} y2='80%'  stroke={color} stroke-width={xPadding - 7 + '%'}><title>{caption + ": " + data[i]}</title></line>);
         }
         previous = current;
     }
 
 
     return (
-        <JAMPanel width={width} height={height}>
+        <JAMPanel width={width} height={height} style={{paddingBottom:'40px'}} >
             <JAMCol width='100%'>
-                <JAMRow>
+                <JAMRow style={{margin:'20px'}}>
                     <JAMLabel caption={title} bold />
                 </JAMRow>
                 <JAMRow width='100%'>
@@ -68,9 +73,7 @@ const JAMChart = ({ title = 'Title', caption = 'Name data', type = 'line', label
                             {line}
                             {bars}
                             {points}
-                            <text>
-                                {labelsText}
-                            </text>
+                            {labelsText}
                         </svg>
                     </JAMCol>
                 </JAMRow>

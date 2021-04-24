@@ -82,7 +82,7 @@ const Home = (props) => {
             console.log(res.data);
             const weights = [];
             const labelsData = [];
-            for (var i = 0; i < res.data.length; i++) {
+            for (var i = res.data.length-1; i >= 0; i--) {
                 labelsData.push(res.data[i].entryDate)
                 weights.push(res.data[i].weight);
             }
@@ -234,7 +234,7 @@ const Home = (props) => {
             }
 
             <JAMRow width='100%' >
-                <JAMChart type='bar' title='Weight' labels={labels} data={weightData} width='90%' height='600px' />
+                <JAMChart type='line' title='Weight' labels={labels} data={weightData} width='90%' height='600px' />
             </JAMRow>
         </JAMRow>
     )
