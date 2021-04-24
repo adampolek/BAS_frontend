@@ -12,24 +12,24 @@ const JAMHamburger = ({ TL = true, TR = false, BR = false, BL = false, color = '
     var float;
 
     if (BL) {
-        stylesHamburger = { position: 'absolute', bottom: '20px', left: '20px' }
+        stylesHamburger = { position: 'fixed', bottom: '20px', left: '20px', zIndex: '12' }
         stylesMenu = { position: 'absolute', transform: 'scale(0)', transition: '0.5s', bottom: '100%'}
-        stylesMenuActive = { position: 'absolute', transform: 'scale(1)', transition: '0.5s', bottom: '100%', zIndex: '1' }
+        stylesMenuActive = { position: 'absolute', transform: 'scale(1)', transition: '0.5s', bottom: '100%' }
         float = 'left';
     } else if (TR) {
-        stylesHamburger = { position: 'absolute', top: '20px', right: '20px' }
+        stylesHamburger = { position: 'fixed', top: '20px', right: '20px', zIndex: '12' }
         stylesMenu = { position: 'relative', transform: 'scale(0)', transition: '0.5s' }
-        stylesMenuActive = { position: 'relative', transform: 'scale(1)', transition: '0.5s', zIndex: '1' }
+        stylesMenuActive = { position: 'relative', transform: 'scale(1)', transition: '0.5s' }
         float = 'right';
     } else if (BR) {
-        stylesHamburger = { position: 'absolute', bottom: '20px', right: '20px' }  
+        stylesHamburger = { position: 'fixed', bottom: '20px', right: '20px', zIndex: '12' }  
         stylesMenu = { position: 'absolute', transform: 'scale(0)', transition: '0.5s', bottom: '100%'}
-        stylesMenuActive = { position: 'absolute', transform: 'scale(1)', transition: '0.5s', bottom: '100%', zIndex: '1' }
+        stylesMenuActive = { position: 'absolute', transform: 'scale(1)', transition: '0.5s', bottom: '100%' }
         float = 'right';
     } else {
-        stylesHamburger = { position: 'absolute', top: '20px', left: '20px' }
+        stylesHamburger = { position: 'fixed', top: '20px', left: '20px', zIndex: '12' }
         stylesMenu = { position: 'relative', transform: 'scale(0)', transition: '0.5s' }
-        stylesMenuActive = { position: 'relative', transform: 'scale(1)', transition: '0.5s', zIndex: '1' }
+        stylesMenuActive = { position: 'relative', transform: 'scale(1)', transition: '0.5s' }
         float = 'left';
     }
 

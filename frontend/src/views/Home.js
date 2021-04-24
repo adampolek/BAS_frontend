@@ -26,8 +26,6 @@ const Home = (props) => {
 
     const [additionalInfo, setAdditionalInfo] = useState({});
 
-    const [weekly, setWeekly] = useState([]);
-
     const [noData, setNoData] = useState(false);
 
     const [weight, setWeight] = useState(0);
@@ -41,8 +39,72 @@ const Home = (props) => {
     const [trainingHours, setTrainingHours] = useState(0.0);
     const [alcoholAmount, setAmountOfAlcohol] = useState(0);
 
-    const [labels, setLabels] = useState([]);
+    const [labelsWeight, setLabels] = useState([]);
     const [weightData, setWeightData] = useState([]);
+
+    const [glucoseData, setGlucoseData] = useState([]);
+
+    const [insulinData, setInsulinData] = useState([]);
+
+    const [bloodPressureData, setBloodPressureData] = useState([]);
+
+    const [statisticDays, setStatisticDays] = useState(7);
+
+    var date = new Date();
+    date.setDate(date.getDate() - statisticDays + 1);
+    const [startDate, setStartDate] = useState(date.toISOString().slice(0, 10));
+    const [stopDate, setStopDate] = useState(new Date().toISOString().slice(0, 10));
+
+
+    const changeDate = (next) => {
+        var statisticDate = new Date(Date.parse(stopDate));
+        console.log(statisticDate.toISOString().slice(0, 10));
+        var todayDate = new Date();
+        todayDate.setHours(0, 0, 0, 0)
+        if (next && stopDate !== new Date().toISOString().slice(0, 10)) {
+            statisticDate.setDate(statisticDate.getDate() + statisticDays);
+            if (statisticDate > todayDate) {
+                statisticDate = new Date();
+            }
+        } else if (!next) {
+            statisticDate.setDate(statisticDate.getDate() - statisticDays);
+        }
+        setStopDate(statisticDate.toISOString().slice(0, 10));
+        var startDateCopy = new Date(statisticDate);
+        startDateCopy.setDate(startDateCopy.getDate() - statisticDays + 1);
+        setStartDate(startDateCopy.toISOString().slice(0, 10));
+        updateStatistics(startDateCopy.toISOString().slice(0, 10), statisticDate.toISOString().slice(0, 10))
+    };
+
+    const updateStatistics = async (statisticStartDate, statisticStopDate) => {
+        API.get("bas/entry/days?start=" + statisticStartDate + "&stop=" + statisticStopDate, { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } }).then(res => {
+            console.log(res.data);
+            const weights = [];
+            const glucoses = [];
+            const insulins = [];
+            const bloodPressures = [];
+            const labelsData = [];
+            for (var i = res.data.length - 1; i >= 0; i--) {
+                labelsData.push(res.data[i].entryDate)
+                weights.push(res.data[i].weight);
+                glucoses.push(res.data[i].glucose);
+                insulins.push(res.data[i].insulin);
+                bloodPressures.push(res.data[i].bloodPressure);
+            }
+            setLabels(labelsData);
+            setWeightData(weights);
+            setGlucoseData(glucoses);
+            setInsulinData(insulins);
+            setBloodPressureData(bloodPressures);
+        }).catch(() => {
+            console.log("Blad")
+            setLabels([]);
+            setWeightData([]);
+            setGlucoseData([]);
+            setInsulinData([]);
+            setBloodPressureData([]);
+        });
+    }
 
     const updateAdditionalInfo = async (field) => {
         API.put("bas/additional_info/updateEntry", Object.assign({}, additionalInfo, {
@@ -78,20 +140,18 @@ const Home = (props) => {
             }).catch(error => {
                 setNoData(true);
             })
-        API.get("bas/entry/days?start=2021-04-18&stop=2021-04-24", { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } }).then(res => {
-            console.log(res.data);
-            const weights = [];
-            const labelsData = [];
-            for (var i = res.data.length-1; i >= 0; i--) {
-                labelsData.push(res.data[i].entryDate)
-                weights.push(res.data[i].weight);
-            }
-            setLabels(labelsData);
-            setWeightData(weights);
-            setWeekly(res.data)
-        }).catch(() => console.log("Blad"));
-
+        updateStatistics(startDate, stopDate)
     }
+
+    const changeDateRange = (daysNumber) => {
+        var tempStopDate = new Date().toISOString().slice(0, 10);
+        var tempStartDate = new Date();
+        tempStartDate.setDate(tempStartDate.getDate() - daysNumber + 1);
+        setStopDate(tempStopDate);
+        setStartDate(tempStartDate.toISOString().slice(0, 10));
+        setStatisticDays(daysNumber);
+        updateStatistics(tempStartDate.toISOString().slice(0, 10), tempStopDate);
+    };
 
     return (
         <JAMRow style={{ marginTop: '70px', marginBottom: '50px' }}>
@@ -233,9 +293,43 @@ const Home = (props) => {
                 </div>)
             }
 
-            <JAMRow width='100%' >
-                <JAMChart type='line' title='Weight' labels={labels} data={weightData} width='90%' height='600px' />
+            <JAMRow width='100%'>
+                <JAMPanel width={"90%"} maxWidth={"1300px"} backgroundColor={"white"} minWidth='400px'>
+                    <JAMRow width='100%' style={{ margin: '10px' }}>
+                        <JAMButton theme={statisticDays === 7 ? 'normal' : 'white'} value='Week' onClick={() => changeDateRange(7)} />
+                        <JAMButton theme={statisticDays === 30 ? 'normal' : 'white'} value='Month' onClick={() => changeDateRange(30)} />
+                        <JAMButton theme={statisticDays === 365 ? 'normal' : 'white'} value='Year' onClick={() => changeDateRange(365)} />
+                    </JAMRow>
+                    <JAMRow width='100%' style={{ margin: '10px' }}>
+                        <JAMCol>
+                            <JAMButton theme='white' value='<' onClick={() => changeDate(false)} />
+                        </JAMCol>
+                        <JAMCol>
+                            <JAMLabel caption={startDate + ' <-> ' + stopDate} big bold />
+                        </JAMCol>
+                        <JAMCol>
+                            <JAMButton theme='white' value='>' onClick={() => changeDate(true)} />
+                        </JAMCol>
+                    </JAMRow>
+                    <JAMRow width='100%' >
+                        <JAMCol width='50%'>
+                            <JAMChart type='line' title='Weight' caption='Weight' labels={labelsWeight} data={weightData} width='100%' height='500px' />
+                        </JAMCol>
+                        <JAMCol width='50%'>
+                            <JAMChart type='bar' title='Glucose' caption='Glucose' labels={labelsWeight} data={glucoseData} width='100%' height='500px' />
+                        </JAMCol>
+                    </JAMRow>
+                    <JAMRow width='100%' >
+                        <JAMCol width='50%'>
+                            <JAMChart type='line' title='Insulin' caption='Insulin' labels={labelsWeight} data={insulinData} width='100%' height='500px' />
+                        </JAMCol>
+                        <JAMCol width='50%'>
+                            <JAMChart type='bar' title='Blood Pressure' caption='Blood Pressure' labels={labelsWeight} data={bloodPressureData} width='100%' height='500px' />
+                        </JAMCol>
+                    </JAMRow>
+                </JAMPanel>
             </JAMRow>
+
         </JAMRow>
     )
 }

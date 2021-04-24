@@ -25,18 +25,18 @@ const Menubar = ({color = 'purple', dataPresent = false, ...props}) => {
     let adminRights = localStorage.getItem("role") === "\"ROLE_ADMIN\"";
     return (
         <JAMHamburger color={color}>
-            <JAMButton theme={color != 'purple' ? 'white' : 'normal'} value='Home' width='300px'
+            <JAMButton theme={color != 'purple' ? 'white' : 'normal'} value='Home' width='350px'
                        onClick={() => window.location = '/'}/>
-            <JAMButton theme={color != 'purple' ? 'white' : 'normal'} value='Account' width='300px'
+            <JAMButton theme={color != 'purple' ? 'white' : 'normal'} value='Account' width='350px'
                        onClick={() => window.location = 'account'}/>
-            {noData ? (<JAMButton theme={color != 'purple' ? 'white' : 'normal'} value='Daily diagnosis' width='300px'
+            {noData ? (<JAMButton theme={color != 'purple' ? 'white' : 'normal'} value='Daily diagnosis' width='350px'
                                   onClick={() => window.location = 'diagnosis'}/>)
                 : (<div/>)}
 
             {adminRights ? (
                 <JAMRow>
                     <JAMLine style={{marginTop: '20px', marginBottom: '20px'}}/>
-                    <JAMButton theme={color != 'purple' ? 'white' : 'normal'} value='Admin Panel' width='300px'/>
+                    <JAMButton theme={color != 'purple' ? 'white' : 'normal'} value='Admin Panel' width='350px'/>
                 </JAMRow>
             ) : (
                 <div/>
@@ -46,7 +46,7 @@ const Menubar = ({color = 'purple', dataPresent = false, ...props}) => {
                 localStorage.removeItem('token');
                 localStorage.removeItem('role');
                 document.location.href = "/login";
-            }} width='300px'/>
+            }} width='350px'/>
         </JAMHamburger>
     )
 }
