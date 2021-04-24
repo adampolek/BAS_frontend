@@ -5,23 +5,25 @@ import JAMLine from '../components/JAMLine';
 import JAMRow from "../components/JAMRow";
 import API from "../api/API";
 
-
+let initialRead = true;
 const Menubar = ({color = 'purple', dataPresent = false, ...props}) => {
 
     const [noData, setNoData] = useState(true);
+    if (initialRead) {
+        API.get('bas/user/role', {headers: {Authorization: JSON.parse(localStorage.getItem('token'))}})
+            .then(res => {
+                initialRead = false;
+                localStorage.setItem('role', JSON.stringify((res.data)));
+            }).catch((error) => {
+            document.location.href = "/login";
+        });
 
-    API.get('bas/user/role', {headers: {Authorization: JSON.parse(localStorage.getItem('token'))}})
-        .then(res => {
-            localStorage.setItem('role', JSON.stringify((res.data)));
-        }).catch((error) => {
-        document.location.href = "/login";
-    });
-
-    API.get("bas/entry/day?entryDate=" + new Date().toISOString().slice(0, 10), {headers: {Authorization: JSON.parse(localStorage.getItem('token'))}})
-        .then(res => {
-            setNoData(false);
-        })
-
+        API.get("bas/entry/day?entryDate=" + new Date().toISOString().slice(0, 10), {headers: {Authorization: JSON.parse(localStorage.getItem('token'))}})
+            .then(res => {
+                initialRead = false;
+                setNoData(false);
+            })
+    }
     let adminRights = localStorage.getItem("role") === "\"ROLE_ADMIN\"";
     return (
         <JAMHamburger color={color}>

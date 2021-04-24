@@ -113,30 +113,34 @@ const Home = (props) => {
             glassesOfWater: glassesOfWater,
             trainingHours: trainingHours,
             alcoholAmount: alcoholAmount
-        }, field), { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } })
+        }, field), {headers: {Authorization: JSON.parse(localStorage.getItem('token'))}})
+            .then(res => {
+                console.log(res);
+            })
 
     }
     if (initialData) {
         API.get("bas/entry/day?entryDate=" + new Date().toISOString().slice(0, 10), { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } })
             .then(res => {
+                initialData = false;
                 setWeight(res.data.weight);
                 setGlucose(res.data.glucose);
                 setInsulin(res.data.insulin);
                 setBloodPressure(res.data.bloodPressure);
-                initialData = false;
             })
             .catch(error => {
                 setNoData(true);
             })
         API.get("bas/additional_info/day?entryDate=" + new Date().toISOString().slice(0, 10), { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } })
             .then(res => {
+                initialData = false;
                 setAdditionalInfo(res.data);
                 setAmountOfCigarettes(res.data.cigarettesAmount);
                 setHoursOfSleep(res.data.sleepHours);
                 setGlassesOfWater(res.data.glassesOfWater);
                 setTrainingHours(res.data.trainingHours);
                 setAmountOfAlcohol(res.data.alcoholAmount);
-                initialData = false;
+
             }).catch(error => {
                 setNoData(true);
             })
