@@ -15,14 +15,17 @@ const Menubar = ({color = 'purple', dataPresent = false, ...props}) => {
                 initialRead = false;
                 localStorage.setItem('role', JSON.stringify((res.data)));
             }).catch((error) => {
+            initialRead = false;
             document.location.href = "/login";
         });
 
         API.get("bas/entry/day?entryDate=" + new Date().toISOString().slice(0, 10), {headers: {Authorization: JSON.parse(localStorage.getItem('token'))}})
             .then(res => {
-                initialRead = false;
                 setNoData(false);
-            })
+                initialRead = false;
+            }).catch((error) => {
+            initialRead = false;
+        })
     }
     let adminRights = localStorage.getItem("role") === "\"ROLE_ADMIN\"";
     return (
