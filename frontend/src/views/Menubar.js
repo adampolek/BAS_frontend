@@ -41,7 +41,8 @@ const Menubar = ({color = 'purple', dataPresent = false, ...props}) => {
             {adminRights ? (
                 <JAMRow>
                     <JAMLine style={{marginTop: '20px', marginBottom: '20px'}}/>
-                    <JAMButton theme={color != 'purple' ? 'white' : 'normal'} value='Admin Panel' width='350px'/>
+                    <JAMButton theme={color != 'purple' ? 'white' : 'normal'} value='Admin Panel' width='350px'
+                        onClick={() => window.location = 'admin'}/>
                 </JAMRow>
             ) : (
                 <div/>
