@@ -8,8 +8,15 @@ const JAMChart = ({ title = 'Title', caption = 'Name data', type = 'line', label
 
     const xPadding = 80 / (labels.length - 1);
     const max = (Math.ceil((Math.max(...data) / 10)) * 10);
-    const yPadding = 80 / max;
+    var min = 0;
+    if (type === 'line') {
+        min = (Math.floor((Math.min(...data) / 10)) * 10);
+    }
+
+    const yPadding = 80 / (max - min);
     const yLinePadding = 80 / numberOfLines;
+
+console.log(max, min, yPadding);
 
     const line = [];
     const bars = [];
@@ -17,12 +24,11 @@ const JAMChart = ({ title = 'Title', caption = 'Name data', type = 'line', label
     const points = [];
     const labelsText = [];
     const valuesText = [];
-    console.log(title, xPadding, yPadding);
 
     // to sa linie poziome i podpisy do osi x
     for (var i = 0; i < numberOfLines; i++) {
         grid.push(<line y1={80 - (yLinePadding * i) + '%'} x1='10%' y2={80 - (yLinePadding * i) + '%'} x2='90%' stroke={hintColor} />);
-        valuesText.push(<tspan x='7%' dx='0' y={(yLinePadding * i) + '%'} dy='9%' style={{ fontSize: fontSize }}>{max - ((max / numberOfLines) * (i + 1))}</tspan>);
+        valuesText.push(<tspan x='7%' dx='0' y={(yLinePadding * i) + '%'} dy='9%' style={{ fontSize: fontSize }}>{max - (((max - min) / numberOfLines) * (i + 1))}</tspan>);
     }
     grid.push(<line y1={'0%'} x1='10%' y2={'0%'} x2='90%' stroke={hintColor} />);
 
@@ -37,23 +43,24 @@ const JAMChart = ({ title = 'Title', caption = 'Name data', type = 'line', label
 
     if (data.length !== 0) {
         if (type === 'line') {
-            var previous = { x: '10%', y: (80 - (yPadding * data[0])) + '%' };
+            var previous = { x: '10%', y: (80 - (yPadding * (data[0] - min))) + '%' };
             points.push(<circle cx={previous.x} cy={previous.y} r="0.5%" stroke="black" stroke-width="0.5" fill="white"><title>{caption + ": " + data[0]}</title></circle>);
-            grid.push(<line x1='10%' y1='0%' x2='10%' y2='80%' stroke={hintColor} />);
+            grid.push(<line x1='10%' y1='0%' x2='10%' y2='80%' stroke={hintColor} ><title>{caption + ": " + data[0]}</title></line>);
         } else {
             var previous = { x: xPadding + '%', y: (80 - (yPadding * data[0])) + '%' };
             bars.push(<line x1='15%' y1={previous.y} x2='15%' y2='80%' stroke={color} stroke-width='5%'><title>{caption + ": " + data[0]}</title></line>);
-    
+
         }
     }
     for (var i = 1; i < data.length; i++) {
         if (type === 'line') {
-            var current = { x: 10 + (xPadding * i) + '%', y: (80 - (yPadding * data[i])) + '%' };
+            var current = { x: 10 + (xPadding * i) + '%', y: (80 - (yPadding * (data[i] - min))) + '%' };
+            console.log(current, data[i]);
             points.push(<circle cx={current.x} cy={current.y} r="0.5%" stroke="black" stroke-width="0.5" fill="white"><title>{caption + ": " + data[i]}</title></circle>);
             line.push(<line x1={previous.x} y1={previous.y} x2={current.x} y2={current.y} stroke={color} />);
-            grid.push(<line x1={10 + (xPadding * i) + '%'} y1='0%' x2={10 + (xPadding * i) + '%'} y2='80%' stroke={hintColor} />);
+            grid.push(<line x1={10 + (xPadding * i) + '%'} y1='0%' x2={10 + (xPadding * i) + '%'} y2='80%' stroke={hintColor} ><title>{caption + ": " + data[i]}</title></line>);
         } else {
-            var current = { x: (15 + (xPadding -1.2 ) * i) + '%', y: (80 - (yPadding * data[i])) + '%' };
+            var current = { x: (15 + (xPadding - 1.2) * i) + '%', y: (80 - (yPadding * data[i])) + '%' };
             bars.push(<line x1={current.x} y1={current.y} x2={current.x} y2='80%' stroke={color} stroke-width='5%'><title>{caption + ": " + data[i]}</title></line>);
         }
         previous = current;
