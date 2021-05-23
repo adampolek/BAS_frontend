@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import JAMLine from './JAMLine';
 import './css/loader.css';
 import JAMRow from './JAMRow';

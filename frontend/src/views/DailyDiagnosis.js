@@ -7,14 +7,8 @@ import JAMPanel from '../components/JAMPanel';
 import Menubar from './Menubar';
 import API from "../api/API";
 import JAMButton from "../components/JAMButton";
-import JAMCounter from '../components/JAMCounter';
 import JAMImage from '../components/JAMImage';
 import JAMRow from '../components/JAMRow';
-import cigarette from '../resources/cigarette.svg'
-import bed from '../resources/sleep.svg'
-import dumbbells from '../resources/dumbbells.svg'
-import beer from '../resources/beer.svg'
-import water from '../resources/water.svg'
 import bloodPressureImage from '../resources/blood-pressure.svg'
 import glucoseMeter from '../resources/glucose-meter.svg'
 import weightScale from '../resources/weight-scale.svg'

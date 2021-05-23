@@ -41,7 +41,6 @@ const Account = (props) => {
 
     const updateAccountInfo = async () => {
         setIsLoadingPersonalInformation(true)
-        console.log(gender);
         API.put("bas/user/account", Object.assign({},
             user, {firstName: firstName}, {lastName: lastName},
             {height: height}, {gender: gender}, {birthDate: birthDate}),
@@ -81,11 +80,10 @@ const Account = (props) => {
     if (initialRead) {
         API.get("bas/user/account", {headers: {Authorization: JSON.parse(localStorage.getItem('token'))}})
             .then(res => {
-                console.log(res);
-                setFirstName(res.data.firstName);
-                setLastName(res.data.lastName);
-                setEmail(res.data.email);
-                setHeight(res.data.height);
+                setFirstName(res.data.firstName === null ? '' : res.data.firstName);
+                setLastName(res.data.lastName === null ? '' : res.data.lastName);
+                setEmail(res.data.email === null ? '' : res.data.email);
+                setHeight(res.data.height === null ? '0' : res.data.height);
                 setGender(res.data.gender === null ? 'male' : res.data.gender);
                 setBirthDate(res.data.birthDate === null ? new Date().toISOString().slice(0, 10) : new Date(res.data.birthDate).toISOString().slice(0, 10));
                 setUser(res.data);

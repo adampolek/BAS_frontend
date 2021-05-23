@@ -76,7 +76,7 @@ const Register = (props) => {
                 <JAMAlert block message="We are sorry. Your login or email was already used." onClick={() => setShowRegistrationAlert(false)} show={showRegistrationAlert} />
                     <JAMCol>
                         <JAMRow width='250px' style={{ borderRadius: '50%', backgroundColor: 'purple', padding: '50px' }}>
-                            <JAMImage icon={logo} note='House image' scale />
+                            <JAMImage icon={logo} note='House image' />
                         </JAMRow>
                     </JAMCol>
                     <JAMCol>

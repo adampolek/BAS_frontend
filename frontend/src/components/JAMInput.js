@@ -4,8 +4,8 @@ import eye from '../resources/visibility.png';
 import eyeSlash from '../resources/invisible.png';
 import JAMImage from './JAMImage';
 
-const JAMInput = ({ caption = 'Holder', error = 'Error', showError = false, value, type = 'text', width = "250px", onChange, onInput, ...props }) => {
-    const [passwordShown, setPasswordShown] = useState(type == "password" ? false : true);
+const JAMInput = ({ caption = 'Holder', error = 'Error', showError = false, value='', type = 'text', width = "250px", onChange, onInput, ...props }) => {
+    const [passwordShown, setPasswordShown] = useState(type === "password" ? false : true);
 
     const useFocus = () => {
         const htmlElRef = useRef(null)
@@ -17,9 +17,9 @@ const JAMInput = ({ caption = 'Holder', error = 'Error', showError = false, valu
     return (
         <div style={{ margin: '5px', maxWidth: width, marginRight: '25px' }}>
             <div className='group'>
-                <input style={{ width: width }} id='value' type={type == 'password' ? passwordShown ? "text" : "password" : type} className={(showError ? 'input_error' : '') + ' input'}
+                <input style={{ width: width }} type={type === 'password' ? passwordShown ? "text" : "password" : type} className={(showError ? 'input_error' : '') + ' input'}
                     placeholder='text' value={value} onChange={onChange} onInput={onInput} {...props} ref={inputRef} />
-                <JAMImage onClick={() => { setPasswordShown(!passwordShown); }} style={type != "password" ? { visibility: "hidden" } : { visibility: "visible" }} icon={passwordShown ? eye : eyeSlash} note='Change visibility' className='eye' width='25px' height='25px' />
+                <JAMImage onClick={() => { setPasswordShown(!passwordShown); }} style={type !== "password" ? { visibility: "hidden" } : { visibility: "visible" }} icon={passwordShown ? eye : eyeSlash} note='Change visibility' className='eye' width='25px' height='25px' />
                 <label className={(showError ? 'label_error' : '') + ' label'} onClick={setInputFocus} >{caption}</label>
             </div>
             <label hidden={!showError} className='error'>{error}</label>

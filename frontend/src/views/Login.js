@@ -19,12 +19,10 @@ const Login = (props) => {
     const [isLoading, setIsLoading] = useState(false);
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [showError, setShowError] = useState(true);
     const [showRegistrationAlert, setShowRegistrationAlert] = useState(false);
 
     const login = async () => {
         setIsLoading(true);
-        setShowError(false);
 
         API.post('bas/user/login', {
             username: username,

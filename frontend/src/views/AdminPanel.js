@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import JAMCombobox from '../components/JAMCombobox';
 import JAMCol from '../components/JAMCol';
 import JAMPanel from '../components/JAMPanel';
@@ -13,17 +13,11 @@ const AdminPanel = (props) => {
     const [selectedOption, setSelectedOption] = useState("");
     // TODO: podpiac date
     const [data, setData] = useState([]);
-    const [columns, setColumns] = useState([]);
     const cols = (["Gender","Glucose","BloodPressure","Insulin","BMI","Age","Outcome"]);
-
-    useEffect(() => {
-        const columns = cols.map(c => ({
-            name: c,
-            selector: c,
-          }));
-    
-        setColumns(columns);
-    });
+    const columns = cols.map(c => ({
+        name: c,
+        selector: c,
+      }));
 
 
     return (

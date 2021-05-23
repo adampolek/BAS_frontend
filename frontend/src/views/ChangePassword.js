@@ -57,7 +57,7 @@ const ChangePassword = () => {
         <JAMPanel minHeight='700px' width={"90%"} maxWidth={"1300px"}  backgroundColor={"white"} minWidth='400px' style={{marginTop: '70px', marginBottom: '50px', paddingBottom: '50px', paddingTop: '50px'}}>
                     <JAMCol>
                         <JAMRow width='250px' style={{ borderRadius: '50%', backgroundColor: 'purple', padding: '50px' }}>
-                            <JAMImage icon={lock} scale width='100%' />
+                            <JAMImage icon={lock} width='100%' />
                         </JAMRow>
                     </JAMCol>
                     <JAMCol>
