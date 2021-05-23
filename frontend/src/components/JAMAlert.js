@@ -9,7 +9,7 @@ const JAMAlert = ({ block = false, backgroundColor = 'white', fontColor = 'black
     if (show) {
         if (block){
         return (
-            <div style={{ width: '100%', height: '100%', backgroundColor: '#000000AA', position: 'absolute', zIndex:'2'}}>
+            <div style={{ top:'0', bottom: '0', left: '0', right: '0', backgroundColor: '#000000AA', position: 'fixed', zIndex:'2', display: 'block'}}>
                 <JAMPanel width={width} height={height} backgroundColor={backgroundColor} style={{margin: 'auto' }}>
                     <JAMCol float='left' style={{ margin: '10px' }} width={'100%'}>
                         <JAMRow float='left' width={'100%'}>

@@ -16,8 +16,6 @@ const JAMChart = ({ title = 'Title', caption = 'Name data', type = 'line', label
     const yPadding = 80 / (max - min);
     const yLinePadding = 80 / numberOfLines;
 
-console.log(max, min, yPadding);
-
     const line = [];
     const bars = [];
     const grid = [];
@@ -55,7 +53,6 @@ console.log(max, min, yPadding);
     for (var i = 1; i < data.length; i++) {
         if (type === 'line') {
             var current = { x: 10 + (xPadding * i) + '%', y: (80 - (yPadding * (data[i] - min))) + '%' };
-            console.log(current, data[i]);
             points.push(<circle cx={current.x} cy={current.y} r="0.5%" stroke="black" stroke-width="0.5" fill="white"><title>{caption + ": " + data[i]}</title></circle>);
             line.push(<line x1={previous.x} y1={previous.y} x2={current.x} y2={current.y} stroke={color} />);
             grid.push(<line x1={10 + (xPadding * i) + '%'} y1='0%' x2={10 + (xPadding * i) + '%'} y2='80%' stroke={hintColor} ><title>{caption + ": " + data[i]}</title></line>);
