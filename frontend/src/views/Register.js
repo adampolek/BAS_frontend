@@ -19,6 +19,7 @@ const Register = (props) => {
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [height, setHeight] = useState(180);
 
     const [showErrorUsername, setShowErrorUsername] = useState(false);
     const [showErrorUsernameString, setShowErrorUsernameString] = useState('');
@@ -31,6 +32,9 @@ const Register = (props) => {
 
     const [showErrorConfirmPassword, setShowErrorConfirmPassword] = useState(false);
     const [showErrorConfirmPasswordString, setShowErrorConfirmPasswordString] = useState('');
+
+    const [showErrorHeight, setShowErrorHeight] = useState(false);
+    const [showErrorHeightString, setShowErrorHeightString] = useState('');
 
     const [showRegistrationAlert, setShowRegistrationAlert] = useState(false);
 
@@ -53,7 +57,7 @@ const Register = (props) => {
         }
         if (register) {
             setIsLoading(true);
-            API.post('bas/user/register', { username: username, password: password, email: email })
+            API.post('bas/user/register', { username: username, password: password, email: email, height: height })
                 .then(res => {
                     setIsLoading(false);
                     document.location.href = '/login';
@@ -154,6 +158,23 @@ const Register = (props) => {
                                     register()
                                 }
                             }} type='password' />
+                        <JAMInput type='number' width='350px' caption='Height (cm)' value={height}
+                            showError={showErrorHeight} 
+                            error={showErrorHeightString} onChange={(e) => {
+                                setHeight(e.target.value)
+                            }} onInput={(e) => {
+                                if (e.target.value < 100 || e.target.value > 240) {
+                                    setShowErrorHeight(true);
+                                    setShowErrorHeightString("Your height must be between 100 cm and 240 cm");
+                                } else {
+                                    setShowErrorHeight(false);
+                                }
+                            }} onKeyPress={e => {
+                                if (e.key === 'Enter' && !disabled) {
+                                    setHeight(e.target.value)
+                                    register()
+                                }
+                            }}  />
                         <JAMRow float='left' width='100%'>
                         </JAMRow>
                         <JAMRow style={{ width: "100%", paddingTop: "40px" }}>
