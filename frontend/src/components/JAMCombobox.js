@@ -1,7 +1,7 @@
 import React from 'react';
 import './css/combobox.css';
 
-const JAMCombobox = ({ caption = "Caption", elements = [], width = '250px', value = "", onChange = e => console.log(e), onClick, ...props }) => {
+const JAMCombobox = ({ caption = "Caption", elements = [], width = '250px', value = "", onChange = e => {}, onClick, ...props }) => {
 
     return (
         <div className='combobox'>

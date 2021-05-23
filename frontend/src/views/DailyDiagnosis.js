@@ -33,7 +33,6 @@ const DailyDiagnosis = (props) => {
             entryDate: new Date()
         }, { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } }).then(res => {
             setIsLoaderShown(false);
-            console.log(res);
             document.location.href = '/'
         })
     };

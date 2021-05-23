@@ -52,7 +52,7 @@ const JAMChart = ({ header = 'Title', caption = 'Name data', type = 'line', labe
     if (data.length !== 0) {
         if (type === 'line') {
             previous = { x: '10%', y: (80 - (yPadding * (data[0] - min))) + '%' };
-            points.push(<circle cx={previous.x} cy={previous.y} r="0.5%" stroke="black" strokeWidth="0.5" fill="white"><title>{caption + ": " + data[0]}</title></circle>);
+            points.push(<circle cx={previous.x} cy={previous.y} r="0.5%" stroke="black" strokeWidth="0.5" fill="white"><title>{caption + ": " + data[0] + ", " + labels[i]}</title></circle>);
             grid.push(<line x1='10%' y1='0%' x2='10%' y2='80%' stroke={hintColor} ><title>{caption + ": " + data[0]}</title></line>);
         } else {
             previous = { x: xPadding + '%', y: (80 - (yPadding * data[0])) + '%' };
@@ -64,7 +64,7 @@ const JAMChart = ({ header = 'Title', caption = 'Name data', type = 'line', labe
     for (i = 1; i < data.length; i++) {
         if (type === 'line') {
             current = { x: 10 + (xPadding * i) + '%', y: (80 - (yPadding * (data[i] - min))) + '%' };
-            points.push(<circle cx={current.x} cy={current.y} r="0.5%" stroke="black" strokeWidth="0.5" fill="white"><title>{caption + ": " + data[i]}</title></circle>);
+            points.push(<circle cx={current.x} cy={current.y} r="0.5%" stroke="black" strokeWidth="0.5" fill="white"><title>{caption + ": " + data[i] + ", " +labels[i]}</title></circle>);
             line.push(<line x1={previous.x} y1={previous.y} x2={current.x} y2={current.y} stroke={color} />);
             grid.push(<line x1={10 + (xPadding * i) + '%'} y1='0%' x2={10 + (xPadding * i) + '%'} y2='80%' stroke={hintColor} ><title>{caption + ": " + data[i]}</title></line>);
         } else {

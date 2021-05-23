@@ -3,7 +3,7 @@ import JAMCol from './JAMCol';
 import JAMRow from './JAMRow';
 import './css/radiobutton.css'
 
-const JAMRadioButton = ({ caption = 'Caption', options, selected, onChange = (e) => console.log(e), orientation = 'row', width = '300px', ...props }) => {
+const JAMRadioButton = ({ caption = 'Caption', options, selected, onChange = (e) => {}, orientation = 'row', width = '300px', ...props }) => {
     return (
         <div className='radio' style={{ width: width }}>
             <label className='radiolabel'>{caption}</label>

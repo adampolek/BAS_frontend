@@ -38,6 +38,9 @@ const Account = (props) => {
     const [isLoadingPassword, setIsLoadingPassword] = useState(false);
     const [isLoadingDeleteAccount, setIsLoadingDeleteAccount] = useState(false);
 
+    const [showErrorHeight, setShowErrorHeight] = useState(false);
+    const [showErrorHeightString, setShowErrorHeightString] = useState('');
+
 
     const updateAccountInfo = async () => {
         setIsLoadingPersonalInformation(true)
@@ -110,8 +113,18 @@ const Account = (props) => {
                         </JAMRow>
                         <JAMRow>
                             <JAMCol>
-                                <JAMInput type='number' caption='Height' width="350px" value={height}
-                                          onChange={(e) => setHeight(e.target.value)}/>
+                            <JAMInput type='number' width='350px' caption='Height (cm)' value={height}
+                            showError={showErrorHeight} 
+                            error={showErrorHeightString} onChange={(e) => {
+                                setHeight(e.target.value)
+                            }} onInput={(e) => {
+                                if (e.target.value < 100 || e.target.value > 240) {
+                                    setShowErrorHeight(true);
+                                    setShowErrorHeightString("Your height must be between 100 cm and 240 cm");
+                                } else {
+                                    setShowErrorHeight(false);
+                                }
+                            }} />
                             </JAMCol>
                             <JAMCol width='380px'>
                             </JAMCol>
@@ -135,7 +148,7 @@ const Account = (props) => {
                         </JAMRow>
                         <JAMRow>
                             <JAMCol>
-                                <JAMButton value="Save" width='370px' onClick={() => {
+                                <JAMButton disabled={showErrorHeight} value="Save" width='370px' onClick={() => {
                                     updateAccountInfo()
                                 }}/>
                             </JAMCol>

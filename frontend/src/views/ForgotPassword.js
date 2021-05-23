@@ -23,7 +23,6 @@ const ForgotPassword = () => {
     const sendForgotPassword = async () => {
         setIsLoading(true);
         API.post("bas/user/forgot-password", { email: email }).then(res => {
-            console.log(res);
             setIsLoading(false);
         })
     }

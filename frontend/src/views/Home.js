@@ -84,7 +84,15 @@ const Home = (props) => {
             const bloodPressures = [];
             const labelsData = [];
             for (var i = res.data.length - 1; i >= 0; i--) {
-                labelsData.push(res.data[i].entryDate)
+                if (res.data.length > 300) {
+                    if (i%30 === 0) {
+                        labelsData.push(res.data[i].entryDate);
+                    } else {
+                        labelsData.push(" ");
+                    }
+                } else {
+                    labelsData.push(res.data[i].entryDate);
+                }
                 weights.push(res.data[i].weight);
                 glucoses.push(res.data[i].glucose);
                 insulins.push(res.data[i].insulin);
@@ -324,21 +332,21 @@ const Home = (props) => {
                     </JAMRow>
                     <JAMRow width='100%'>
                         <JAMCol width='50%'>
-                            <JAMChart type='line' title='Weight' caption='Weight' labels={labelsWeight}
+                            <JAMChart type='line' header='Weight' caption='Weight' labels={labelsWeight}
                                 data={weightData} width='100%' height='500px' />
                         </JAMCol>
                         <JAMCol width='50%'>
-                            <JAMChart type='bar' title='Glucose' caption='Glucose' labels={labelsWeight}
+                            <JAMChart type='bar' header='Glucose' caption='Glucose' labels={labelsWeight}
                                 data={glucoseData} width='100%' height='500px' />
                         </JAMCol>
                     </JAMRow>
                     <JAMRow width='100%'>
                         <JAMCol width='50%'>
-                            <JAMChart type='line' title='Insulin' caption='Insulin' labels={labelsWeight}
+                            <JAMChart type='line' header='Insulin' caption='Insulin' labels={labelsWeight}
                                 data={insulinData} width='100%' height='500px' />
                         </JAMCol>
                         <JAMCol width='50%'>
-                            <JAMChart type='bar' title='Blood Pressure' caption='Blood Pressure' labels={labelsWeight}
+                            <JAMChart type='bar' header='Blood Pressure' caption='Blood Pressure' labels={labelsWeight}
                                 data={bloodPressureData} width='100%' height='500px' />
                         </JAMCol>
                     </JAMRow>
