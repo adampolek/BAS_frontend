@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import JAMCombobox from '../components/JAMCombobox';
 import JAMCol from '../components/JAMCol';
 import JAMPanel from '../components/JAMPanel';
@@ -8,6 +8,7 @@ import JAMButton from '../components/JAMButton';
 import JAMLoader from '../components/JAMLoader';
 import DataTable from 'react-data-table-component';
 import API from '../api/API';
+
 var initialRead = true;
 const AdminPanel = (props) => {
 
@@ -25,14 +26,18 @@ const AdminPanel = (props) => {
     }));
 
     if (initialRead) {
-        API.get("bas/entry/get_all_clf", { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } }).then(res => {
+        API.get("bas/entry/get_all_clf", {headers: {Authorization: JSON.parse(localStorage.getItem('token'))}}).then(res => {
             setAvailableMethods(res.data);
             initialRead = false;
         });
-        API.get("bas/entry/get_csv", { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } }).then(res => {
+        API.get("bas/entry/get_csv", {headers: {Authorization: JSON.parse(localStorage.getItem('token'))}}).then(res => {
             setData(res.data);
             initialRead = false;
         });
+        API.get("bas/entry/get_clf", {headers: {Authorization: JSON.parse(localStorage.getItem('token'))}}).then(res => {
+            setSelectedOption(res.data);
+            initialRead = false;
+        })
     }
 
     const train = async () => {
