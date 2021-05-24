@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import JAMCol from '../components/JAMCol';
 import JAMPanel from '../components/JAMPanel';
 import JAMRow from '../components/JAMRow';
@@ -86,7 +86,7 @@ const Home = (props) => {
             const labelsData = [];
             for (var i = res.data.length - 1; i >= 0; i--) {
                 if (res.data.length > 300) {
-                    if (i%30 === 0) {
+                    if (i % 30 === 0) {
                         labelsData.push(res.data[i].entryDate);
                     } else {
                         labelsData.push(" ");
@@ -148,7 +148,7 @@ const Home = (props) => {
             }).catch(error => {
                 initialData = false;
             })
-            API.get("bas/additional_info/additional_info_stats", { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } })
+        API.get("bas/additional_info/additional_info_stats", { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } })
             .then(res => {
                 setAdditionalInfoStats(res.data);
                 initialData = false;
