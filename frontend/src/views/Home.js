@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Text } from 'react-native';
 import JAMCol from '../components/JAMCol';
 import JAMPanel from '../components/JAMPanel';
 import JAMRow from '../components/JAMRow';
@@ -249,11 +250,17 @@ const Home = (props) => {
                                         <JAMCol>
                                             <JAMLabel caption='Amount of cigarettes' big bold/>
                                         </JAMCol>
-                                        <JAMCol>
+                                        {/* <JAMCol>
                                             {additionalInfoStats === '' ? (<JAMInfo/>) : (<JAMInfo
                                                 message={'Weekly cigarettes: ' + additionalInfoStats['cigarettes']['weekly'] + '\n'
                                                 + 'Monthly cigarettes: ' + additionalInfoStats['cigarettes']['monthly'] + '\n' +
                                                 'Yearly cigarettes: ' + additionalInfoStats['cigarettes']['yearly']}/>)}
+                                        </JAMCol> */}
+                                        <JAMCol>
+                                            {additionalInfoStats === '' ? (<JAMInfo/>) : (<JAMInfo bold
+                                                message={<Text style={{fontWeight:'bold', fontSize:'18px'}}>Weekly cigarettes: {additionalInfoStats['cigarettes']['weekly']} {"\n"}
+                                                Monthly cigarettes: {additionalInfoStats['cigarettes']['monthly']} {"\n"}
+                                                Yearly cigarettes: {additionalInfoStats['cigarettes']['yearly']}</Text>}/>)}
                                         </JAMCol>
                                     </JAMRow>
                                     <JAMImage icon={cigarette} width='50px' style={{ marginBottom: '20px' }} />
@@ -271,14 +278,13 @@ const Home = (props) => {
                                     <JAMRow width='100%'>
 
                                         <JAMCol>
-                                            <JAMLabel caption='Hours of sleep' big bold style={{marginBottom: '20px'}}/>
+                                            <JAMLabel caption='Hours of sleep' big bold />
                                         </JAMCol>
                                         <JAMCol>
                                             {additionalInfoStats === '' ? (<JAMInfo/>) : (<JAMInfo
-                                                message={'Weekly hours of sleep: ' + additionalInfoStats['sleep']['weekly'] + '\n'
-                                                + 'Monthly hours of sleep: ' + additionalInfoStats['sleep']['monthly'] + '\n' +
-                                                'Yearly hours of sleep: ' + additionalInfoStats['sleep']['yearly']}/>)}
-
+                                                message={<Text style={{fontWeight:'bold', fontSize:'18px'}}>Weekly hours of sleep: {additionalInfoStats['sleep']['weekly']} {"\n"}
+                                                Monthly hours of sleep: {additionalInfoStats['sleep']['monthly']} {'\n'}
+                                                Yearly hours of sleep: {additionalInfoStats['sleep']['yearly']}</Text>}/>)}
                                         </JAMCol>
                                     </JAMRow>
                                     <JAMImage icon={bed} width='50px' style={{ marginBottom: '20px' }} />
@@ -295,15 +301,14 @@ const Home = (props) => {
                                 <JAMCol>
                                     <JAMRow width='100%'>
                                         <JAMCol>
-                                            <JAMLabel caption='Glasses of water' big bold
-                                                      style={{marginBottom: '20px'}}/>
+                                            <JAMLabel caption='Glasses of water' big bold />
                                         </JAMCol>
                                         <JAMCol>
 
                                             {additionalInfoStats === '' ? (<JAMInfo/>) : (<JAMInfo
-                                                message={'Weekly Glasses of water: ' + additionalInfoStats['water']['weekly'] + '\n'
-                                                + 'Monthly Glasses of water: ' + additionalInfoStats['water']['monthly'] + '\n' +
-                                                'Yearly Glasses of water: ' + additionalInfoStats['water']['yearly']}/>)}
+                                                message={<Text style={{fontWeight:'bold', fontSize:'18px'}}>Weekly Glasses of water: {additionalInfoStats['water']['weekly']} {'\n'}
+                                                Monthly Glasses of water: {additionalInfoStats['water']['monthly']} {'\n'}
+                                                Yearly Glasses of water: {additionalInfoStats['water']['yearly']}</Text>}/>)}
 
                                         </JAMCol>
                                     </JAMRow>
@@ -326,9 +331,9 @@ const Home = (props) => {
                                     <JAMCol>
 
                                         {additionalInfoStats === '' ? (<JAMInfo/>) : (<JAMInfo
-                                            message={'Weekly Training hours: ' + additionalInfoStats['training']['weekly'] + '\n'
-                                            + 'Monthly Training hours: ' + additionalInfoStats['training']['monthly'] + '\n' +
-                                            'Yearly Training hours: ' + additionalInfoStats['training']['yearly']}/>)}
+                                            message={<Text style={{fontWeight:'bold', fontSize:'18px'}}>Weekly Training hours: {additionalInfoStats['training']['weekly']} {'\n'}
+                                            Monthly Training hours: {additionalInfoStats['training']['monthly']} {'\n'}
+                                            Yearly Training hours: {additionalInfoStats['training']['yearly']}</Text>}/>)}
 
                                     </JAMCol>
                                     </JAMRow>
@@ -350,9 +355,9 @@ const Home = (props) => {
                                     </JAMCol>
                                     <JAMCol>
                                         {additionalInfoStats === '' ? (<JAMInfo/>) : (<JAMInfo
-                                            message={'Weekly Amount of alcohol: ' + additionalInfoStats['alcohol']['weekly'] + '\n'
-                                            + 'Monthly Amount of alcohol: ' + additionalInfoStats['alcohol']['monthly'] + '\n' +
-                                            'Yearly Amount of alcohol: ' + additionalInfoStats['alcohol']['yearly']}/>)}
+                                            message={<Text style={{fontWeight:'bold', fontSize:'18px'}}>Weekly Amount of alcohol: {additionalInfoStats['alcohol']['weekly']} {'\n'}
+                                            Monthly Amount of alcohol: {additionalInfoStats['alcohol']['monthly']} {'\n'}
+                                            Yearly Amount of alcohol: {additionalInfoStats['alcohol']['yearly']}</Text>}/>)}
 
                                     </JAMCol>
                                     </JAMRow>
