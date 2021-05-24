@@ -86,7 +86,7 @@ const Home = (props) => {
             const labelsData = [];
             for (var i = res.data.length - 1; i >= 0; i--) {
                 if (res.data.length > 300) {
-                    if (i%30 === 0) {
+                    if (i % 30 === 0) {
                         labelsData.push(res.data[i].entryDate);
                     } else {
                         labelsData.push(" ");
@@ -148,7 +148,7 @@ const Home = (props) => {
             }).catch(error => {
                 initialData = false;
             })
-            API.get("bas/additional_info/additional_info_stats", { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } })
+        API.get("bas/additional_info/additional_info_stats", { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } })
             .then(res => {
                 setAdditionalInfoStats(res.data);
                 initialData = false;
@@ -269,10 +269,10 @@ const Home = (props) => {
                                 <JAMCol>
                                     <JAMRow width='100%'>
 
-                                    <JAMCol>
-                                        <JAMLabel caption='Hours of sleep' big bold style={{ marginBottom: '20px' }} />
-                                    </JAMCol>
-                                    <JAMCol>
+                                        <JAMCol>
+                                            <JAMLabel caption='Hours of sleep' big bold style={{ marginBottom: '20px' }} />
+                                        </JAMCol>
+                                        <JAMCol>
                                             <JAMInfo message={'Weekly hours of sleep: ' + additionalInfoStats['sleep']['weekly'] + '\n'
                                                 + 'Monthly hours of sleep: ' + additionalInfoStats['sleep']['monthly'] + '\n' +
                                                 'Yearly hours of sleep: ' + additionalInfoStats['sleep']['yearly']} />
@@ -292,7 +292,7 @@ const Home = (props) => {
                                 <JAMCol>
                                     <JAMRow width='100%'>
                                         <JAMCol>
-                                        <JAMLabel caption='Glasses of water' big bold style={{ marginBottom: '20px' }} />
+                                            <JAMLabel caption='Glasses of water' big bold style={{ marginBottom: '20px' }} />
                                         </JAMCol>
                                         <JAMCol>
                                             <JAMInfo message={'Weekly Glasses of water: ' + additionalInfoStats['water']['weekly'] + '\n'
@@ -312,9 +312,9 @@ const Home = (props) => {
                         <JAMCol style={{ margin: '20px' }}>
                             <JAMPanel height="200px" maxWidth={"1300px"} minWidth='300px'>
                                 <JAMCol>
-                                <JAMRow width='100%'>
+                                    <JAMRow width='100%'>
                                         <JAMCol>
-                                        <JAMLabel caption='Training hours' big bold style={{ marginBottom: '20px' }} />
+                                            <JAMLabel caption='Training hours' big bold style={{ marginBottom: '20px' }} />
                                         </JAMCol>
                                         <JAMCol>
                                             <JAMInfo message={'Weekly Training hours: ' + additionalInfoStats['training']['weekly'] + '\n'
@@ -334,9 +334,9 @@ const Home = (props) => {
                         <JAMCol style={{ margin: '20px' }}>
                             <JAMPanel height="200px" maxWidth={"1300px"} minWidth='300px'>
                                 <JAMCol>
-                                <JAMRow width='100%'>
+                                    <JAMRow width='100%'>
                                         <JAMCol>
-                                        <JAMLabel caption='Amount of alcohol' big bold style={{ marginBottom: '20px' }} />
+                                            <JAMLabel caption='Amount of alcohol' big bold style={{ marginBottom: '20px' }} />
                                         </JAMCol>
                                         <JAMCol>
                                             <JAMInfo message={'Weekly Amount of alcohol: ' + additionalInfoStats['alcohol']['weekly'] + '\n'
