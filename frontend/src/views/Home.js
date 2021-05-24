@@ -10,7 +10,6 @@ import beer from '../resources/beer.svg'
 import water from '../resources/water.svg'
 import bloodPressureImage from '../resources/blood-pressure.svg'
 import glucoseMeter from '../resources/glucose-meter.svg'
-import information from '../resources/information.svg'
 import weightScale from '../resources/weight-scale.svg'
 import injection from '../resources/injection.svg'
 import JAMImage from '../components/JAMImage';
@@ -20,12 +19,14 @@ import JAMLine from '../components/JAMLine';
 import JAMCounter from "../components/JAMCounter";
 import JAMChart from "../components/JAMChart";
 import API from "../api/API";
+import JAMInfo from '../components/JAMInfo';
 
 let initialData = true;
 
 const Home = (props) => {
 
     const [additionalInfo, setAdditionalInfo] = useState({});
+    const [additionalInfoStats, setAdditionalInfoStats] = useState({});
 
     const [noData, setNoData] = useState(false);
 
@@ -147,6 +148,14 @@ const Home = (props) => {
             }).catch(error => {
                 initialData = false;
             })
+            API.get("bas/additional_info/additional_info_stats", { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } })
+            .then(res => {
+                setAdditionalInfoStats(res.data);
+                initialData = false;
+                console.log(res.data);
+            }).catch(error => {
+                initialData = false;
+            })
         updateStatistics(startDate, stopDate)
     }
 
@@ -241,7 +250,9 @@ const Home = (props) => {
                                             <JAMLabel caption='Amount of cigarettes' big bold />
                                         </JAMCol>
                                         <JAMCol>
-                                            <JAMImage icon={information} width='20px' />
+                                            <JAMInfo message={'Weekly cigarettes: ' + additionalInfoStats['cigarettes']['weekly'] + '\n'
+                                                + 'Monthly cigarettes: ' + additionalInfoStats['cigarettes']['monthly'] + '\n' +
+                                                'Yearly cigarettes: ' + additionalInfoStats['cigarettes']['yearly']} />
                                         </JAMCol>
                                     </JAMRow>
                                     <JAMImage icon={cigarette} width='50px' style={{ marginBottom: '20px' }} />
@@ -256,7 +267,17 @@ const Home = (props) => {
                         <JAMCol style={{ margin: '20px' }}>
                             <JAMPanel height="200px" maxWidth={"1300px"} minWidth='300px'>
                                 <JAMCol>
-                                    <JAMLabel caption='Hours of sleep' big bold style={{ marginBottom: '20px' }} />
+                                    <JAMRow width='100%'>
+
+                                    <JAMCol>
+                                        <JAMLabel caption='Hours of sleep' big bold style={{ marginBottom: '20px' }} />
+                                    </JAMCol>
+                                    <JAMCol>
+                                            <JAMInfo message={'Weekly hours of sleep: ' + additionalInfoStats['sleep']['weekly'] + '\n'
+                                                + 'Monthly hours of sleep: ' + additionalInfoStats['sleep']['monthly'] + '\n' +
+                                                'Yearly hours of sleep: ' + additionalInfoStats['sleep']['yearly']} />
+                                        </JAMCol>
+                                    </JAMRow>
                                     <JAMImage icon={bed} width='50px' style={{ marginBottom: '20px' }} />
                                     <JAMCounter unit=' h' steps={0.5} value={sleepHours} caption=''
                                         onClick={(e) => {
@@ -269,7 +290,16 @@ const Home = (props) => {
                         <JAMCol style={{ margin: '20px' }}>
                             <JAMPanel height="200px" maxWidth={"1300px"} minWidth='300px'>
                                 <JAMCol>
-                                    <JAMLabel caption='Glasses of water' big bold style={{ marginBottom: '20px' }} />
+                                    <JAMRow width='100%'>
+                                        <JAMCol>
+                                        <JAMLabel caption='Glasses of water' big bold style={{ marginBottom: '20px' }} />
+                                        </JAMCol>
+                                        <JAMCol>
+                                            <JAMInfo message={'Weekly Glasses of water: ' + additionalInfoStats['water']['weekly'] + '\n'
+                                                + 'Monthly Glasses of water: ' + additionalInfoStats['water']['monthly'] + '\n' +
+                                                'Yearly Glasses of water: ' + additionalInfoStats['water']['yearly']} />
+                                        </JAMCol>
+                                    </JAMRow>
                                     <JAMImage icon={water} width='50px' style={{ marginBottom: '20px' }} />
                                     <JAMCounter value={glassesOfWater} caption=''
                                         onClick={(e) => {
@@ -282,7 +312,16 @@ const Home = (props) => {
                         <JAMCol style={{ margin: '20px' }}>
                             <JAMPanel height="200px" maxWidth={"1300px"} minWidth='300px'>
                                 <JAMCol>
-                                    <JAMLabel caption='Training hours' big bold style={{ marginBottom: '20px' }} />
+                                <JAMRow width='100%'>
+                                        <JAMCol>
+                                        <JAMLabel caption='Training hours' big bold style={{ marginBottom: '20px' }} />
+                                        </JAMCol>
+                                        <JAMCol>
+                                            <JAMInfo message={'Weekly Training hours: ' + additionalInfoStats['training']['weekly'] + '\n'
+                                                + 'Monthly Training hours: ' + additionalInfoStats['training']['monthly'] + '\n' +
+                                                'Yearly Training hours: ' + additionalInfoStats['training']['yearly']} />
+                                        </JAMCol>
+                                    </JAMRow>
                                     <JAMImage icon={dumbbells} width='50px' style={{ marginBottom: '20px' }} />
                                     <JAMCounter unit=' h' steps={0.25} value={trainingHours} caption=''
                                         onClick={(e) => {
@@ -295,7 +334,16 @@ const Home = (props) => {
                         <JAMCol style={{ margin: '20px' }}>
                             <JAMPanel height="200px" maxWidth={"1300px"} minWidth='300px'>
                                 <JAMCol>
-                                    <JAMLabel caption='Amount of alcohol' big bold style={{ marginBottom: '20px' }} />
+                                <JAMRow width='100%'>
+                                        <JAMCol>
+                                        <JAMLabel caption='Amount of alcohol' big bold style={{ marginBottom: '20px' }} />
+                                        </JAMCol>
+                                        <JAMCol>
+                                            <JAMInfo message={'Weekly Amount of alcohol: ' + additionalInfoStats['alcohol']['weekly'] + '\n'
+                                                + 'Monthly Amount of alcohol: ' + additionalInfoStats['alcohol']['monthly'] + '\n' +
+                                                'Yearly Amount of alcohol: ' + additionalInfoStats['alcohol']['yearly']} />
+                                        </JAMCol>
+                                    </JAMRow>
                                     <JAMImage icon={beer} width='50px' style={{ marginBottom: '20px' }} />
                                     <JAMCounter value={alcoholAmount} caption=''
                                         onClick={(e) => {
