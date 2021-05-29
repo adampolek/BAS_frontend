@@ -8,6 +8,7 @@ import JAMButton from '../components/JAMButton';
 import JAMLoader from '../components/JAMLoader';
 import DataTable from 'react-data-table-component';
 import API from '../api/API';
+import JAMLabel from '../components/JAMLabel';
 
 var initialRead = true;
 const History = (props) => {
@@ -31,6 +32,9 @@ const History = (props) => {
     return (
         <JAMPanel minHeight='700px' width={"90%"} maxWidth={"1300px"} backgroundColor={"white"} minWidth='400px' style={{ marginTop: '70px', marginBottom: '50px', paddingBottom: '50px', paddingTop: '50px' }}>
             <Menubar color='white' />
+            <JAMCol>
+                <JAMLabel header caption="History" />
+            </JAMCol>
             <JAMCol >
                 <DataTable
                     pagination
