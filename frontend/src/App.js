@@ -8,6 +8,7 @@ import DailyDiagnosis from './views/DailyDiagnosis';
 import ForgotPassword from './views/ForgotPassword';
 import ChangePassword from './views/ChangePassword';
 import AdminPanel from './views/AdminPanel';
+import History from './views/History';
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/change" component={ChangePassword} />
           <Route path="/admin" component={AdminPanel} />
           <Route path="/error" component={Error} />
+          <Route path="/history" component={History} />
           <Route component={Error} />
         </Switch>
       </div>

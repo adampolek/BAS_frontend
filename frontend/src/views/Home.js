@@ -28,7 +28,7 @@ const Home = (props) => {
     const [additionalInfo, setAdditionalInfo] = useState({});
     const [additionalInfoStats, setAdditionalInfoStats] = useState('');
 
-    const [noData, setNoData] = useState(false);
+    const [noData, setNoData] = useState(true);
 
     const [weight, setWeight] = useState(0);
     const [glucose, setGlucose] = useState(0);
@@ -74,30 +74,56 @@ const Home = (props) => {
         var startDateCopy = new Date(statisticDate);
         startDateCopy.setDate(startDateCopy.getDate() - statisticDays + 1);
         setStartDate(startDateCopy.toISOString().slice(0, 10));
-        updateStatistics(startDateCopy.toISOString().slice(0, 10), statisticDate.toISOString().slice(0, 10))
+        updateStatistics(startDateCopy.toISOString().slice(0, 10), statisticDate.toISOString().slice(0, 10), statisticDays)
     };
 
-    const updateStatistics = async (statisticStartDate, statisticStopDate) => {
+    const updateStatistics = async (statisticStartDate, statisticStopDate, amountDays) => {
         API.get("bas/entry/days?start=" + statisticStartDate + "&stop=" + statisticStopDate, { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } }).then(res => {
             const weights = [];
             const glucoses = [];
             const insulins = [];
             const bloodPressures = [];
             const labelsData = [];
-            for (var i = res.data.length - 1; i >= 0; i--) {
-                if (res.data.length > 300) {
-                    if (i % 30 === 0) {
-                        labelsData.push(res.data[i].entryDate);
+            var currentDate = res.data[res.data.length - 1].entryDate;
+            currentDate = currentDate.slice(0, currentDate.length - 3);
+            const sizeEntry = res.data.length;
+            var meanWeights = 0;
+            var meanGlucoses = 0;
+            var meanInsulins = 0;
+            var meanBloodPressures = 0;
+            var counter = 0;
+
+            for (var i = sizeEntry - 1; i >= 0; i--) {
+                if (amountDays === 365) {
+                    if (currentDate === res.data[i].entryDate.slice(0, res.data[i].entryDate.length - 3)) {
+                        meanWeights += res.data[i].weight;
+                        meanGlucoses += res.data[i].glucose;
+                        meanInsulins += res.data[i].insulin;
+                        meanBloodPressures += res.data[i].bloodPressure;
+                        counter += 1;
                     } else {
-                        labelsData.push(" ");
+                        labelsData.push(currentDate);
+                        weights.push(meanWeights / counter);
+                        glucoses.push(meanGlucoses / counter);
+                        insulins.push(meanInsulins / counter);
+                        bloodPressures.push(meanBloodPressures / counter);
+
+                        currentDate = res.data[i].entryDate;
+                        currentDate = currentDate.slice(0, currentDate.length - 3);
+
+                        meanWeights = res.data[i].weight;
+                        meanGlucoses = res.data[i].glucose;
+                        meanInsulins = res.data[i].insulin;
+                        meanBloodPressures = res.data[i].bloodPressure;
+                        counter = 1;
                     }
                 } else {
                     labelsData.push(res.data[i].entryDate);
+                    weights.push(res.data[i].weight);
+                    glucoses.push(res.data[i].glucose);
+                    insulins.push(res.data[i].insulin);
+                    bloodPressures.push(res.data[i].bloodPressure);
                 }
-                weights.push(res.data[i].weight);
-                glucoses.push(res.data[i].glucose);
-                insulins.push(res.data[i].insulin);
-                bloodPressures.push(res.data[i].bloodPressure);
             }
             setLabels(labelsData);
             setWeightData(weights);
@@ -123,7 +149,8 @@ const Home = (props) => {
         }, field), { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } })
 
     }
-    if (initialData) {
+
+    const initialDataRequest = () => {
         API.get("bas/entry/day?entryDate=" + new Date().toISOString().slice(0, 10), { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } })
             .then(res => {
                 setWeight(res.data.weight);
@@ -135,7 +162,7 @@ const Home = (props) => {
             .catch(error => {
                 setNoData(true);
                 initialData = false;
-            })
+            });
         API.get("bas/additional_info/day?entryDate=" + new Date().toISOString().slice(0, 10), { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } })
             .then(res => {
                 setAdditionalInfo(res.data);
@@ -147,16 +174,27 @@ const Home = (props) => {
                 initialData = false;
             }).catch(error => {
                 initialData = false;
-            })
+            });
         API.get("bas/additional_info/additional_info_stats", { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } })
             .then(res => {
                 setAdditionalInfoStats(res.data);
                 initialData = false;
-                console.log(res.data);
             }).catch(error => {
                 initialData = false;
-            })
-        updateStatistics(startDate, stopDate)
+            });
+    };
+
+
+    if (initialData) {
+        API.get("bas/entry/isEntry?entryDate=" + new Date().toISOString().slice(0, 10), { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } })
+            .then(res => {
+                setNoData(!res.data);
+                initialData = false;
+                if (res.data) {
+                    initialDataRequest();
+                }
+            });
+        updateStatistics(startDate, stopDate, statisticDays);
     }
 
     const changeDateRange = (daysNumber) => {
@@ -166,7 +204,7 @@ const Home = (props) => {
         setStopDate(tempStopDate);
         setStartDate(tempStartDate.toISOString().slice(0, 10));
         setStatisticDays(daysNumber);
-        updateStatistics(tempStartDate.toISOString().slice(0, 10), tempStopDate);
+        updateStatistics(tempStartDate.toISOString().slice(0, 10), tempStopDate, daysNumber);
     };
 
     return (
@@ -256,7 +294,7 @@ const Home = (props) => {
                                                     "\nYearly cigarettes: " + additionalInfoStats['cigarettes']['yearly']} />)}
                                         </JAMCol>
                                     </JAMRow>
-                                    <JAMImage icon={cigarette} width='50px' style={{marginTop:'20px'}} />
+                                    <JAMImage icon={cigarette} width='50px' style={{ marginTop: '20px' }} />
                                     <JAMCounter value={cigarettesAmount} caption=''
                                         onClick={(e) => {
                                             setAmountOfCigarettes(e);
@@ -279,7 +317,7 @@ const Home = (props) => {
                                                     "\nYearly cigarettes: " + additionalInfoStats['sleep']['yearly']} />)}
                                         </JAMCol>
                                     </JAMRow>
-                                    <JAMImage icon={bed} width='50px' style={{marginTop:'20px'}} />
+                                    <JAMImage icon={bed} width='50px' style={{ marginTop: '20px' }} />
                                     <JAMCounter unit=' h' value={sleepHours} caption='' steps={0.25}
                                         onClick={(e) => {
                                             setHoursOfSleep(e);
@@ -290,7 +328,7 @@ const Home = (props) => {
                         </JAMCol>
                         <JAMCol style={{ margin: '20px' }}>
                             <JAMPanel height="200px" maxWidth={"1300px"} minWidth='300px'>
-                            <JAMCol>
+                                <JAMCol>
                                     <JAMRow width='100%'>
                                         <JAMCol>
                                             <JAMLabel caption='Glasses of water' big bold />
@@ -302,7 +340,7 @@ const Home = (props) => {
                                                     "\nYearly cigarettes: " + additionalInfoStats['water']['yearly']} />)}
                                         </JAMCol>
                                     </JAMRow>
-                                    <JAMImage icon={water} width='50px' style={{marginTop:'20px'}} />
+                                    <JAMImage icon={water} width='50px' style={{ marginTop: '20px' }} />
                                     <JAMCounter value={glassesOfWater} caption=''
                                         onClick={(e) => {
                                             setGlassesOfWater(e);
@@ -313,7 +351,7 @@ const Home = (props) => {
                         </JAMCol>
                         <JAMCol style={{ margin: '20px' }}>
                             <JAMPanel height="200px" maxWidth={"1300px"} minWidth='300px'>
-                            <JAMCol>
+                                <JAMCol>
                                     <JAMRow width='100%'>
                                         <JAMCol>
                                             <JAMLabel caption='Training hours' big bold />
@@ -325,8 +363,8 @@ const Home = (props) => {
                                                     "\nYearly cigarettes: " + additionalInfoStats['training']['yearly']} />)}
                                         </JAMCol>
                                     </JAMRow>
-                                    <JAMImage icon={dumbbells} width='50px' style={{marginTop:'20px'}} />
-                                    <JAMCounter unit=' h' value={trainingHours} caption=''  steps={0.25}
+                                    <JAMImage icon={dumbbells} width='50px' style={{ marginTop: '20px' }} />
+                                    <JAMCounter unit=' h' value={trainingHours} caption='' steps={0.25}
                                         onClick={(e) => {
                                             setTrainingHours(e);
                                             updateAdditionalInfo({ trainingHours: e });
@@ -339,7 +377,7 @@ const Home = (props) => {
                                 <JAMCol>
                                     <JAMRow width='100%'>
                                         <JAMCol>
-                                            <JAMLabel caption='Amount of alcohol' big bold/>
+                                            <JAMLabel caption='Amount of alcohol' big bold />
                                         </JAMCol>
                                         <JAMCol>
                                             {additionalInfoStats === '' ? (<JAMInfo />) : (<JAMInfo

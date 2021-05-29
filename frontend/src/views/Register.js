@@ -181,7 +181,6 @@ const Register = (props) => {
                             <JAMButton value='Register' width='370px'
                                 disabled={disabled}
                                 onClick={() => {
-                                    console.log("Halko");
                                     register();
                                 }} />
                         </JAMRow>

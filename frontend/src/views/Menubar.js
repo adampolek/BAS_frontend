@@ -7,9 +7,12 @@ import API from "../api/API";
 
 let initialRead = true;
 const Menubar = ({ color = 'purple', dataPresent = false, ...props }) => {
-
     const [noData, setNoData] = useState(true);
     if (initialRead) {
+        API.get("bas/entry/isEntry?entryDate=" + new Date().toISOString().slice(0, 10), { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } })
+            .then(res => {
+                setNoData(!res.data);
+            })
         API.get('bas/user/role', { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } })
             .then(res => {
                 initialRead = false;
@@ -18,14 +21,6 @@ const Menubar = ({ color = 'purple', dataPresent = false, ...props }) => {
                 initialRead = false;
                 document.location.href = "/login";
             });
-
-        API.get("bas/entry/day?entryDate=" + new Date().toISOString().slice(0, 10), { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } })
-            .then(res => {
-                setNoData(false);
-                initialRead = false;
-            }).catch((error) => {
-                initialRead = false;
-            })
     }
     let adminRights = localStorage.getItem("role") === "\"ROLE_ADMIN\"";
     return (
@@ -48,6 +43,8 @@ const Menubar = ({ color = 'purple', dataPresent = false, ...props }) => {
                     }} />
             </JAMRow>
             )}
+            <JAMButton theme={color !== 'purple' ? 'white' : 'normal'} value='History' width='350px'
+                onClick={() => window.location = 'history'} />
 
             {adminRights ? (
                 <JAMRow>
