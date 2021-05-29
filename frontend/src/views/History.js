@@ -1,11 +1,7 @@
 import React, {useState} from 'react';
-import JAMCombobox from '../components/JAMCombobox';
 import JAMCol from '../components/JAMCol';
 import JAMPanel from '../components/JAMPanel';
 import Menubar from './Menubar';
-import JAMRow from '../components/JAMRow';
-import JAMButton from '../components/JAMButton';
-import JAMLoader from '../components/JAMLoader';
 import DataTable from 'react-data-table-component';
 import API from '../api/API';
 import JAMLabel from '../components/JAMLabel';
