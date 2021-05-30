@@ -178,6 +178,7 @@ const Home = (props) => {
         API.get("bas/additional_info/additional_info_stats", { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } })
             .then(res => {
                 setAdditionalInfoStats(res.data);
+                console.log(res.data);
                 initialData = false;
             }).catch(error => {
                 initialData = false;
@@ -312,9 +313,11 @@ const Home = (props) => {
                                         </JAMCol>
                                         <JAMCol>
                                             {additionalInfoStats === '' ? (<JAMInfo />) : (<JAMInfo
-                                                message={"Weekly cigarettes: " + additionalInfoStats['sleep']['weekly'] +
-                                                    "\nMonthly cigarettes: " + additionalInfoStats['sleep']['monthly'] +
-                                                    "\nYearly cigarettes: " + additionalInfoStats['sleep']['yearly']} />)}
+                                                message={"Weekly hours of sleep: " + additionalInfoStats['sleep']['weekly'] +
+                                                    "\nMonthly hours of sleep: " + additionalInfoStats['sleep']['monthly'] +
+                                                    "\nYearly hours of sleep: " + additionalInfoStats['sleep']['yearly'] + 
+                                                    "\nYou slept " + (additionalInfoStats['sleep']['healthySleep'] === 0 ? 'bad' : 'well') +
+                                                    "\n" + additionalInfoStats['sleep']['sleepHoursPercentage'] + '% of users slept shorter than you'} />)}
                                         </JAMCol>
                                     </JAMRow>
                                     <JAMImage icon={bed} width='50px' style={{ marginTop: '20px' }} />
@@ -335,9 +338,9 @@ const Home = (props) => {
                                         </JAMCol>
                                         <JAMCol>
                                             {additionalInfoStats === '' ? (<JAMInfo />) : (<JAMInfo
-                                                message={"Weekly cigarettes: " + additionalInfoStats['water']['weekly'] +
-                                                    "\nMonthly cigarettes: " + additionalInfoStats['water']['monthly'] +
-                                                    "\nYearly cigarettes: " + additionalInfoStats['water']['yearly']} />)}
+                                                message={"Weekly glasses of water: " + additionalInfoStats['water']['weekly'] +
+                                                    "\nMonthly glasses of water: " + additionalInfoStats['water']['monthly'] +
+                                                    "\nYearly glasses of water: " + additionalInfoStats['water']['yearly']} />)}
                                         </JAMCol>
                                     </JAMRow>
                                     <JAMImage icon={water} width='50px' style={{ marginTop: '20px' }} />
@@ -358,9 +361,9 @@ const Home = (props) => {
                                         </JAMCol>
                                         <JAMCol>
                                             {additionalInfoStats === '' ? (<JAMInfo />) : (<JAMInfo
-                                                message={"Weekly cigarettes: " + additionalInfoStats['training']['weekly'] +
-                                                    "\nMonthly cigarettes: " + additionalInfoStats['training']['monthly'] +
-                                                    "\nYearly cigarettes: " + additionalInfoStats['training']['yearly']} />)}
+                                                message={"Weekly training hours: " + additionalInfoStats['training']['weekly'] +
+                                                    "\nMonthly training hours: " + additionalInfoStats['training']['monthly'] +
+                                                    "\nYearly training hours: " + additionalInfoStats['training']['yearly']} />)}
                                         </JAMCol>
                                     </JAMRow>
                                     <JAMImage icon={dumbbells} width='50px' style={{ marginTop: '20px' }} />
@@ -381,9 +384,9 @@ const Home = (props) => {
                                         </JAMCol>
                                         <JAMCol>
                                             {additionalInfoStats === '' ? (<JAMInfo />) : (<JAMInfo
-                                                message={"Weekly cigarettes: " + additionalInfoStats['alcohol']['weekly'] +
-                                                    "\nMonthly cigarettes: " + additionalInfoStats['alcohol']['monthly'] +
-                                                    "\nYearly cigarettes: " + additionalInfoStats['alcohol']['yearly']} />)}
+                                                message={"Weekly amount of alcohol: " + additionalInfoStats['alcohol']['weekly'] +
+                                                    "\nMonthly amount of alcohol: " + additionalInfoStats['alcohol']['monthly'] +
+                                                    "\nYearly amount of alcohol: " + additionalInfoStats['alcohol']['yearly']} />)}
                                         </JAMCol>
                                     </JAMRow>
                                     <JAMImage icon={beer} width='50px' style={{ marginTop: '20px' }} />
