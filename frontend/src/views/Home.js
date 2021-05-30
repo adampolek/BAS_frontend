@@ -178,7 +178,6 @@ const Home = (props) => {
         API.get("bas/additional_info/additional_info_stats", { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } })
             .then(res => {
                 setAdditionalInfoStats(res.data);
-                console.log(res.data);
                 initialData = false;
             }).catch(error => {
                 initialData = false;
