@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import JAMCol from '../components/JAMCol';
 import JAMPanel from '../components/JAMPanel';
 import JAMRow from '../components/JAMRow';
@@ -128,6 +128,11 @@ const Home = (props) => {
                     bloodPressures.push(res.data[i].bloodPressure);
                 }
             }
+            labelsData.push(currentDate);
+            weights.push(meanWeights / counter);
+            glucoses.push(meanGlucoses / counter);
+            insulins.push(meanInsulins / counter);
+            bloodPressures.push(meanBloodPressures / counter);
             setLabels(labelsData);
             setWeightData(weights);
             setGlucoseData(glucoses);
@@ -266,71 +271,71 @@ const Home = (props) => {
                                 </JAMCol>
                             </JAMPanel>
                         </JAMCol>
-                        <JAMCol style={{ margin: '20px' }}>
+                        <JAMCol style={{margin: '20px'}}>
                             <JAMPanel height="200px" maxWidth={"1300px"} minWidth='300px'>
                                 <JAMCol>
-                                    <JAMLabel caption='Glucose' big bold style={{ marginBottom: '20px' }} />
-                                    <JAMImage icon={glucoseMeter} width='50px' style={{ marginBottom: '20px' }} />
-                                    <JAMLabel caption={glucose + ' mg/dL'} />
+                                    <JAMLabel caption='Glucose' big bold style={{marginBottom: '20px'}}/>
+                                    <JAMImage icon={glucoseMeter} width='50px' style={{marginBottom: '20px'}}/>
+                                    <JAMLabel caption={glucose + ' mg/dL'}/>
                                 </JAMCol>
                             </JAMPanel>
                         </JAMCol>
-                        <JAMCol style={{ margin: '20px' }}>
+                        <JAMCol style={{margin: '20px'}}>
                             <JAMPanel height="200px" maxWidth={"1300px"} minWidth='300px'>
                                 <JAMCol>
-                                    <JAMLabel caption='Insulin' big bold style={{ marginBottom: '20px' }} />
-                                    <JAMImage icon={injection} width='50px' style={{ marginBottom: '20px' }} />
-                                    <JAMLabel caption={insulin + ' mU/ml'} />
+                                    <JAMLabel caption='Insulin' big bold style={{marginBottom: '20px'}}/>
+                                    <JAMImage icon={injection} width='50px' style={{marginBottom: '20px'}}/>
+                                    <JAMLabel caption={insulin + ' mU/ml'}/>
                                 </JAMCol>
                             </JAMPanel>
                         </JAMCol>
-                        <JAMCol style={{ margin: '20px' }}>
+                        <JAMCol style={{margin: '20px'}}>
                             <JAMPanel height="200px" maxWidth={"1300px"} minWidth='300px'>
                                 <JAMCol>
-                                    <JAMLabel caption='Blood Pressure' big bold style={{ marginBottom: '20px' }} />
-                                    <JAMImage icon={bloodPressureImage} width='50px' style={{ marginBottom: '20px' }} />
-                                    <JAMLabel caption={bloodPressure + ' mm/Hg'} />
+                                    <JAMLabel caption='Blood Pressure' big bold style={{marginBottom: '20px'}}/>
+                                    <JAMImage icon={bloodPressureImage} width='50px' style={{marginBottom: '20px'}}/>
+                                    <JAMLabel caption={bloodPressure + ' mm/Hg'}/>
                                 </JAMCol>
                             </JAMPanel>
                         </JAMCol>
                     </JAMRow>
                     <JAMRow>
-                        <JAMCol style={{ margin: '20px' }}>
+                        <JAMCol style={{margin: '20px'}}>
                             <JAMPanel height="200px" maxWidth={"1300px"} minWidth='300px'>
                                 <JAMCol>
                                     <JAMRow width='100%'>
                                         <JAMCol>
-                                            <JAMLabel caption='Amount of cigarettes' big bold />
+                                            <JAMLabel caption='Amount of cigarettes' big bold/>
                                         </JAMCol>
                                         <JAMCol>
-                                            {additionalInfoStats === '' ? (<JAMInfo />) : (<JAMInfo
+                                            {additionalInfoStats === '' ? (<JAMInfo/>) : (<JAMInfo
                                                 message={"Weekly cigarettes: " + additionalInfoStats['cigarettes']['weekly'] +
-                                                    "\nMonthly cigarettes: " + additionalInfoStats['cigarettes']['monthly'] +
+                                                "\nMonthly cigarettes: " + additionalInfoStats['cigarettes']['monthly'] +
                                                     "\nYearly cigarettes: " + additionalInfoStats['cigarettes']['yearly']} />)}
                                         </JAMCol>
                                     </JAMRow>
-                                    <JAMImage icon={cigarette} width='50px' style={{ marginTop: '20px' }} />
+                                    <JAMImage icon={cigarette} width='50px' style={{marginTop: '20px'}}/>
                                     <JAMCounter value={cigarettesAmount} caption=''
-                                        onClick={(e) => {
-                                            setAmountOfCigarettes(e);
-                                            updateAdditionalInfo({ cigarettesAmount: e });
-                                        }} />
+                                                onClick={(e) => {
+                                                    setAmountOfCigarettes(e);
+                                                    updateAdditionalInfo({cigarettesAmount: e});
+                                                }}/>
                                 </JAMCol>
                             </JAMPanel>
                         </JAMCol>
-                        <JAMCol style={{ margin: '20px' }}>
+                        <JAMCol style={{margin: '20px'}}>
                             <JAMPanel height="200px" maxWidth={"1300px"} minWidth='300px'>
                                 <JAMCol>
                                     <JAMRow width='100%'>
                                         <JAMCol>
-                                            <JAMLabel caption='Hours of sleep' big bold />
+                                            <JAMLabel caption='Hours of sleep' big bold/>
                                         </JAMCol>
                                         <JAMCol>
-                                            {additionalInfoStats === '' ? (<JAMInfo />) : (<JAMInfo
+                                            {additionalInfoStats === '' ? (<JAMInfo/>) : (<JAMInfo
                                                 message={"Weekly hours of sleep: " + additionalInfoStats['sleep']['weekly'] +
-                                                    "\nMonthly hours of sleep: " + additionalInfoStats['sleep']['monthly'] +
-                                                    "\nYearly hours of sleep: " + additionalInfoStats['sleep']['yearly'] + 
-                                                    "\nYou slept " + (additionalInfoStats['sleep']['healthySleep'] === 0 ? 'bad' : 'well') +
+                                                "\nMonthly hours of sleep: " + additionalInfoStats['sleep']['monthly'] +
+                                                "\nYearly hours of sleep: " + additionalInfoStats['sleep']['yearly'] +
+                                                "\nYou slept " + (additionalInfoStats['sleep']['healthySleep'] === 0 ? 'bad' : 'well') +
                                                     "\n" + additionalInfoStats['sleep']['sleepHoursPercentage'] + '% of users slept shorter than you'} />)}
                                         </JAMCol>
                                     </JAMRow>
