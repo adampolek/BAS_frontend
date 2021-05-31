@@ -12,6 +12,8 @@ import bloodPressureImage from '../resources/blood-pressure.svg'
 import glucoseMeter from '../resources/glucose-meter.svg'
 import weightScale from '../resources/weight-scale.svg'
 import injection from '../resources/injection.svg'
+import badStatus from '../resources/bad_status.svg'
+import goodStatus from '../resources/good_status.svg'
 import JAMImage from '../components/JAMImage';
 import JAMLabel from '../components/JAMLabel';
 import JAMButton from '../components/JAMButton';
@@ -34,6 +36,7 @@ const Home = (props) => {
     const [glucose, setGlucose] = useState(0);
     const [insulin, setInsulin] = useState(0);
     const [bloodPressure, setBloodPressure] = useState(0);
+    const [healthy, setHealthy] = useState(null);
 
     const [cigarettesAmount, setAmountOfCigarettes] = useState(0);
     const [sleepHours, setHoursOfSleep] = useState(0);
@@ -153,6 +156,7 @@ const Home = (props) => {
     const initialDataRequest = () => {
         API.get("bas/entry/day?entryDate=" + new Date().toISOString().slice(0, 10), { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } })
             .then(res => {
+                setHealthy(res.data.healthy);
                 setWeight(res.data.weight);
                 setGlucose(res.data.glucose);
                 setInsulin(res.data.insulin);
@@ -237,6 +241,17 @@ const Home = (props) => {
                                 </JAMRow>
                                 <JAMRow width='100%'>
                                     <JAMLine width='100%' style={{ margin: '10px' }} />
+                                    {healthy !== null ? 
+                                    (healthy === true ? (
+                                        (<JAMCol>
+                                            <JAMImage icon={goodStatus} width='200px' />
+                                            <JAMLabel caption="Your results are within standards" color='lightGreen' />
+                                        </JAMCol>)
+        
+                                    ) : (<JAMCol>
+                                            <JAMImage icon={badStatus} width='200px' />
+                                            <JAMLabel caption="Your results are suggesting that you might be sick. You should consult with the doctor" color='red' />
+                                        </JAMCol>)) : ("")}
                                 </JAMRow>
                             </JAMCol>
                         </JAMPanel>
@@ -416,7 +431,7 @@ const Home = (props) => {
                             <JAMButton theme='white' value='<' onClick={() => changeDate(false)} />
                         </JAMCol>
                         <JAMCol>
-                            <JAMLabel caption={startDate + ' <-> ' + stopDate} big bold />
+                            <JAMLabel caption={startDate + ' <~> ' + stopDate} big bold />
                         </JAMCol>
                         <JAMCol>
                             <JAMButton theme='white' value='>' onClick={() => changeDate(true)} />
