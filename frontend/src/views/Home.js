@@ -81,7 +81,7 @@ const Home = (props) => {
     };
 
     const updateStatistics = async (statisticStartDate, statisticStopDate, amountDays) => {
-        API.get("bas/entry/days?start=" + statisticStartDate + "&stop=" + statisticStopDate, { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } }).then(res => {
+        API.get("bas/entry/days?start=" + statisticStartDate + "&stop=" + statisticStopDate, {headers: {Authorization: JSON.parse(localStorage.getItem('token'))}}).then(res => {
             const weights = [];
             const glucoses = [];
             const insulins = [];
@@ -128,11 +128,13 @@ const Home = (props) => {
                     bloodPressures.push(res.data[i].bloodPressure);
                 }
             }
-            labelsData.push(currentDate);
-            weights.push(meanWeights / counter);
-            glucoses.push(meanGlucoses / counter);
-            insulins.push(meanInsulins / counter);
-            bloodPressures.push(meanBloodPressures / counter);
+            if (amountDays === 365) {
+                labelsData.push(currentDate);
+                weights.push(meanWeights / counter);
+                glucoses.push(meanGlucoses / counter);
+                insulins.push(meanInsulins / counter);
+                bloodPressures.push(meanBloodPressures / counter);
+            }
             setLabels(labelsData);
             setWeightData(weights);
             setGlucoseData(glucoses);
@@ -154,12 +156,12 @@ const Home = (props) => {
             glassesOfWater: glassesOfWater,
             trainingHours: trainingHours,
             alcoholAmount: alcoholAmount
-        }, field), { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } })
+        }, field), {headers: {Authorization: JSON.parse(localStorage.getItem('token'))}})
 
     }
 
     const initialDataRequest = () => {
-        API.get("bas/entry/day?entryDate=" + new Date().toISOString().slice(0, 10), { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } })
+        API.get("bas/entry/day?entryDate=" + new Date().toISOString().slice(0, 10), {headers: {Authorization: JSON.parse(localStorage.getItem('token'))}})
             .then(res => {
                 setHealthy(res.data.healthy);
                 setWeight(res.data.weight);
@@ -172,7 +174,7 @@ const Home = (props) => {
                 setNoData(true);
                 initialData = false;
             });
-        API.get("bas/additional_info/day?entryDate=" + new Date().toISOString().slice(0, 10), { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } })
+        API.get("bas/additional_info/day?entryDate=" + new Date().toISOString().slice(0, 10), {headers: {Authorization: JSON.parse(localStorage.getItem('token'))}})
             .then(res => {
                 setAdditionalInfo(res.data);
                 setAmountOfCigarettes(res.data.cigarettesAmount);
@@ -182,20 +184,20 @@ const Home = (props) => {
                 setAmountOfAlcohol(res.data.alcoholAmount);
                 initialData = false;
             }).catch(error => {
-                initialData = false;
-            });
-        API.get("bas/additional_info/additional_info_stats", { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } })
+            initialData = false;
+        });
+        API.get("bas/additional_info/additional_info_stats", {headers: {Authorization: JSON.parse(localStorage.getItem('token'))}})
             .then(res => {
                 setAdditionalInfoStats(res.data);
                 initialData = false;
             }).catch(error => {
-                initialData = false;
-            });
+            initialData = false;
+        });
     };
 
 
     if (initialData) {
-        API.get("bas/entry/isEntry?entryDate=" + new Date().toISOString().slice(0, 10), { headers: { Authorization: JSON.parse(localStorage.getItem('token')) } })
+        API.get("bas/entry/isEntry?entryDate=" + new Date().toISOString().slice(0, 10), {headers: {Authorization: JSON.parse(localStorage.getItem('token'))}})
             .then(res => {
                 setNoData(!res.data);
                 initialData = false;
@@ -217,57 +219,60 @@ const Home = (props) => {
     };
 
     return (
-        <JAMRow style={{ marginTop: '70px', marginBottom: '50px' }}>
-            <Menubar color='white' />
+        <JAMRow style={{marginTop: '70px', marginBottom: '50px'}}>
+            <Menubar color='white'/>
             {noData ? (<JAMRow float='left' width='100%'>
-                <JAMPanel width='90%' maxWidth='1300px' minWidth='300px'>
-                    <JAMCol float='left' width='100%' style={{ margin: '10px' }}>
-                        <JAMRow>
-                            <JAMLabel center caption='Missing data' header />
-                        </JAMRow>
-                        <JAMRow>
-                            <JAMLabel center caption='Fill up your daily diagnosis :)' big />
-                        </JAMRow>
-                        <JAMRow width='100%' style={{ margin: '10px 0px' }}>
-                            <JAMButton value='Fill up' width='350px' onClick={() => {
-                                document.location.href = '/diagnosis'
-                            }} />
-                        </JAMRow>
-                    </JAMCol>
-                </JAMPanel>
-            </JAMRow>)
+                    <JAMPanel width='90%' maxWidth='1300px' minWidth='300px'>
+                        <JAMCol float='left' width='100%' style={{margin: '10px'}}>
+                            <JAMRow>
+                                <JAMLabel center caption='Missing data' header/>
+                            </JAMRow>
+                            <JAMRow>
+                                <JAMLabel center caption='Fill up your daily diagnosis :)' big/>
+                            </JAMRow>
+                            <JAMRow width='100%' style={{margin: '10px 0px'}}>
+                                <JAMButton value='Fill up' width='350px' onClick={() => {
+                                    document.location.href = '/diagnosis'
+                                }}/>
+                            </JAMRow>
+                        </JAMCol>
+                    </JAMPanel>
+                </JAMRow>)
                 :
                 (<div>
                     <JAMRow width='100%'>
-                        <JAMPanel width='90%' maxWidth='1300px' minWidth='300px' style={{ margin: '20px' }}>
-                            <JAMCol float='left' width='100%' style={{ margin: '10px' }}>
+                        <JAMPanel width='90%' maxWidth='1300px' minWidth='300px' style={{margin: '20px'}}>
+                            <JAMCol float='left' width='100%' style={{margin: '10px'}}>
                                 <JAMRow>
-                                    <JAMLabel center caption='Daily Diagnosis' big bold />
+                                    <JAMLabel center caption='Daily Diagnosis' big bold/>
                                 </JAMRow>
                                 <JAMRow width='100%'>
-                                    <JAMLine width='100%' style={{ margin: '10px' }} />
-                                    {healthy !== null ? 
-                                    (healthy === true ? (
-                                        (<JAMCol>
-                                            <JAMImage icon={goodStatus} width='200px' />
-                                            <JAMLabel caption="Your results are within standards" color='lightGreen' />
-                                        </JAMCol>)
-        
-                                    ) : (<JAMCol>
-                                            <JAMImage icon={badStatus} width='200px' />
-                                            <JAMLabel caption="Your results are suggesting that you might be sick. You should consult with the doctor" color='red' />
+                                    <JAMLine width='100%' style={{margin: '10px'}}/>
+                                    {healthy !== null ?
+                                        (healthy === true ? (
+                                            (<JAMCol>
+                                                <JAMImage icon={goodStatus} width='200px'/>
+                                                <JAMLabel caption="Your results are within standards"
+                                                          color='lightGreen'/>
+                                            </JAMCol>)
+
+                                        ) : (<JAMCol>
+                                            <JAMImage icon={badStatus} width='200px'/>
+                                            <JAMLabel
+                                                caption="Your results are suggesting that you might be sick. You should consult with the doctor"
+                                                color='red'/>
                                         </JAMCol>)) : ("")}
                                 </JAMRow>
                             </JAMCol>
                         </JAMPanel>
                     </JAMRow>
                     <JAMRow>
-                        <JAMCol style={{ margin: '20px' }}>
+                        <JAMCol style={{margin: '20px'}}>
                             <JAMPanel height="200px" maxWidth={"1300px"} minWidth='300px'>
                                 <JAMCol>
-                                    <JAMLabel caption='Weight' big bold style={{ marginBottom: '20px' }} />
-                                    <JAMImage icon={weightScale} width='50px' style={{ marginBottom: '20px' }} />
-                                    <JAMLabel caption={weight + ' kg'} />
+                                    <JAMLabel caption='Weight' big bold style={{marginBottom: '20px'}}/>
+                                    <JAMImage icon={weightScale} width='50px' style={{marginBottom: '20px'}}/>
+                                    <JAMLabel caption={weight + ' kg'}/>
                                 </JAMCol>
                             </JAMPanel>
                         </JAMCol>
@@ -311,7 +316,7 @@ const Home = (props) => {
                                             {additionalInfoStats === '' ? (<JAMInfo/>) : (<JAMInfo
                                                 message={"Weekly cigarettes: " + additionalInfoStats['cigarettes']['weekly'] +
                                                 "\nMonthly cigarettes: " + additionalInfoStats['cigarettes']['monthly'] +
-                                                    "\nYearly cigarettes: " + additionalInfoStats['cigarettes']['yearly']} />)}
+                                                "\nYearly cigarettes: " + additionalInfoStats['cigarettes']['yearly']}/>)}
                                         </JAMCol>
                                     </JAMRow>
                                     <JAMImage icon={cigarette} width='50px' style={{marginTop: '20px'}}/>
@@ -336,84 +341,84 @@ const Home = (props) => {
                                                 "\nMonthly hours of sleep: " + additionalInfoStats['sleep']['monthly'] +
                                                 "\nYearly hours of sleep: " + additionalInfoStats['sleep']['yearly'] +
                                                 "\nYou slept " + (additionalInfoStats['sleep']['healthySleep'] === 0 ? 'bad' : 'well') +
-                                                    "\n" + additionalInfoStats['sleep']['sleepHoursPercentage'] + '% of users slept shorter than you'} />)}
+                                                "\n" + additionalInfoStats['sleep']['sleepHoursPercentage'] + '% of users slept shorter than you'}/>)}
                                         </JAMCol>
                                     </JAMRow>
-                                    <JAMImage icon={bed} width='50px' style={{ marginTop: '20px' }} />
+                                    <JAMImage icon={bed} width='50px' style={{marginTop: '20px'}}/>
                                     <JAMCounter unit=' h' value={sleepHours} caption='' steps={0.25}
-                                        onClick={(e) => {
-                                            setHoursOfSleep(e);
-                                            updateAdditionalInfo({ sleepHours: e });
-                                        }} />
+                                                onClick={(e) => {
+                                                    setHoursOfSleep(e);
+                                                    updateAdditionalInfo({sleepHours: e});
+                                                }}/>
                                 </JAMCol>
                             </JAMPanel>
                         </JAMCol>
-                        <JAMCol style={{ margin: '20px' }}>
+                        <JAMCol style={{margin: '20px'}}>
                             <JAMPanel height="200px" maxWidth={"1300px"} minWidth='300px'>
                                 <JAMCol>
                                     <JAMRow width='100%'>
                                         <JAMCol>
-                                            <JAMLabel caption='Glasses of water' big bold />
+                                            <JAMLabel caption='Glasses of water' big bold/>
                                         </JAMCol>
                                         <JAMCol>
-                                            {additionalInfoStats === '' ? (<JAMInfo />) : (<JAMInfo
+                                            {additionalInfoStats === '' ? (<JAMInfo/>) : (<JAMInfo
                                                 message={"Weekly glasses of water: " + additionalInfoStats['water']['weekly'] +
-                                                    "\nMonthly glasses of water: " + additionalInfoStats['water']['monthly'] +
-                                                    "\nYearly glasses of water: " + additionalInfoStats['water']['yearly']} />)}
+                                                "\nMonthly glasses of water: " + additionalInfoStats['water']['monthly'] +
+                                                "\nYearly glasses of water: " + additionalInfoStats['water']['yearly']}/>)}
                                         </JAMCol>
                                     </JAMRow>
-                                    <JAMImage icon={water} width='50px' style={{ marginTop: '20px' }} />
+                                    <JAMImage icon={water} width='50px' style={{marginTop: '20px'}}/>
                                     <JAMCounter value={glassesOfWater} caption=''
-                                        onClick={(e) => {
-                                            setGlassesOfWater(e);
-                                            updateAdditionalInfo({ glassesOfWater: e });
-                                        }} />
+                                                onClick={(e) => {
+                                                    setGlassesOfWater(e);
+                                                    updateAdditionalInfo({glassesOfWater: e});
+                                                }}/>
                                 </JAMCol>
                             </JAMPanel>
                         </JAMCol>
-                        <JAMCol style={{ margin: '20px' }}>
+                        <JAMCol style={{margin: '20px'}}>
                             <JAMPanel height="200px" maxWidth={"1300px"} minWidth='300px'>
                                 <JAMCol>
                                     <JAMRow width='100%'>
                                         <JAMCol>
-                                            <JAMLabel caption='Training hours' big bold />
+                                            <JAMLabel caption='Training hours' big bold/>
                                         </JAMCol>
                                         <JAMCol>
-                                            {additionalInfoStats === '' ? (<JAMInfo />) : (<JAMInfo
+                                            {additionalInfoStats === '' ? (<JAMInfo/>) : (<JAMInfo
                                                 message={"Weekly training hours: " + additionalInfoStats['training']['weekly'] +
-                                                    "\nMonthly training hours: " + additionalInfoStats['training']['monthly'] +
-                                                    "\nYearly training hours: " + additionalInfoStats['training']['yearly']} />)}
+                                                "\nMonthly training hours: " + additionalInfoStats['training']['monthly'] +
+                                                "\nYearly training hours: " + additionalInfoStats['training']['yearly']}/>)}
                                         </JAMCol>
                                     </JAMRow>
-                                    <JAMImage icon={dumbbells} width='50px' style={{ marginTop: '20px' }} />
+                                    <JAMImage icon={dumbbells} width='50px' style={{marginTop: '20px'}}/>
                                     <JAMCounter unit=' h' value={trainingHours} caption='' steps={0.25}
-                                        onClick={(e) => {
-                                            setTrainingHours(e);
-                                            updateAdditionalInfo({ trainingHours: e });
-                                        }} />
+                                                onClick={(e) => {
+                                                    setTrainingHours(e);
+                                                    updateAdditionalInfo({trainingHours: e});
+                                                }}/>
                                 </JAMCol>
                             </JAMPanel>
                         </JAMCol>
-                        <JAMCol style={{ margin: '20px' }}>
+                        <JAMCol style={{margin: '20px'}}>
                             <JAMPanel height="200px" maxWidth={"1300px"} minWidth='300px'>
                                 <JAMCol>
                                     <JAMRow width='100%'>
                                         <JAMCol>
-                                            <JAMLabel caption='Amount of alcohol' big bold />
+                                            <JAMLabel caption='Amount of alcohol' big bold/>
                                         </JAMCol>
                                         <JAMCol>
-                                            {additionalInfoStats === '' ? (<JAMInfo />) : (<JAMInfo
+                                            {additionalInfoStats === '' ? (<JAMInfo/>) : (<JAMInfo
                                                 message={"Weekly amount of alcohol: " + additionalInfoStats['alcohol']['weekly'] +
-                                                    "\nMonthly amount of alcohol: " + additionalInfoStats['alcohol']['monthly'] +
-                                                    "\nYearly amount of alcohol: " + additionalInfoStats['alcohol']['yearly']} />)}
+                                                "\nMonthly amount of alcohol: " + additionalInfoStats['alcohol']['monthly'] +
+                                                "\nYearly amount of alcohol: " + additionalInfoStats['alcohol']['yearly']}/>)}
                                         </JAMCol>
                                     </JAMRow>
-                                    <JAMImage icon={beer} width='50px' style={{ marginTop: '20px' }} />
+                                    <JAMImage icon={beer} width='50px' style={{marginTop: '20px'}}/>
                                     <JAMCounter value={alcoholAmount} caption=''
-                                        onClick={(e) => {
-                                            setAmountOfAlcohol(e);
-                                            updateAdditionalInfo({ alcoholAmount: e });
-                                        }} />
+                                                onClick={(e) => {
+                                                    setAmountOfAlcohol(e);
+                                                    updateAdditionalInfo({alcoholAmount: e});
+                                                }}/>
                                 </JAMCol>
                             </JAMPanel>
                         </JAMCol>
@@ -423,43 +428,43 @@ const Home = (props) => {
 
             <JAMRow width='100%'>
                 <JAMPanel width={"90%"} maxWidth={"1300px"} backgroundColor={"white"} minWidth='400px'>
-                    <JAMRow width='100%' style={{ margin: '10px' }}>
+                    <JAMRow width='100%' style={{margin: '10px'}}>
                         <JAMButton theme={statisticDays === 7 ? 'normal' : 'white'} value='Week'
-                            onClick={() => changeDateRange(7)} />
+                                   onClick={() => changeDateRange(7)}/>
                         <JAMButton theme={statisticDays === 30 ? 'normal' : 'white'} value='Month'
-                            onClick={() => changeDateRange(30)} />
+                                   onClick={() => changeDateRange(30)}/>
                         <JAMButton theme={statisticDays === 365 ? 'normal' : 'white'} value='Year'
-                            onClick={() => changeDateRange(365)} />
+                                   onClick={() => changeDateRange(365)}/>
                     </JAMRow>
-                    <JAMRow width='100%' style={{ margin: '10px' }}>
+                    <JAMRow width='100%' style={{margin: '10px'}}>
                         <JAMCol>
-                            <JAMButton theme='white' value='<' onClick={() => changeDate(false)} />
+                            <JAMButton theme='white' value='<' onClick={() => changeDate(false)}/>
                         </JAMCol>
                         <JAMCol>
-                            <JAMLabel caption={startDate + ' <~> ' + stopDate} big bold />
+                            <JAMLabel caption={startDate + ' <~> ' + stopDate} big bold/>
                         </JAMCol>
                         <JAMCol>
-                            <JAMButton theme='white' value='>' onClick={() => changeDate(true)} />
+                            <JAMButton theme='white' value='>' onClick={() => changeDate(true)}/>
                         </JAMCol>
                     </JAMRow>
                     <JAMRow width='100%'>
                         <JAMCol width='50%'>
                             <JAMChart type='line' header='Weight' caption='Weight' labels={labelsWeight}
-                                data={weightData} width='100%' height='500px' />
+                                      data={weightData} width='100%' height='500px'/>
                         </JAMCol>
                         <JAMCol width='50%'>
                             <JAMChart type='bar' header='Glucose' caption='Glucose' labels={labelsWeight}
-                                data={glucoseData} width='100%' height='500px' />
+                                      data={glucoseData} width='100%' height='500px'/>
                         </JAMCol>
                     </JAMRow>
                     <JAMRow width='100%'>
                         <JAMCol width='50%'>
                             <JAMChart type='line' header='Insulin' caption='Insulin' labels={labelsWeight}
-                                data={insulinData} width='100%' height='500px' />
+                                      data={insulinData} width='100%' height='500px'/>
                         </JAMCol>
                         <JAMCol width='50%'>
                             <JAMChart type='bar' header='Blood Pressure' caption='Blood Pressure' labels={labelsWeight}
-                                data={bloodPressureData} width='100%' height='500px' />
+                                      data={bloodPressureData} width='100%' height='500px'/>
                         </JAMCol>
                     </JAMRow>
                 </JAMPanel>
